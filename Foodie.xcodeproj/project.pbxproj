@@ -48,6 +48,7 @@
 		33FF3E981AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */; };
 		33FF3E9D1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF3E9B1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.swift */; };
 		33FF3E9E1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33FF3E9C1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.xib */; };
+		34FFD8071AFC88510003B6D4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34FFD8061AFC88510003B6D4 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersCategoryCollectionViewController.swift; sourceTree = "<group>"; };
 		33FF3E9B1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersCatrgoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		33FF3E9C1AF4B94500505C85 /* FiltersCatrgoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersCatrgoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		34FFD8061AFC88510003B6D4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Resources/User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 		3326EF4B1AF485DB0064AC88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				34FFD8061AFC88510003B6D4 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */,
 				33D1A6C61AF4A7250099787D /* GalleryViewController.swift in Sources */,
 				33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */,
+				34FFD8071AFC88510003B6D4 /* User.swift in Sources */,
 				333892581AF70BAB000ACD9F /* ModificationTableViewController.swift in Sources */,
 				333892601AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift in Sources */,
 				337E990C1AFA28D400917C21 /* CommentTableViewCell.swift in Sources */,
