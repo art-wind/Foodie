@@ -14,7 +14,7 @@ class SquareCollectionViewController: UICollectionViewController {
     let nameArray = ["cheesecake","strawberries","sushi","sanwenyu","pizza"]
     let squareCVCReuseID = "Square CVC"
     let squareNibname = "SquareCollectionViewCell"
-    //MARK: askdjlkasd
+    //MARK: View load and will appear
     override func viewDidLoad() {
         super.viewDidLoad()
         
