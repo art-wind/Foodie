@@ -9,7 +9,8 @@
 import UIKit
 
 class GalleryViewController: UIViewController {
-
+    //Gallery VIEW Controller
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
