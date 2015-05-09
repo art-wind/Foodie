@@ -14,6 +14,7 @@ class SquareCollectionViewController: UICollectionViewController {
     let nameArray = ["cheesecake","strawberries","sushi","sanwenyu","pizza"]
     let squareCVCReuseID = "Square CVC"
     let squareNibname = "SquareCollectionViewCell"
+    let detailSegueName = "Present Detail"
     //MARK: View load and will appear
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,5 +45,20 @@ class SquareCollectionViewController: UICollectionViewController {
         
         cell.squareImage.image = UIImage(named: nameArray[row%length])
         return cell
+    }
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let detailStatusVCNibname = VCNibname.DetailStatusVC.rawValue
+        let detailStatusVC = DetailStatusViewController(nibName:detailStatusVCNibname, bundle: nil)
+        
+        presentViewController(detailStatusVC, animated: true) { () -> Void in
+            
+        }
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == detailSegueName {
+            let detailStatusVC = segue.destinationViewController as DetailStatusViewController
+            
+//            detailStatusVC.imageView.image = UIImage(named: "monster")
+        }
     }
 }

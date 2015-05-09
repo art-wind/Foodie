@@ -16,12 +16,15 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
     let commentTVCNibName = "CommentTableViewCell"
     
     let showConcernSegueID = "Show Friends"
+//    var is
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: originalCellNibName, bundle: nil), forCellReuseIdentifier: originalCellReuseID)
         tableView.registerNib(UINib(nibName: commentTVCNibName, bundle: nil), forCellReuseIdentifier: commentTVCReuseID)
          self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
+        if self.navigationController?.viewControllers.count == 1 {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("pop:"))
+        }
         
         self.tabBarItem = nil
         let inputBox = UITextField()
@@ -40,6 +43,11 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         view.window?.addSubview(inputBox)
         view.window?.addSubview(sendButton)
         view.setNeedsDisplay()
+    }
+    func pop(sender:AnyObject){
+        self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
     }
     func responseToTypeIn (sender:UITextField){
         resignFirstResponder()

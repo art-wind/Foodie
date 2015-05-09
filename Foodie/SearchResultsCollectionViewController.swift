@@ -47,15 +47,6 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         let str = mapping["sss"]
         let type = mapping["type"]!
         isPicture = (type != "friend")
-//        if type == "friend" {
-//            
-//            
-//        }
-//        else{
-//            isPicture = false
-//            self.collectionView?.reloadData()
-//
-//        }
         self.collectionView?.reloadData()
      }
     override func didReceiveMemoryWarning() {
@@ -122,7 +113,29 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         return true
     }
     */
-
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        let detailStatusVC = DetailStatusViewController()
+//        self.navigationController?.pushViewController(detailStatusVC, animated: true)
+//        presentViewController(detailStatusVC, animated: true) { () -> Void in
+//            println("YESSSS")
+//        }
+        if isPicture{
+            let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+            
+            presentViewController(detailStatusVC, animated: true) { () -> Void in
+                
+            }
+        }
+        else{
+            let mainVC = MainPageTableViewController()
+            mainVC.isPushedFromSearch = true
+            presentViewController(UINavigationController(rootViewController: mainVC), animated: true, completion: { () -> Void in
+                
+            })
+//            self.navigationController?.pushViewController(mainVC, animated: true)
+        }
+        
+    }
     /*
     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
     override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {

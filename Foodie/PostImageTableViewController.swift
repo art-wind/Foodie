@@ -9,21 +9,34 @@
 import UIKit
 
 class PostImageTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    var isTaken:Bool = false
+    let filterImageSegueID = "Filter Image"
+    @IBOutlet var takenPhoto: UIImageView!
+    @IBAction func takePicture(sender: UIButton) {
+        //takenPhoto.image = UIImage(named:"monster")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func chooseFilterUnwindSegue (segue:UIStoryboardSegue){
+//        let
+        let srcVC = segue.sourceViewController as FilterViewController
+        takenPhoto.image = srcVC.displayImage.image
     }
+    
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+        if segue.identifier == filterImageSegueID{
+            let filterVC = segue.destinationViewController as FilterViewController
+            let defaultImage = UIImage(named: "monster")
+            println("Filter image Segue")
+            filterVC.originalImage = isTaken ? takenPhoto.image : defaultImage
+        }
+    }
+    
+    
+    
     // MARK: - Table view data source
     /*
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -83,14 +96,6 @@ class PostImageTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
