@@ -15,6 +15,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         segmentController.addTarget(self, action: Selector("braodcast:"), forControlEvents: UIControlEvents.ValueChanged)
+        
         // Do any additional setup after loading the view.
     }
 

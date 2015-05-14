@@ -16,19 +16,26 @@ class MainPageTableViewController: UITableViewController {
     
     let showConcernSegueID = "Show Friends"
     
-    
+    var isPushedFromSearch = false
     var isMyself:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
         tableView.registerNib(UINib(nibName: previousPhotoTVCNibName, bundle: nil), forCellReuseIdentifier: previousPhotoID)
+        if isPushedFromSearch {
+            self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
+    func pop(sender:UIBarButtonItem){
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -126,6 +133,22 @@ class MainPageTableViewController: UITableViewController {
             println("Into the friend List Segue")
         }
     }
+    
+    
+    //MARK: Delegate
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        let row = indexPath.row
+        if section == 1{
+            let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+            presentViewController(detailStatusVC, animated: true) { () -> Void in
+                
+            }
+        }
+    }
+    
+    
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
