@@ -128,7 +128,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         }
         else{
             let mainVC = MainPageTableViewController()
-            mainVC.isPushedFromSearch = true
+            mainVC.isPushed = true
             presentViewController(UINavigationController(rootViewController: mainVC), animated: true, completion: { () -> Void in
                 
             })

@@ -16,13 +16,13 @@ class MainPageTableViewController: UITableViewController {
     
     let showConcernSegueID = "Show Friends"
     
-    var isPushedFromSearch = false
+    var isPushed = false
     var isMyself:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
         tableView.registerNib(UINib(nibName: previousPhotoTVCNibName, bundle: nil), forCellReuseIdentifier: previousPhotoID)
-        if isPushedFromSearch {
+        if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
         // Uncomment the following line to preserve selection between presentations
@@ -141,6 +141,8 @@ class MainPageTableViewController: UITableViewController {
         let row = indexPath.row
         if section == 1{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+            detailStatusVC.detailStatusImage = UIImage(named:"monster")
+            detailStatusVC.userIconImage = UIImage(named:"monster")
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }

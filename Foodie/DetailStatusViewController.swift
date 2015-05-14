@@ -10,10 +10,13 @@ import UIKit
 
 class DetailStatusViewController: UIViewController {
 
+    @IBOutlet var userIconImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var praiseButton: UIButton!
     @IBOutlet var commentButton: UIButton!
     
+    var userIconImage:UIImage?
+    var detailStatusImage:UIImage?
     @IBAction func backAction(sender: UIButton) {
         dismissViewControllerAnimated(true, completion: { () -> Void in
             
@@ -30,10 +33,27 @@ class DetailStatusViewController: UIViewController {
             
         }
     }
+    @IBAction func checkMainPage(sender: UIButton) {
+        let mainPageVC = MainPageTableViewController()
+        mainPageVC.isMyself = false
+        mainPageVC.isPushed = true
+        let navVC = UINavigationController(rootViewController: mainPageVC)
+        presentViewController(navVC, animated: true) { () -> Void in
+            
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-//
-        imageView.image = UIImage(named:"monster")
+        imageView.image = detailStatusImage!
+        if let iconImage = userIconImage{
+            
+            userIconImageView.image = userIconImage
+            let width = userIconImageView.bounds.size.width
+            userIconImageView.layer.cornerRadius = width/2
+            userIconImageView.layer.masksToBounds = true
+        }
+        
+        
     }
     override init() {
         super.init()

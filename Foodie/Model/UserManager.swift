@@ -9,9 +9,9 @@
 import Foundation
 
 class UserManager {
-    func login(User:user){
-        
-    }
+//    func login(User:user){
+//        
+//    }
     
     
 
