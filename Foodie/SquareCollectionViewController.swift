@@ -19,10 +19,6 @@ class SquareCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        let abc = User()
-        abc.a
-        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,7 +36,7 @@ class SquareCollectionViewController: UICollectionViewController {
         return 1
     }
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return nameArray.count
     }
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(squareCVCReuseID, forIndexPath: indexPath) as SquareCollectionViewCell
@@ -53,7 +49,9 @@ class SquareCollectionViewController: UICollectionViewController {
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailStatusVCNibname = VCNibname.DetailStatusVC.rawValue
         let detailStatusVC = DetailStatusViewController(nibName:detailStatusVCNibname, bundle: nil)
-        
+        let row = indexPath.row
+        let image = UIImage(named: nameArray[row])
+        detailStatusVC.detailStatusImage = image
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }
