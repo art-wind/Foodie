@@ -121,7 +121,8 @@ class SearchResultsCollectionViewController: UICollectionViewController {
 //        }
         if isPicture{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-            
+            detailStatusVC.userIconImage = UIImage(named: "HENRY")
+            detailStatusVC.detailStatusImage = UIImage(named: "cheesecake")
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }
@@ -129,6 +130,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         else{
             let mainVC = MainPageTableViewController()
             mainVC.isPushed = true
+//            mainVC.
             presentViewController(UINavigationController(rootViewController: mainVC), animated: true, completion: { () -> Void in
                 
             })

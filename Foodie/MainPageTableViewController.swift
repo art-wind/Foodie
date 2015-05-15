@@ -9,15 +9,24 @@
 import UIKit
 
 class MainPageTableViewController: UITableViewController {
+    //MARK: Reuse ID & Nibnames
     let cellReuseID = "DescriptionTableViewCell"
-    
     let previousPhotoID = "Previous Photo TVC"
     let previousPhotoTVCNibName = "PreviousPhotoTableViewCell"
-    
     let showConcernSegueID = "Show Friends"
+
+    //MARK: Critical properties for content
+    /*
+    var userOfMainPage:User?
+    var statusOfUser:[Status]?
+    var fans:[User]?
+    var followees:[User]?
+    var messages:[Message]?
+    */
     
+    //MARK: Navigation Item
     var isPushed = false
-    var isMyself:Bool = true
+    var isMyself:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
@@ -25,11 +34,6 @@ class MainPageTableViewController: UITableViewController {
         if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func pop(sender:UIBarButtonItem){
         dismissViewControllerAnimated(true, completion: { () -> Void in
