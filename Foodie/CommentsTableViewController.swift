@@ -17,8 +17,12 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
     
     let showConcernSegueID = "Show Friends"
 //    var is
+    var comments:[String] = ["CommentTableViewCell",
+                            "CommentTableViewCellCommentTableViewCellCommentTableViewCell",
+                            "CommentTableViewCellCommentTableViewCellCommentTableViewCellCommentTableViewCellCommentTableViewCell"]
     override func viewDidLoad() {
         super.viewDidLoad()
+//        tableView.registerClass(CommentTableViewCell.self, forCellReuseIdentifier: commentTVCReuseID)
         tableView.registerNib(UINib(nibName: originalCellNibName, bundle: nil), forCellReuseIdentifier: originalCellReuseID)
         tableView.registerNib(UINib(nibName: commentTVCNibName, bundle: nil), forCellReuseIdentifier: commentTVCReuseID)
          self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -75,12 +79,12 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         }
         else{
             // 评论的个数
-            return 3
+            return comments.count
         }
         return 1
     }
 
-    
+//    table
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let section = indexPath.section
@@ -92,33 +96,35 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         else{
             // 输出评论的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(commentTVCReuseID, forIndexPath: indexPath) as CommentTableViewCell
+            cell.contentTextView.text = comments[indexPath.row]
             return cell
         }
         // Configure the cell...
 
         
     }
-    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return indexPath.section == 0 ? 200 : CommentTableViewCell.getHeight(comments[indexPath.row], width: tableView.frame.width)
+    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
-        return true
+        return indexPath.section == 1
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
+//     Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+//             Delete the row from the data source
+            
+            comments.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+//             Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

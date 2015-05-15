@@ -46,15 +46,6 @@
                         <action selector="backAction:" destination="-1" eventType="touchUpInside" id="gWa-aK-JpP"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lft-GV-ks1">
-                    <rect key="frame" x="275" y="542" width="50" height="50"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="checkMainPage:" destination="-1" eventType="touchUpInside" id="8EV-LZ-GdA"/>
-                    </connections>
-                </button>
                 <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="HENRY" translatesAutoresizingMaskIntoConstraints="NO" id="TvW-0e-OLU">
                     <rect key="frame" x="275" y="542" width="50" height="50"/>
                     <constraints>
@@ -70,20 +61,12 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="height" secondItem="Lft-GV-ks1" secondAttribute="height" id="0Gc-5N-b7e"/>
                 <constraint firstAttribute="bottom" secondItem="tGr-pS-csq" secondAttribute="bottom" id="3GG-Ju-Ksd"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="7fT-Zt-2dk"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7ua-0Q-IKM"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="width" secondItem="Lft-GV-ks1" secondAttribute="width" id="87X-YR-OCb"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="bottom" secondItem="Lft-GV-ks1" secondAttribute="bottom" constant="-13" id="I2x-kY-YGi"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="leading" secondItem="Lft-GV-ks1" secondAttribute="leading" id="KVT-it-GUe"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="leading" secondItem="Lft-GV-ks1" secondAttribute="leading" constant="337" id="Rng-eg-Qkc"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UmK-wW-1Mm"/>
                 <constraint firstAttribute="bottom" secondItem="ryp-za-R9H" secondAttribute="bottom" constant="14" id="Unx-g7-x3q"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="top" secondItem="Lft-GV-ks1" secondAttribute="top" constant="-13" id="YJt-lM-OSb"/>
                 <constraint firstItem="ryp-za-R9H" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="Zg6-KA-G5Y"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="top" secondItem="Lft-GV-ks1" secondAttribute="top" constant="-13" id="dLs-eu-GHw"/>
-                <constraint firstItem="TvW-0e-OLU" firstAttribute="top" secondItem="Lft-GV-ks1" secondAttribute="top" id="fpf-KX-YEC"/>
                 <constraint firstItem="OQ5-lu-a7d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="idF-Vq-VSV"/>
                 <constraint firstAttribute="trailing" secondItem="tGr-pS-csq" secondAttribute="trailing" id="lVX-SU-q67"/>
                 <constraint firstItem="OQ5-lu-a7d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="o8N-88-t1B"/>
@@ -91,14 +74,6 @@
                 <constraint firstAttribute="centerX" secondItem="TvW-0e-OLU" secondAttribute="centerX" id="uYM-9q-RBw"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="top" secondItem="ryp-za-R9H" secondAttribute="top" id="zUW-uf-0rv"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="I2x-kY-YGi"/>
-                    <exclude reference="Rng-eg-Qkc"/>
-                    <exclude reference="YJt-lM-OSb"/>
-                    <exclude reference="dLs-eu-GHw"/>
-                </mask>
-            </variation>
         </view>
         <tapGestureRecognizer id="6Rh-ba-PWx">
             <connections>
