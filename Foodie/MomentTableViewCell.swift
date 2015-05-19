@@ -13,8 +13,11 @@ class MomentTableViewCell: UITableViewCell {
     @IBOutlet var pictureImageView: UIImageView!
     @IBOutlet var messageTextView: UITextView!
     @IBOutlet var iconImageView: UIImageView!
+    @IBOutlet var commentButton: UIButton!
+    @IBOutlet var admireButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        pictureImageView.userInteractionEnabled = true
         // Initialization code
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell,UIActionSheetDelegate {
 
-    @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var contentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         println("sadasd")
@@ -28,12 +28,11 @@ class CommentTableViewCell: UITableViewCell,UIActionSheetDelegate {
     }
     class func getHeight(commentString:String?,width:CGFloat)->CGFloat{
         if let str = commentString{
-//            UITextView.
-            var textView:UITextView = UITextView()
+//            var textLabel:UILabel = UILabel()
+            var textView : UITextView = UITextView()
             textView.text = commentString
-            textView.font = UIFont.systemFontOfSize(18)
-            //        print("\(self.e)")
-            return max(textView.sizeThatFits(CGSize(width: width - 60 , height: 1000)).height ,60)
+            textView.font = UIFont.systemFontOfSize(14)
+            return max(textView.sizeThatFits(CGSize(width: width - 90, height: 1000)).height+20,46)
         }
         return 10
     }

@@ -16,7 +16,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        UINavigationBar.appearance().barTintColor = UIColor(red: 110/256, green: 175/256, blue: 220/256, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        let titleFont =  UIFont(name: "Helvetica", size: 18)!
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor() , NSFontAttributeName:titleFont ]
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+//        
+//        let context = managedObjectContext
+//        let m = NSEntityDescription.insertNewObjectForEntityForName("URLCache", inManagedObjectContext: managedObjectContext!) as URLCache
+//        m.url = "www.baidu.com"
+//        m.imgData = NSData(contentsOfURL: NSURL(string: "http://static-cdn.pixelmator.com/home/mac/3.3/effects.png")!)!
+//        let img = UIImage(named: "monster")
+//        m.setValue(  ,forKey: "imgData" )
+//        context?.save(nil)
+        
+        //URLCache()
+        
+        
+        
+        
         return true
     }
 

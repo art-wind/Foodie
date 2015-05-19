@@ -47,11 +47,11 @@ class SquareCollectionViewController: UICollectionViewController {
         return cell
     }
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let detailStatusVCNibname = VCNibname.DetailStatusVC.rawValue
-        let detailStatusVC = DetailStatusViewController(nibName:detailStatusVCNibname, bundle: nil)
+        let detailStatusVC = VCGenerator.detailStatusVCGenerator()
         let row = indexPath.row
         let image = UIImage(named: nameArray[row])
         detailStatusVC.detailStatusImage = image
+        detailStatusVC.userIconImage = UIImage(named: "HENRY")
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }
