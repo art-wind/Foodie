@@ -38,6 +38,7 @@
 		337E99091AFA28CB00917C21 /* OriginalPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 337E99071AFA28CB00917C21 /* OriginalPostTableViewCell.xib */; };
 		337E990C1AFA28D400917C21 /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E990A1AFA28D400917C21 /* CommentTableViewCell.swift */; };
 		337E990D1AFA28D400917C21 /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 337E990B1AFA28D400917C21 /* CommentTableViewCell.xib */; };
+		3383858E1B0B6125000437AF /* URLCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3383858D1B0B6125000437AF /* URLCache.swift */; };
 		33925E111AFDE66000DD39F4 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33925E101AFDE66000DD39F4 /* FilterViewController.swift */; };
 		33A192841AF70184006A7E5D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A192831AF70184006A7E5D /* SearchViewController.swift */; };
 		33A192861AF701A6006A7E5D /* SearchResultsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A192851AF701A6006A7E5D /* SearchResultsCollectionViewController.swift */; };
@@ -51,6 +52,7 @@
 		33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */; };
 		33D6D43C1AF74BE100564F00 /* MessageNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D6D43A1AF74BE100564F00 /* MessageNotificationTableViewCell.swift */; };
 		33D6D43D1AF74BE100564F00 /* MessageNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D6D43B1AF74BE100564F00 /* MessageNotificationTableViewCell.xib */; };
+		33E157341B0B89BB00AE88AB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33E157331B0B89BB00AE88AB /* CoreLocation.framework */; };
 		33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */; };
 		33FC85981AF7822C00F587C4 /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */; };
 		33FF3E981AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */; };
@@ -109,6 +111,7 @@
 		337E99071AFA28CB00917C21 /* OriginalPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OriginalPostTableViewCell.xib; sourceTree = "<group>"; };
 		337E990A1AFA28D400917C21 /* CommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
 		337E990B1AFA28D400917C21 /* CommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		3383858D1B0B6125000437AF /* URLCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLCache.swift; sourceTree = "<group>"; };
 		33925E101AFDE66000DD39F4 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		33A192831AF70184006A7E5D /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		33A192851AF701A6006A7E5D /* SearchResultsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsCollectionViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNotificationTableViewController.swift; sourceTree = "<group>"; };
 		33D6D43A1AF74BE100564F00 /* MessageNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		33D6D43B1AF74BE100564F00 /* MessageNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageNotificationTableViewCell.xib; sourceTree = "<group>"; };
+		33E157331B0B89BB00AE88AB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImageTableViewController.swift; sourceTree = "<group>"; };
 		33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTableViewController.swift; sourceTree = "<group>"; };
 		33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersCategoryCollectionViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33E157341B0B89BB00AE88AB /* CoreLocation.framework in Frameworks */,
 				3363CC191AFDB15E00F4E868 /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +161,7 @@
 		3300BD651AF1230E000EED64 = {
 			isa = PBXGroup;
 			children = (
+				33E157331B0B89BB00AE88AB /* CoreLocation.framework */,
 				3363CC181AFDB15E00F4E868 /* CoreImage.framework */,
 				3300BD701AF1230E000EED64 /* Foodie */,
 				3300BD891AF1230E000EED64 /* FoodieTests */,
@@ -178,6 +184,7 @@
 				3300BD7A1AF1230E000EED64 /* Main.storyboard */,
 				3326EF471AF485810064AC88 /* Controller */,
 				3326EF481AF4858B0064AC88 /* View */,
+				3383858F1B0B6136000437AF /* CacheModel */,
 				3326EF4B1AF485DB0064AC88 /* Model */,
 				3300BD711AF1230E000EED64 /* Supporting Files */,
 			);
@@ -231,12 +238,12 @@
 		3326EF481AF4858B0064AC88 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				33D1A6C11AF4A25E0099787D /* MomentTableViewCell.swift */,
+				33D1A6C21AF4A25E0099787D /* MomentTableViewCell.xib */,
 				337E99051AFA28B000917C21 /* Comments */,
 				333892591AF71B89000ACD9F /* MainPageView */,
 				33D1A6BB1AF4A1BF0099787D /* SquareCollectionViewCell.swift */,
 				33D1A6BC1AF4A1BF0099787D /* SquareCollectionViewCell.xib */,
-				33D1A6C11AF4A25E0099787D /* MomentTableViewCell.swift */,
-				33D1A6C21AF4A25E0099787D /* MomentTableViewCell.xib */,
 				3363CC1A1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.swift */,
 				3363CC1B1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.xib */,
 				3338924F1AF70718000ACD9F /* UserIconCollectionViewCell.swift */,
@@ -311,6 +318,14 @@
 				337E990B1AFA28D400917C21 /* CommentTableViewCell.xib */,
 			);
 			name = Comments;
+			sourceTree = "<group>";
+		};
+		3383858F1B0B6136000437AF /* CacheModel */ = {
+			isa = PBXGroup;
+			children = (
+				3383858D1B0B6125000437AF /* URLCache.swift */,
+			);
+			name = CacheModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -441,6 +456,7 @@
 				333892511AF70718000ACD9F /* UserIconCollectionViewCell.swift in Sources */,
 				337E99041AFA283900917C21 /* CommentsTableViewController.swift in Sources */,
 				33771C6D1AFDD80200F20229 /* Thumbnail.swift in Sources */,
+				3383858E1B0B6125000437AF /* URLCache.swift in Sources */,
 				3320B8D51AFCFDDE00110C40 /* VCNibname.swift in Sources */,
 				3461545A1B023761005316C2 /* UserManager.swift in Sources */,
 				33D1A6C31AF4A25E0099787D /* MomentTableViewCell.swift in Sources */,

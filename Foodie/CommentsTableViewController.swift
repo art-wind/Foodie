@@ -17,8 +17,14 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
     
     let showConcernSegueID = "Show Friends"
 //    var is
+    var comments:[String] = ["CommentTableViewCell",
+                             "CommentTableViewCellCommentTableViewCellCommentTableViewCell",
+                        "CommentTableViewCellCommentTableViewCellCommentTableViewCellCommentTableViewCellCommentTableViewCell"]
+    
+    var targetID:String?
     override func viewDidLoad() {
         super.viewDidLoad()
+//        tableView.registerClass(CommentTableViewCell.self, forCellReuseIdentifier: commentTVCReuseID)
         tableView.registerNib(UINib(nibName: originalCellNibName, bundle: nil), forCellReuseIdentifier: originalCellReuseID)
         tableView.registerNib(UINib(nibName: commentTVCNibName, bundle: nil), forCellReuseIdentifier: commentTVCReuseID)
          self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -26,23 +32,43 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("pop:"))
         }
         
-        self.tabBarItem = nil
+        
+        let imageView = UIImageView(frame: CGRect(x: 100, y: 100, width: 50  , height: 50))
+        imageView.image = UIImage(named: "Henry")
+//        view.addSubview(imageView)
+        tableView.addSubview(imageView)
+//        self.tabBarItem = nil
+        
+        
+        var frameWidth = UIScreen.mainScreen().bounds.width
+        var frameHeight = UIScreen.mainScreen().bounds.height
+        if let navigationController = self.navigationController{
+            let navigationBarheight = navigationController.navigationBar.frame.height
+            frameHeight -= navigationBarheight + 20
+        }
+        
+        let boxHeight:CGFloat = 30
+        let buttonWidth:CGFloat = 50
+        
         let inputBox = UITextField()
         inputBox.placeholder = "说说你的想法吧~"
-        inputBox.frame = CGRect(x: 0, y: 600, width: 300, height: 30)
+        inputBox.frame = CGRect(x: 8, y: frameHeight - boxHeight, width: frameWidth - buttonWidth - 24, height: boxHeight)
         inputBox.borderStyle = UITextBorderStyle.RoundedRect
         inputBox.addTarget(self, action: Selector("responseToTypeIn"), forControlEvents: UIControlEvents.TouchUpInside)
         inputBox.delegate = self
         
         let sendButton = UIButton()
-        sendButton.titleLabel?.text = "发送"
-        sendButton.titleLabel?.textColor = UIColor.whiteColor()
-        sendButton.backgroundColor = UIColor.blueColor()
-        sendButton.frame = CGRect(x: 310, y: 600, width: 50, height: 30)
-
-        view.window?.addSubview(inputBox)
-        view.window?.addSubview(sendButton)
-        view.setNeedsDisplay()
+        sendButton.layer.cornerRadius = 8
+        sendButton.layer.masksToBounds = true
+        sendButton.setTitle("发送", forState: .Normal)
+        sendButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        sendButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.3, alpha: 1)
+        sendButton.frame = CGRect(x: frameWidth - buttonWidth - 8, y: frameHeight - boxHeight, width: buttonWidth, height: boxHeight)
+        
+//        self.view.addSubview(<#view: UIView#>)
+        view.addSubview(inputBox)
+        view.addSubview(sendButton)
+//        view.setNeedsDisplay()
     }
     func pop(sender:AnyObject){
         self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -50,9 +76,16 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         })
     }
     func responseToTypeIn (sender:UITextField){
-        resignFirstResponder()
+        sender.becomeFirstResponder()
+        tableView.contentOffset = CGPoint(x: 50, y: 0)
     }
-
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let section = indexPath.section
+        if section == 0 {
+            becomeFirstResponder()
+    
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -67,20 +100,12 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        if section == 0{
-            // 状态本身的cell
-            
-        }
-        else{
-            // 评论的个数
-            return 3
-        }
-        return 1
+        // 状态本身的 Cell Row = 1
+        // 评论的个数 Cell Row = count
+        return section == 0 ? 1 : comments.count
     }
 
-    
+//    table
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let section = indexPath.section
@@ -92,57 +117,34 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         else{
             // 输出评论的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(commentTVCReuseID, forIndexPath: indexPath) as CommentTableViewCell
+            cell.contentLabel.text = comments[indexPath.row]
             return cell
         }
         // Configure the cell...
 
         
     }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     
+        return indexPath.section == 0 ? 200 : CommentTableViewCell.getHeight(comments[indexPath.row], width: tableView.frame.width)
+    }
 
-    /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the specified item to be editable.
-        return true
+        return indexPath.section == 1
     }
-    */
-
-    /*
-    // Override to support editing the table view.
+    
+//     Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            // Delete the row from the data source
+//             Delete the row from the data source
+            
+            comments.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+//             Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

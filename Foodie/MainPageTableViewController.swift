@@ -91,7 +91,7 @@ class MainPageTableViewController: UITableViewController {
     }
     
     func showMessageNotificationList(sender:AnyObject){
-        //        performSegueWithIdentifier("Show Friends", sender: sender)
+//        performSegueWithIdentifier("Show Friends", sender: sender)
         let messageNotiTVC = MessageNotificationTableViewController()
         navigationController?.pushViewController(messageNotiTVC, animated: true)
     }
@@ -106,8 +106,8 @@ class MainPageTableViewController: UITableViewController {
         let  uiCVCFlowLayout = UICollectionViewFlowLayout()
         //self.view.frame.size
         let frameWidth = self.view.frame.size.width
-        uiCVCFlowLayout.itemSize = CGSize(width: frameWidth/4, height: frameWidth/4+50)
-        
+//        uiCVCFlowLayout.itemSize = CGSize(width: frameWidth/4, height: frameWidth/4+50)
+        uiCVCFlowLayout.itemSize = CGSize(width: 66, height: 95)
         uiCVCFlowLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
         
         let friendsCVC = FriendsCollectionViewController(collectionViewLayout: uiCVCFlowLayout)
