@@ -496,8 +496,8 @@ public class XMLElement {
         children.append(element)
 
         for (keyAny,valueAny) in attributes {
-            let key = keyAny as! String
-            let value = valueAny as! String
+            let key = keyAny as String
+            let value = valueAny as String
             element.attributes[key] = value
         }
 
