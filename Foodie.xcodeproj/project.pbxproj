@@ -55,6 +55,8 @@
 		33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */; };
 		33FC85981AF7822C00F587C4 /* MomentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */; };
 		33FF3E981AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */; };
+		3409CC0D1B0E051D00BFCEAE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3409CC0A1B0E051D00BFCEAE /* Info.plist */; };
+		3409CC0E1B0E051D00BFCEAE /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3409CC0C1B0E051D00BFCEAE /* SWXMLHash.swift */; };
 		346154581B023725005316C2 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346154571B023725005316C2 /* Status.swift */; };
 		3461545A1B023761005316C2 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346154591B023761005316C2 /* UserManager.swift */; };
 		3461545E1B023966005316C2 /* StatusManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3461545D1B023966005316C2 /* StatusManager.swift */; };
@@ -127,6 +129,9 @@
 		33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostImageTableViewController.swift; sourceTree = "<group>"; };
 		33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentsTableViewController.swift; sourceTree = "<group>"; };
 		33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiltersCategoryCollectionViewController.swift; sourceTree = "<group>"; };
+		3409CC0A1B0E051D00BFCEAE /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = XML_API/Info.plist; sourceTree = "<group>"; };
+		3409CC0B1B0E051D00BFCEAE /* SWXMLHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWXMLHash.h; path = XML_API/SWXMLHash.h; sourceTree = "<group>"; };
+		3409CC0C1B0E051D00BFCEAE /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SWXMLHash.swift; path = XML_API/SWXMLHash.swift; sourceTree = "<group>"; };
 		346154571B023725005316C2 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Status.swift; path = Model/Status.swift; sourceTree = "<group>"; };
 		346154591B023761005316C2 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserManager.swift; path = Model/UserManager.swift; sourceTree = "<group>"; };
 		3461545D1B023966005316C2 /* StatusManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusManager.swift; path = Model/StatusManager.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 		3300BD701AF1230E000EED64 /* Foodie */ = {
 			isa = PBXGroup;
 			children = (
+				3409CC091B0E051200BFCEAE /* XML */,
 				3300BD7A1AF1230E000EED64 /* Main.storyboard */,
 				3326EF471AF485810064AC88 /* Controller */,
 				3326EF481AF4858B0064AC88 /* View */,
@@ -316,6 +322,16 @@
 			name = Comments;
 			sourceTree = "<group>";
 		};
+		3409CC091B0E051200BFCEAE /* XML */ = {
+			isa = PBXGroup;
+			children = (
+				3409CC0A1B0E051D00BFCEAE /* Info.plist */,
+				3409CC0B1B0E051D00BFCEAE /* SWXMLHash.h */,
+				3409CC0C1B0E051D00BFCEAE /* SWXMLHash.swift */,
+			);
+			name = XML;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -404,6 +420,7 @@
 				337E990D1AFA28D400917C21 /* CommentTableViewCell.xib in Resources */,
 				333892611AF73A8B000ACD9F /* PreviousPhotoTableViewCell.xib in Resources */,
 				33D1A6BE1AF4A1BF0099787D /* SquareCollectionViewCell.xib in Resources */,
+				3409CC0D1B0E051D00BFCEAE /* Info.plist in Resources */,
 				33D1A6C41AF4A25E0099787D /* MomentTableViewCell.xib in Resources */,
 				337E99091AFA28CB00917C21 /* OriginalPostTableViewCell.xib in Resources */,
 				3363CC1D1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.xib in Resources */,
@@ -460,6 +477,7 @@
 				346154621B023A1E005316C2 /* Message.swift in Sources */,
 				3461545E1B023966005316C2 /* StatusManager.swift in Sources */,
 				346154581B023725005316C2 /* Status.swift in Sources */,
+				3409CC0E1B0E051D00BFCEAE /* SWXMLHash.swift in Sources */,
 				33925E111AFDE66000DD39F4 /* FilterViewController.swift in Sources */,
 				337E990C1AFA28D400917C21 /* CommentTableViewCell.swift in Sources */,
 				3338925C1AF71BC8000ACD9F /* DescriptionTableViewCell.swift in Sources */,
