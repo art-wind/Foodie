@@ -14,14 +14,6 @@ class ModificationTableViewController: UITableViewController {
         super.viewDidLoad()
         let saveButton = UIBarButtonItem(title: "保存修改", style: .Plain, target: self, action: Selector("saveModified:"))
         navigationItem.rightBarButtonItem = saveButton
-        let txt = UITextView()
-    
-//        txt.inp
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     func saveModified(sender:UIBarButtonItem){
         // 上传修改的个人信息

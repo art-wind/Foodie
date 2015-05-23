@@ -94,6 +94,7 @@
                 <outlet property="admireButton" destination="GjM-Qz-YOm" id="Ctz-jn-7bq"/>
                 <outlet property="commentButton" destination="fXW-k7-K37" id="Xbo-01-GkJ"/>
                 <outlet property="pictureImageView" destination="mbn-Wk-ppU" id="EZe-bw-eaK"/>
+                <outlet property="tagLabel" destination="gb0-SY-nDA" id="tnI-iE-Fcv"/>
             </connections>
             <point key="canvasLocation" x="-50.5" y="64.5"/>
         </tableViewCell>

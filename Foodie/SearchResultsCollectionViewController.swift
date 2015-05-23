@@ -31,14 +31,12 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         self.collectionView!.registerClass(PictureThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: pictureThumbnailCVCID)
         self.collectionView!.registerNib(UINib(nibName: pictureThumbnailCVCNibname, bundle: nil), forCellWithReuseIdentifier: pictureThumbnailCVCID)
         
-        
-        
         self.collectionView!.registerClass(UserIconCollectionViewCell.self, forCellWithReuseIdentifier: userIconCVCID)
         self.collectionView!.registerNib(UINib(nibName: userIconCVCNibName, bundle: nil), forCellWithReuseIdentifier: userIconCVCID)
         
         
         let noti = NSNotificationCenter.defaultCenter()
-       noti.addObserver(self, selector: Selector("refreshData:"), name: "startFetch", object: nil)
+        noti.addObserver(self, selector: Selector("refreshData:"), name: "startFetch", object: nil)
 
         // Do any additional setup after loading the view.
     }
@@ -53,19 +51,9 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
     // MARK: UICollectionViewDataSource
-
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
         return 1
@@ -81,7 +69,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         if isPicture {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(pictureThumbnailCVCID, forIndexPath: indexPath) as PictureThumbnailCollectionViewCell
             // Configure the cell
-            
+            cell.pictureThumbnailImageView.image = UIImage(named: "cheesecake")
             return cell
         }
         else{

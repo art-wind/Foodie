@@ -105,6 +105,13 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="D2g-63-TQv" id="1Ok-cK-L61"/>
+                <outlet property="dateLabel" destination="Lh1-bx-dxy" id="yf2-VL-aCZ"/>
+                <outlet property="iconImageView" destination="MDs-Pu-YW7" id="q06-MH-M8d"/>
+                <outlet property="nicknameLabel" destination="qbS-OA-FFf" id="Edr-4x-raO"/>
+                <outlet property="pictureImageView" destination="avW-zk-0XW" id="xbJ-OG-sxY"/>
+            </connections>
             <point key="canvasLocation" x="310" y="402"/>
         </tableViewCell>
     </objects>
