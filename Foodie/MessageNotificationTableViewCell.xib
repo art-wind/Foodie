@@ -21,7 +21,7 @@
                             <constraint firstAttribute="width" secondItem="YBY-jA-Cer" secondAttribute="height" multiplier="1:1" id="Vjv-Xq-V5q"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="A message from Henry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlj-8I-IIA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A message from Henry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlj-8I-IIA">
                         <rect key="frame" x="75" y="8" width="237" height="59"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -34,9 +34,14 @@
                     <constraint firstItem="YBY-jA-Cer" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="T00-Zn-SsS"/>
                     <constraint firstItem="YBY-jA-Cer" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="lKK-fS-Sb1"/>
                     <constraint firstItem="qlj-8I-IIA" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="nlX-pk-0op"/>
+                    <constraint firstItem="qlj-8I-IIA" firstAttribute="leading" secondItem="YBY-jA-Cer" secondAttribute="trailing" constant="8" id="tDh-cR-mGT"/>
                     <constraint firstItem="YBY-jA-Cer" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="wI0-Cp-HpV"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="messageLabel" destination="qlj-8I-IIA" id="bic-OF-JzB"/>
+                <outlet property="pictureImageView" destination="YBY-jA-Cer" id="FGy-Gn-6yI"/>
+            </connections>
             <point key="canvasLocation" x="441" y="336.5"/>
         </tableViewCell>
     </objects>

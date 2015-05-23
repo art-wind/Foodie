@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
+class CommentsTableViewController: UITableViewController,UITextFieldDelegate{
     let originalCellReuseID = "Original Post TVC"
     let originalCellNibName = "OriginalPostTableViewCell"
     
@@ -24,7 +24,6 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
     var targetID:String?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        tableView.registerClass(CommentTableViewCell.self, forCellReuseIdentifier: commentTVCReuseID)
         tableView.registerNib(UINib(nibName: originalCellNibName, bundle: nil), forCellReuseIdentifier: originalCellReuseID)
         tableView.registerNib(UINib(nibName: commentTVCNibName, bundle: nil), forCellReuseIdentifier: commentTVCReuseID)
          self.navigationItem.rightBarButtonItem = self.editButtonItem()
@@ -35,9 +34,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         
         let imageView = UIImageView(frame: CGRect(x: 100, y: 100, width: 50  , height: 50))
         imageView.image = UIImage(named: "Henry")
-//        view.addSubview(imageView)
         tableView.addSubview(imageView)
-//        self.tabBarItem = nil
         
         
         var frameWidth = UIScreen.mainScreen().bounds.width
@@ -51,6 +48,8 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         let buttonWidth:CGFloat = 50
         
         let inputBox = UITextField()
+//        inputBox.inputAccessoryView  = UITextView(frame: CGRect(x: 8, y: frameHeight - boxHeight, width: frameWidth - buttonWidth - 24, height: boxHeight))
+        
         inputBox.placeholder = "说说你的想法吧~"
         inputBox.frame = CGRect(x: 8, y: frameHeight - boxHeight, width: frameWidth - buttonWidth - 24, height: boxHeight)
         inputBox.borderStyle = UITextBorderStyle.RoundedRect
@@ -65,9 +64,16 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         sendButton.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.3, alpha: 1)
         sendButton.frame = CGRect(x: frameWidth - buttonWidth - 8, y: frameHeight - boxHeight, width: buttonWidth, height: boxHeight)
         
-//        self.view.addSubview(<#view: UIView#>)
-        view.addSubview(inputBox)
-        view.addSubview(sendButton)
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: frameHeight - boxHeight, width: 600, height: 30))
+        let textView = UITextView(frame:CGRect(x: 0, y: 0, width: 300, height: 30))
+        textView.backgroundColor = UIColor.blackColor()
+        toolBar.addSubview(textView)
+        toolBar.addSubview(sendButton)
+        view.addSubview(toolBar)
+        
+        
+//        view.addSubview(inputBox)
+//        view.addSubview(sendButton)
 //        view.setNeedsDisplay()
     }
     func pop(sender:AnyObject){
@@ -79,11 +85,13 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         sender.becomeFirstResponder()
         tableView.contentOffset = CGPoint(x: 50, y: 0)
     }
+    
+    // MARK: - Delegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = indexPath.section
         if section == 0 {
-            becomeFirstResponder()
-    
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+//            cell?.becomeFirstResponder()
         }
     }
     override func didReceiveMemoryWarning() {
@@ -105,7 +113,6 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         return section == 0 ? 1 : comments.count
     }
 
-//    table
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let section = indexPath.section
@@ -117,7 +124,10 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate {
         else{
             // 输出评论的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(commentTVCReuseID, forIndexPath: indexPath) as CommentTableViewCell
-            cell.contentLabel.text = comments[indexPath.row]
+//            cell.contentLabel.text = comments[indexPath.row]
+//            cell.nicknameLabel.text = "Henry"
+//            cell.dateLabel.text = "2/12"
+//            cell.iconImageView.image = UIImage(named:"Bill")
             return cell
         }
         // Configure the cell...

@@ -15,6 +15,7 @@ class MomentTableViewCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var commentButton: UIButton!
     @IBOutlet var admireButton: UIButton!
+    @IBOutlet var tagLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         pictureImageView.userInteractionEnabled = true

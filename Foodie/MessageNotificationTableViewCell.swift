@@ -10,6 +10,8 @@ import UIKit
 
 class MessageNotificationTableViewCell: UITableViewCell {
 
+    @IBOutlet var pictureImageView: UIImageView!
+    @IBOutlet var messageLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

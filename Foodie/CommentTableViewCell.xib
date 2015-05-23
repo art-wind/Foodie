@@ -63,7 +63,10 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentLabel" destination="F5B-A8-lTX" id="PdG-1b-d5t"/>
+                <outlet property="contentLabel" destination="F5B-A8-lTX" id="MZx-Gl-u3B"/>
+                <outlet property="dateLabel" destination="ctq-hp-Tgp" id="Z3A-tC-gdZ"/>
+                <outlet property="iconImageVIew" destination="aCr-aB-uPV" id="hrP-Ii-XVR"/>
+                <outlet property="nicknameLabel" destination="7MS-oF-mrO" id="lkA-6n-E71"/>
             </connections>
             <point key="canvasLocation" x="203" y="173.5"/>
         </tableViewCell>

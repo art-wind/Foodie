@@ -11,6 +11,9 @@ import UIKit
 class CommentTableViewCell: UITableViewCell,UIActionSheetDelegate {
 
     @IBOutlet var contentLabel: UILabel!
+    @IBOutlet var iconImageVIew: UIImageView!
+    @IBOutlet var nicknameLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         println("sadasd")
