@@ -962,7 +962,7 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="takePicture:" destination="K3T-AP-gXu" eventType="touchUpInside" id="SwY-gc-v2M"/>
+                                                        <action selector="takePicture:" destination="K3T-AP-gXu" eventType="touchUpInside" id="l4q-fF-vAd"/>
                                                     </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="addPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Mbh-Hz-7BQ">
@@ -1043,6 +1043,7 @@
                         <barButtonItem key="rightBarButtonItem" title="发布" id="btL-hx-yna"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="contentTextView" destination="zP5-3P-fUc" id="OTY-YX-DZc"/>
                         <outlet property="takenPhoto" destination="Mbh-Hz-7BQ" id="sOJ-cL-Hoi"/>
                     </connections>
                 </tableViewController>
@@ -1077,7 +1078,7 @@
                                     <segue destination="W5R-T0-WmP" kind="embed" identifier="Embed Filters Category" id="Nps-Uv-Ysz"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monster" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-7q-tj5">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="monster" translatesAutoresizingMaskIntoConstraints="NO" id="IdX-7q-tj5">
                                 <rect key="frame" x="16" y="72" width="568" height="368"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IdX-7q-tj5" secondAttribute="height" multiplier="1:1" id="i7j-dt-aAt"/>

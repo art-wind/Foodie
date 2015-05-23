@@ -52,7 +52,6 @@ class DetailStatusViewController: UIViewController {
         }
         
         
-        
         //每个Manager里面有两个方法 
         //UserManager
         //方法1: 
@@ -74,33 +73,33 @@ class DetailStatusViewController: UIViewController {
 //            // 如果把Parse的功能放在Manager里面
 //            return User(id: <#Int#>, username: <#String#>, password: <#String#>, icon: <#String#>, nickname: <#String#>, phoneNum: <#String#>)
 //        }
-        func getUserListFromData(data:NSData)->[User]{
-            var userList = [User]()
-            var Index = SWXMLHash.parse(data)
-            
-            // Parse XML
-            // Add the User into userList
-            return userList
-        }
+//        func getUserListFromData(data:NSData)->[User]{
+//            var userList = [User]()
+//            var Index = SWXMLHash.parse(data)
+//            
+//            // Parse XML
+//            // Add the User into userList
+//            return userList
+//        }
         
         
         
-        let urlStr = "https://www.baidu.com"
-        let url = NSURL(string: urlStr)!
-        let urlRequest = NSMutableURLRequest(URL: url)
-        urlRequest.setValue("dd", forHTTPHeaderField: "fff")
-        println(urlRequest.mainDocumentURL)
-        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()) { (response, data, error) -> Void in
-            if error == nil{
-                var xmlIndex = SWXMLHash.parse(data)
-                xmlIndex =  xmlIndex["Users"]
-                // 将Users的xml转到到 [User]? 里面
-//                userArraySource = []...
-            }
-            else{
-                println("ERROR")
-            }
-        }
+//        let urlStr = "https://www.baidu.com"
+//        let url = NSURL(string: urlStr)!
+//        let urlRequest = NSMutableURLRequest(URL: url)
+//        urlRequest.setValue("dd", forHTTPHeaderField: "fff")
+//        println(urlRequest.mainDocumentURL)
+//        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()) { (response, data, error) -> Void in
+//            if error == nil{
+//                var xmlIndex = SWXMLHash.parse(data)
+//                xmlIndex =  xmlIndex["Users"]
+//                // 将Users的xml转到到 [User]? 里面
+////                userArraySource = []...
+//            }
+//            else{
+//                println("ERROR")
+//            }
+//        }
         
         
         
