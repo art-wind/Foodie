@@ -13,10 +13,21 @@ class DescriptionTableViewCell: UITableViewCell {
     @IBOutlet var concernButton: UIButton!
     @IBOutlet var passiveConcernButton: UIButton!
     @IBOutlet var messageNotifiactionButton: UIButton!
+    @IBOutlet var concernNumberLabel: UILabel!
+    @IBOutlet var fansNumberLabel: UILabel!
+    @IBOutlet var messageNotificationNumberLabel: UILabel!
+    @IBOutlet var triggerConcernButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        concernNumberLabel.text = "22"
+        fansNumberLabel.text = "12"
+        messageNotificationNumberLabel.text = "10"
+        triggerConcernButton.layer.cornerRadius = 3
+        triggerConcernButton.layer.masksToBounds = true
+        triggerConcernButton.setTitle("关注他", forState: UIControlState.Normal)
         // Initialization code
     }
+    
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

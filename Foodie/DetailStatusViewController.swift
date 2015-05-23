@@ -9,7 +9,12 @@
 import UIKit
 
 class DetailStatusViewController: UIViewController {
-
+    //Status to present
+    var status:Status?
+    var userIconImage:UIImage?
+    var detailStatusImage:UIImage?
+    
+    
     @IBOutlet var userIconImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var praiseButton: UIButton!
@@ -25,18 +30,82 @@ class DetailStatusViewController: UIViewController {
             
         }
     }
-    var userIconImage:UIImage?
-    var detailStatusImage:UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = detailStatusImage!
-        if let iconImage = userIconImage{
+        if let definedStatus = status {
+            imageView.image = detailStatusImage!
+            if let iconImage = userIconImage{
+//                let iconURL = NSURL(string: definedStatus.author!)!
+//                let iconData = NSData(contentsOfURL: iconURL)!
+//                userIconImageView.image = UIImage(data:iconData)
+                
+                userIconImageView.image = userIconImage
+                let width = userIconImageView.bounds.size.width
+                userIconImageView.layer.cornerRadius = width/2
+                userIconImageView.layer.masksToBounds = true
+            }
             
-            userIconImageView.image = userIconImage
-            let width = userIconImageView.bounds.size.width
-            userIconImageView.layer.cornerRadius = width/2
-            userIconImageView.layer.masksToBounds = true
+//            praiseButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)
+//            commentButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)
+            
         }
+        
+        
+        
+        //每个Manager里面有两个方法 
+        //UserManager
+        //方法1: 
+//        func getUserRequest(userID:String)->NSMutableURLRequest{
+//            let urlStr = "https://www.baidu.com"
+//            let url = NSURL(string: urlStr)!
+//            let urlRequest = NSMutableURLRequest(URL: url)
+//            urlRequest.setValue("userID", forHTTPHeaderField: "userID")
+//            return urlRequest
+//        }
+//        //方法2:返回User对象/[User]
+//        func getUserFromData(data:NSData)->User{
+//            var xmlIndex = SWXMLHash.parse(data)
+//            xmlIndex =  xmlIndex["User"]
+//            
+//            .....
+//            // 如果把Parse的功能放在User类里面
+//            return User(xmlIndex)
+//            // 如果把Parse的功能放在Manager里面
+//            return User(id: <#Int#>, username: <#String#>, password: <#String#>, icon: <#String#>, nickname: <#String#>, phoneNum: <#String#>)
+//        }
+        func getUserListFromData(data:NSData)->[User]{
+            var userList = [User]()
+            var Index = SWXMLHash.parse(data)
+            
+            // Parse XML
+            // Add the User into userList
+            return userList
+        }
+        
+        
+        
+        let urlStr = "https://www.baidu.com"
+        let url = NSURL(string: urlStr)!
+        let urlRequest = NSMutableURLRequest(URL: url)
+        urlRequest.setValue("dd", forHTTPHeaderField: "fff")
+        println(urlRequest.mainDocumentURL)
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()) { (response, data, error) -> Void in
+            if error == nil{
+                var xmlIndex = SWXMLHash.parse(data)
+                xmlIndex =  xmlIndex["Users"]
+                // 将Users的xml转到到 [User]? 里面
+//                userArraySource = []...
+            }
+            else{
+                println("ERROR")
+            }
+        }
+        
+        
+        
+        
+        
     }
     
     
