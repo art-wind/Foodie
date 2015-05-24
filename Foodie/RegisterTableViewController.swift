@@ -47,6 +47,11 @@ class RegisterTableViewController: UITableViewController {
                 if error == nil {
                     println("Done")
                     println(data)
+                    var user = UserManager.getUserFromData(data)
+                    println("hzx"+user.nickname!)
+                    println("hzx"+user.password!)
+                    println("hzx"+user.phoneNum!)
+
                 }
             })
             successfullyRegister = true

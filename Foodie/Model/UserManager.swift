@@ -39,10 +39,11 @@ class UserManager {
        nsstr = nsstr.substringToIndex(nsstr.length - 1)
         
         urlRequest.HTTPBody = nsstr.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-//
 //        urlRequest.setValue(phoneNumber, forHTTPHeaderField: "phoneNum")
 //        urlRequest.setValue(pwd, forHTTPHeaderField: "pwd")
 //        urlRequest.setValue(nickname, forHTTPHeaderField: "nickname")
+        
+        
         
         
         println("\(urlRequest)")
