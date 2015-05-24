@@ -1081,7 +1081,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="PostPictureTableViewController" id="0H7-lh-6G8">
-                        <barButtonItem key="rightBarButtonItem" title="发布" id="btL-hx-yna"/>
+                        <barButtonItem key="rightBarButtonItem" title="发布" id="btL-hx-yna">
+                            <connections>
+                                <action selector="postImageAction:" destination="K3T-AP-gXu" id="Nfp-KJ-dB6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextView" destination="zP5-3P-fUc" id="OTY-YX-DZc"/>

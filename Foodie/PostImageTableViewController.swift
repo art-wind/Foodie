@@ -20,6 +20,16 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
         let srcVC = segue.sourceViewController as FilterViewController
         takenPhoto.image = srcVC.displayImage.image
     }
+    @IBAction func postImageAction(sender: UIBarButtonItem) {
+        let para = ["id":"ddd","name":"bill"]
+        let urlRequest = ImageUpload.createRequest(UIImage(named: "cheesecake")!,parameters: para)
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
+            ) { (response, data, error) -> Void in
+                if error == nil {
+                    println("dasdsds")
+                }
+        }
+    }
     @IBAction func takePicture(sender: UIButton) {
         //takenPhoto.image = UIImage(named:"monster")
         var actionForm = UIActionSheet(title: imagePickerActionFormTitle, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "Photo Library","Take a photo")
