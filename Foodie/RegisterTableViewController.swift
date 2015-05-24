@@ -38,6 +38,14 @@ class RegisterTableViewController: UITableViewController {
             }
             validInput = true
             //MARK: HTTP Request Goes here
+            let urlRequest = UserManager.registerRequest(phoneNumber, pwd: password, nickname: nickname)
+            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+                println()
+                if error == nil {
+                    println("Done")
+                    println(data)
+                }
+            })
             successfullyRegister = true
         }
         else{

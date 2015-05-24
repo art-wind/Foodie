@@ -33,6 +33,7 @@
 		3363CC1D1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3363CC1B1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.xib */; };
 		336D74281AFCDB9C00105AC7 /* DetailStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336D74271AFCDB9C00105AC7 /* DetailStatusViewController.swift */; };
 		33771C6D1AFDD80200F20229 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33771C6C1AFDD80200F20229 /* Thumbnail.swift */; };
+		337B46A91B11A565007DEE0E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337B46A81B11A565007DEE0E /* Constants.swift */; };
 		337D60781B0E1000008B6188 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337D60771B0E1000008B6188 /* User.swift */; };
 		337D607E1B0E1013008B6188 /* SWXMLHash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337D607C1B0E1013008B6188 /* SWXMLHash.swift */; };
 		337E99041AFA283900917C21 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337E99031AFA283900917C21 /* CommentsTableViewController.swift */; };
@@ -111,6 +112,7 @@
 		3363CC1B1AFDB43100F4E868 /* FiltersCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiltersCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		336D74271AFCDB9C00105AC7 /* DetailStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailStatusViewController.swift; sourceTree = "<group>"; };
 		33771C6C1AFDD80200F20229 /* Thumbnail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		337B46A81B11A565007DEE0E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		337D60771B0E1000008B6188 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Model/User.swift; sourceTree = "<group>"; };
 		337D607B1B0E1013008B6188 /* SWXMLHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWXMLHash.h; sourceTree = "<group>"; };
 		337D607C1B0E1013008B6188 /* SWXMLHash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SWXMLHash.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				33771C6C1AFDD80200F20229 /* Thumbnail.swift */,
 				3320B8D41AFCFDDE00110C40 /* VCNibname.swift */,
 				335FAB151AFDA7890018C33C /* VCGenerator.swift */,
+				337B46A81B11A565007DEE0E /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				33D1A6C31AF4A25E0099787D /* MomentTableViewCell.swift in Sources */,
 				3300BD741AF1230E000EED64 /* AppDelegate.swift in Sources */,
 				33A192841AF70184006A7E5D /* SearchViewController.swift in Sources */,
+				337B46A91B11A565007DEE0E /* Constants.swift in Sources */,
 				346154641B023A6B005316C2 /* CommentManager.swift in Sources */,
 				33D1A6CA1AF4AE7C0099787D /* TakePhotoViewController.swift in Sources */,
 				33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */,
