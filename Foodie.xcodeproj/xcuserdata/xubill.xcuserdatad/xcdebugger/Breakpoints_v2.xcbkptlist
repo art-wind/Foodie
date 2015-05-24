@@ -457,7 +457,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "registerRequest(_:pwd:nickname:)"
+            landmarkName = "loginRequest(_:pwd:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
