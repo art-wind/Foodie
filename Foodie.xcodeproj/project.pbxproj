@@ -68,6 +68,7 @@
 		346154621B023A1E005316C2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346154611B023A1E005316C2 /* Message.swift */; };
 		346154641B023A6B005316C2 /* CommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346154631B023A6B005316C2 /* CommentManager.swift */; };
 		346154681B023A8F005316C2 /* MessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346154671B023A8F005316C2 /* MessageManager.swift */; };
+		347D14B61B11C02200C7DD42 /* ImageUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D14B51B11C02200C7DD42 /* ImageUpload.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		346154611B023A1E005316C2 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Model/Message.swift; sourceTree = "<group>"; };
 		346154631B023A6B005316C2 /* CommentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommentManager.swift; path = Model/CommentManager.swift; sourceTree = "<group>"; };
 		346154671B023A8F005316C2 /* MessageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageManager.swift; path = Model/MessageManager.swift; sourceTree = "<group>"; };
+		347D14B51B11C02200C7DD42 /* ImageUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUpload.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +356,7 @@
 				338DDCB31B0E12E900263EAF /* Info.plist */,
 				337D607B1B0E1013008B6188 /* SWXMLHash.h */,
 				337D607C1B0E1013008B6188 /* SWXMLHash.swift */,
+				347D14B51B11C02200C7DD42 /* ImageUpload.swift */,
 			);
 			path = XML_API;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				3461545A1B023761005316C2 /* UserManager.swift in Sources */,
 				33D1A6C31AF4A25E0099787D /* MomentTableViewCell.swift in Sources */,
 				3300BD741AF1230E000EED64 /* AppDelegate.swift in Sources */,
+				347D14B61B11C02200C7DD42 /* ImageUpload.swift in Sources */,
 				33A192841AF70184006A7E5D /* SearchViewController.swift in Sources */,
 				337B46A91B11A565007DEE0E /* Constants.swift in Sources */,
 				346154641B023A6B005316C2 /* CommentManager.swift in Sources */,
