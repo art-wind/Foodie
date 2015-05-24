@@ -26,7 +26,8 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
             ) { (response, data, error) -> Void in
                 if error == nil {
-                    println("dasdsds")
+                    let string = NSString(data: data, encoding: NSUTF8StringEncoding)
+                    println(string)
                 }
         }
     }
