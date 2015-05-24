@@ -7,6 +7,7 @@
 //
 
 import Foundation
-class Constants {
-//    class let basicPath = "http://115.29.138.163:8080/Foodie/"
+struct Constants {
+    static let urlBasicPath = "http://115.29.138.163:8080/Foodie/"
+//    var currentUser
 }

@@ -13,14 +13,23 @@ class UserManager {
     //TODO hzx:setvalue不知道对不对
     
     //Request
-    class func loginRequest(user_id:Int, pwd:String)->NSMutableURLRequest{
+    class func loginRequest(phoneNumber:String, pwd:String)->NSMutableURLRequest{
 
         let urlStr = "http://115.29.138.163:8080/Foodie/LoginService"
         let url = NSURL(string:urlStr)
         let urlRequest = NSMutableURLRequest(URL: url!)
-        urlRequest.HTTPMethod = "Post"
-        urlRequest.setValue(user_id, forKey: "user_id")
-        urlRequest.setValue(pwd, forKey: "pwd")
+        let parametersDictionary = ["phoneNumber":phoneNumber,"pwd":pwd]
+        var str = ""
+        urlRequest.HTTPMethod = "POST"
+        for (name,value) in parametersDictionary {
+            str += "\(name)=\(value)&"
+        }
+        var nsstr = str as NSString
+        nsstr = nsstr.substringToIndex(nsstr.length - 1)
+        
+        urlRequest.HTTPBody = nsstr.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        
+        println("\(urlRequest)")
         return urlRequest
         
     }
@@ -39,11 +48,6 @@ class UserManager {
        nsstr = nsstr.substringToIndex(nsstr.length - 1)
         
         urlRequest.HTTPBody = nsstr.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-//
-//        urlRequest.setValue(phoneNumber, forHTTPHeaderField: "phoneNum")
-//        urlRequest.setValue(pwd, forHTTPHeaderField: "pwd")
-//        urlRequest.setValue(nickname, forHTTPHeaderField: "nickname")
-        
         
         println("\(urlRequest)")
         return urlRequest

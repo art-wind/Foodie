@@ -280,8 +280,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="aJd-u0-zbE"/>
                                 <exclude reference="1cq-u9-0fu"/>
+                                <exclude reference="aJd-u0-zbE"/>
                                 <exclude reference="aDU-9I-0aI"/>
                             </mask>
                         </variation>
@@ -1068,6 +1068,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Ro5-26-rO0" kind="show" identifier="Choose Tags Segue" id="x1o-or-5nE"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1082,6 +1085,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextView" destination="zP5-3P-fUc" id="OTY-YX-DZc"/>
+                        <outlet property="locationLabel" destination="NYu-iR-OMA" id="ZqK-d2-NAm"/>
                         <outlet property="takenPhoto" destination="Mbh-Hz-7BQ" id="sOJ-cL-Hoi"/>
                     </connections>
                 </tableViewController>
@@ -1166,7 +1170,33 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHA-CU-OiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="yXg-kt-bVj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-3860" y="-5384"/>
+            <point key="canvasLocation" x="-3828" y="-5528"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="7rg-fW-eeA">
+            <objects>
+                <tableViewController id="Ro5-26-rO0" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B2y-84-Z3p">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6gR-3a-JDQ">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6gR-3a-JDQ" id="NOJ-uv-cyu">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ro5-26-rO0" id="wdk-FK-Lfe"/>
+                            <outlet property="delegate" destination="Ro5-26-rO0" id="3kY-US-cvs"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nmQ-kV-w8s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3828" y="-4854"/>
         </scene>
         <!--Filters Category Collection View Controller-->
         <scene sceneID="NkJ-gi-bRf">
@@ -1201,7 +1231,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ifO-qn-MZw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3836" y="-4876"/>
+            <point key="canvasLocation" x="-2888" y="-5516"/>
         </scene>
         <!--Search Results Collection View Controller-->
         <scene sceneID="k8b-xo-P1K">
