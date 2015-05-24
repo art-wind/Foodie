@@ -16,16 +16,29 @@ class Status{
     var address:String?
     var latitude:String?
     var longtitude:String?
-    var likeNum:String?
+    var likeNum:Int?
     var tag:String?
-
+    
+    var commentNum:Int?
+    var user_nickname:String?
+    var user_icon:String?
+    
     init(xml: XMLIndexer){
-        self.id = xml["root"]["header"]["id"].element?.text?.toInt()
-        self.content = "HZX_TEST"
+        self.id = xml["StatusVO"]["Id"].element?.text?.toInt()
+        self.author = xml["StatusVO"]["Author"].element?.text?
+        self.picture = xml["StatusVO"]["Picture"].element?.text?
+        self.content = xml["StatusVO"]["Content"].element?.text?
+        self.time =  xml["StatusVO"]["Time"].element?.text?
+        self.address =  xml["StatusVO"]["Address"].element?.text?
+        self.latitude =  xml["StatusVO"]["Latitude"].element?.text?
+        self.longtitude =  xml["StatusVO"]["Longtitude"].element?.text?
+        self.likeNum =  xml["StatusVO"]["likeNum"].element?.text?.toInt()
+        self.tag =  xml["StatusVO"]["Tag"].element?.text?
+        
+        //TODO
     }
     
     class func convertStatus(xml: XMLIndexer) -> Status{
-        //TODO xml格式
         var status = Status(xml: xml)
         return status
     }
@@ -34,6 +47,9 @@ class Status{
     class func convertStatusList(xml: XMLIndexer) -> [Status]{
         //TODO xml格式
         var statusList = [Status]()
+        for status in xml["StatusVOList"] {
+            statusList.append(Status.convertStatus(status))
+        }
         return statusList
     }
     
