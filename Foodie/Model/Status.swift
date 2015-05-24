@@ -19,10 +19,22 @@ class Status{
     var likeNum:String?
     var tag:String?
 
-    init(id:Int){
-        self.id = id
-              
+    init(xml: XMLIndexer){
+        self.id = xml["root"]["header"]["id"].element?.text?.toInt()
+        self.content = "HZX_TEST"
     }
     
+    class func convertStatus(xml: XMLIndexer) -> Status{
+        //TODO xml格式
+        var status = Status(xml: xml)
+        return status
+    }
+    
+    
+    class func convertStatusList(xml: XMLIndexer) -> [Status]{
+        //TODO xml格式
+        var statusList = [Status]()
+        return statusList
+    }
     
 }
