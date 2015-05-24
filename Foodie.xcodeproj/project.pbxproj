@@ -26,6 +26,7 @@
 		333892601AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3338925E1AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift */; };
 		333892611AF73A8B000ACD9F /* PreviousPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3338925F1AF73A8B000ACD9F /* PreviousPhotoTableViewCell.xib */; };
 		333892631AF73F55000ACD9F /* FriendsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333892621AF73F55000ACD9F /* FriendsCollectionViewController.swift */; };
+		333AA1A71B11C32800DB5EAF /* TagsChosenTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333AA1A61B11C32800DB5EAF /* TagsChosenTableViewController.swift */; };
 		333D4E2C1AFCCD7600C713E0 /* DetailStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333D4E2A1AFCCD7600C713E0 /* DetailStatusViewController.xib */; };
 		335FAB161AFDA7890018C33C /* VCGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335FAB151AFDA7890018C33C /* VCGenerator.swift */; };
 		3363CC191AFDB15E00F4E868 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3363CC181AFDB15E00F4E868 /* CoreImage.framework */; };
@@ -53,8 +54,6 @@
 		33D1A6BE1AF4A1BF0099787D /* SquareCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D1A6BC1AF4A1BF0099787D /* SquareCollectionViewCell.xib */; };
 		33D1A6C31AF4A25E0099787D /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1A6C11AF4A25E0099787D /* MomentTableViewCell.swift */; };
 		33D1A6C41AF4A25E0099787D /* MomentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D1A6C21AF4A25E0099787D /* MomentTableViewCell.xib */; };
-		33D1A6C61AF4A7250099787D /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1A6C51AF4A7250099787D /* GalleryViewController.swift */; };
-		33D1A6CA1AF4AE7C0099787D /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1A6C91AF4AE7C0099787D /* TakePhotoViewController.swift */; };
 		33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */; };
 		33D6D43C1AF74BE100564F00 /* MessageNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D6D43A1AF74BE100564F00 /* MessageNotificationTableViewCell.swift */; };
 		33D6D43D1AF74BE100564F00 /* MessageNotificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33D6D43B1AF74BE100564F00 /* MessageNotificationTableViewCell.xib */; };
@@ -106,6 +105,7 @@
 		3338925E1AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviousPhotoTableViewCell.swift; sourceTree = "<group>"; };
 		3338925F1AF73A8B000ACD9F /* PreviousPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreviousPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		333892621AF73F55000ACD9F /* FriendsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewController.swift; sourceTree = "<group>"; };
+		333AA1A61B11C32800DB5EAF /* TagsChosenTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsChosenTableViewController.swift; sourceTree = "<group>"; };
 		333D4E2A1AFCCD7600C713E0 /* DetailStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailStatusViewController.xib; sourceTree = "<group>"; };
 		335FAB151AFDA7890018C33C /* VCGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCGenerator.swift; sourceTree = "<group>"; };
 		3363CC181AFDB15E00F4E868 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
@@ -134,8 +134,6 @@
 		33D1A6BC1AF4A1BF0099787D /* SquareCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SquareCollectionViewCell.xib; sourceTree = "<group>"; };
 		33D1A6C11AF4A25E0099787D /* MomentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
 		33D1A6C21AF4A25E0099787D /* MomentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MomentTableViewCell.xib; sourceTree = "<group>"; };
-		33D1A6C51AF4A7250099787D /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
-		33D1A6C91AF4AE7C0099787D /* TakePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
 		33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNotificationTableViewController.swift; sourceTree = "<group>"; };
 		33D6D43A1AF74BE100564F00 /* MessageNotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		33D6D43B1AF74BE100564F00 /* MessageNotificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageNotificationTableViewCell.xib; sourceTree = "<group>"; };
@@ -239,16 +237,11 @@
 		3326EF471AF485810064AC88 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				336D74271AFCDB9C00105AC7 /* DetailStatusViewController.swift */,
-				333D4E2A1AFCCD7600C713E0 /* DetailStatusViewController.xib */,
-				3326EF491AF485C70064AC88 /* TableVC */,
-				3326EF4A1AF485D20064AC88 /* CollectionVC */,
-				33D1A6C51AF4A7250099787D /* GalleryViewController.swift */,
-				33D1A6C91AF4AE7C0099787D /* TakePhotoViewController.swift */,
-				33A192831AF70184006A7E5D /* SearchViewController.swift */,
-				33925E101AFDE66000DD39F4 /* FilterViewController.swift */,
-				3325333D1B1181BC00294334 /* LogonViewController.swift */,
-				3325333F1B11860B00294334 /* IconModifierViewController.swift */,
+				337B46AF1B11B756007DEE0E /* Status */,
+				337B46AD1B11B6FC007DEE0E /* PostImage */,
+				337B46AE1B11B739007DEE0E /* Search */,
+				337B46B01B11B77B007DEE0E /* MainPage */,
+				337B46B11B11B7A0007DEE0E /* System */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -272,31 +265,6 @@
 				33C251591B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.xib */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		3326EF491AF485C70064AC88 /* TableVC */ = {
-			isa = PBXGroup;
-			children = (
-				3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */,
-				33A192871AF70384006A7E5D /* MainPageTableViewController.swift */,
-				333892571AF70BAB000ACD9F /* ModificationTableViewController.swift */,
-				33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */,
-				33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */,
-				33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */,
-				337E99031AFA283900917C21 /* CommentsTableViewController.swift */,
-			);
-			name = TableVC;
-			sourceTree = "<group>";
-		};
-		3326EF4A1AF485D20064AC88 /* CollectionVC */ = {
-			isa = PBXGroup;
-			children = (
-				3326A6101AF24A36008B2FDE /* SquareCollectionViewController.swift */,
-				33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */,
-				33A192851AF701A6006A7E5D /* SearchResultsCollectionViewController.swift */,
-				333892621AF73F55000ACD9F /* FriendsCollectionViewController.swift */,
-			);
-			name = CollectionVC;
 			sourceTree = "<group>";
 		};
 		3326EF4B1AF485DB0064AC88 /* Model */ = {
@@ -327,6 +295,59 @@
 				3338925F1AF73A8B000ACD9F /* PreviousPhotoTableViewCell.xib */,
 			);
 			name = MainPageView;
+			sourceTree = "<group>";
+		};
+		337B46AD1B11B6FC007DEE0E /* PostImage */ = {
+			isa = PBXGroup;
+			children = (
+				33FF3E971AF4B8CB00505C85 /* FiltersCategoryCollectionViewController.swift */,
+				33FC85951AF77F2300F587C4 /* PostImageTableViewController.swift */,
+				33925E101AFDE66000DD39F4 /* FilterViewController.swift */,
+				333AA1A61B11C32800DB5EAF /* TagsChosenTableViewController.swift */,
+			);
+			name = PostImage;
+			sourceTree = "<group>";
+		};
+		337B46AE1B11B739007DEE0E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				33A192851AF701A6006A7E5D /* SearchResultsCollectionViewController.swift */,
+				33A192831AF70184006A7E5D /* SearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		337B46AF1B11B756007DEE0E /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				337E99031AFA283900917C21 /* CommentsTableViewController.swift */,
+				3326A6101AF24A36008B2FDE /* SquareCollectionViewController.swift */,
+				336D74271AFCDB9C00105AC7 /* DetailStatusViewController.swift */,
+				333D4E2A1AFCCD7600C713E0 /* DetailStatusViewController.xib */,
+				33FC85971AF7822C00F587C4 /* MomentsTableViewController.swift */,
+			);
+			name = Status;
+			sourceTree = "<group>";
+		};
+		337B46B01B11B77B007DEE0E /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				3325333F1B11860B00294334 /* IconModifierViewController.swift */,
+				333892621AF73F55000ACD9F /* FriendsCollectionViewController.swift */,
+				33A192871AF70384006A7E5D /* MainPageTableViewController.swift */,
+				333892571AF70BAB000ACD9F /* ModificationTableViewController.swift */,
+				33D6D4381AF74BC700564F00 /* MessageNotificationTableViewController.swift */,
+			);
+			name = MainPage;
+			sourceTree = "<group>";
+		};
+		337B46B11B11B7A0007DEE0E /* System */ = {
+			isa = PBXGroup;
+			children = (
+				3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */,
+				3325333D1B1181BC00294334 /* LogonViewController.swift */,
+			);
+			name = System;
 			sourceTree = "<group>";
 		};
 		337D60791B0E1013008B6188 /* XML_API */ = {
@@ -497,9 +518,7 @@
 				33A192841AF70184006A7E5D /* SearchViewController.swift in Sources */,
 				337B46A91B11A565007DEE0E /* Constants.swift in Sources */,
 				346154641B023A6B005316C2 /* CommentManager.swift in Sources */,
-				33D1A6CA1AF4AE7C0099787D /* TakePhotoViewController.swift in Sources */,
 				33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */,
-				33D1A6C61AF4A7250099787D /* GalleryViewController.swift in Sources */,
 				33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */,
 				337D60781B0E1000008B6188 /* User.swift in Sources */,
 				333892581AF70BAB000ACD9F /* ModificationTableViewController.swift in Sources */,
@@ -512,6 +531,7 @@
 				33925E111AFDE66000DD39F4 /* FilterViewController.swift in Sources */,
 				337E990C1AFA28D400917C21 /* CommentTableViewCell.swift in Sources */,
 				3338925C1AF71BC8000ACD9F /* DescriptionTableViewCell.swift in Sources */,
+				333AA1A71B11C32800DB5EAF /* TagsChosenTableViewController.swift in Sources */,
 				3300BD771AF1230E000EED64 /* Foodie.xcdatamodeld in Sources */,
 				3326A6111AF24A36008B2FDE /* SquareCollectionViewController.swift in Sources */,
 				33A192881AF70384006A7E5D /* MainPageTableViewController.swift in Sources */,

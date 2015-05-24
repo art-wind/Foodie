@@ -50,7 +50,8 @@ class MessageNotificationTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(messageNotificationTVCID, forIndexPath: indexPath) as MessageNotificationTableViewCell
         let message = messages[indexPath.row]
-        
+        let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    
 //        cell.pictureImageView.image = UIImage(
 //        cell.messageLabel.text = ""
         return cell

@@ -12,16 +12,18 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     var isTaken:Bool = false
     let filterImageSegueID = "Filter Image"
     @IBOutlet var takenPhoto: UIImageView!
-    @IBAction func takePicture(sender: UIButton) {
-        //takenPhoto.image = UIImage(named:"monster")
-        var actionForm = UIActionSheet(title: imagePickerActionFormTitle, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "Photo Library","Take a photo")
-        actionForm.showInView(self.view)
-    }
+    
     @IBOutlet var contentTextView: UITextView!
+    @IBOutlet var locationLabel: UILabel!
     @IBAction func chooseFilterUnwindSegue (segue:UIStoryboardSegue){
 //        let
         let srcVC = segue.sourceViewController as FilterViewController
         takenPhoto.image = srcVC.displayImage.image
+    }
+    @IBAction func takePicture(sender: UIButton) {
+        //takenPhoto.image = UIImage(named:"monster")
+        var actionForm = UIActionSheet(title: imagePickerActionFormTitle, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "Photo Library","Take a photo")
+        actionForm.showInView(self.view)
     }
     
     // MARK: - Navigation
