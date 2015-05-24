@@ -15,6 +15,8 @@
 		3300BD8D1AF1230E000EED64 /* FoodieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300BD8C1AF1230E000EED64 /* FoodieTests.swift */; };
 		3300BD971AF129C1000EED64 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */; };
 		3320B8D51AFCFDDE00110C40 /* VCNibname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3320B8D41AFCFDDE00110C40 /* VCNibname.swift */; };
+		3325333E1B1181BC00294334 /* LogonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325333D1B1181BC00294334 /* LogonViewController.swift */; };
+		332533401B11860B00294334 /* IconModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325333F1B11860B00294334 /* IconModifierViewController.swift */; };
 		3326A6111AF24A36008B2FDE /* SquareCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3326A6101AF24A36008B2FDE /* SquareCollectionViewController.swift */; };
 		333892511AF70718000ACD9F /* UserIconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3338924F1AF70718000ACD9F /* UserIconCollectionViewCell.swift */; };
 		333892521AF70718000ACD9F /* UserIconCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 333892501AF70718000ACD9F /* UserIconCollectionViewCell.xib */; };
@@ -91,6 +93,8 @@
 		3300BD8C1AF1230E000EED64 /* FoodieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodieTests.swift; sourceTree = "<group>"; };
 		3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
 		3320B8D41AFCFDDE00110C40 /* VCNibname.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VCNibname.swift; path = Model/VCNibname.swift; sourceTree = "<group>"; };
+		3325333D1B1181BC00294334 /* LogonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogonViewController.swift; sourceTree = "<group>"; };
+		3325333F1B11860B00294334 /* IconModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconModifierViewController.swift; sourceTree = "<group>"; };
 		3326A6101AF24A36008B2FDE /* SquareCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewController.swift; sourceTree = "<group>"; };
 		3338924F1AF70718000ACD9F /* UserIconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIconCollectionViewCell.swift; sourceTree = "<group>"; };
 		333892501AF70718000ACD9F /* UserIconCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserIconCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				33D1A6C91AF4AE7C0099787D /* TakePhotoViewController.swift */,
 				33A192831AF70184006A7E5D /* SearchViewController.swift */,
 				33925E101AFDE66000DD39F4 /* FilterViewController.swift */,
+				3325333D1B1181BC00294334 /* LogonViewController.swift */,
+				3325333F1B11860B00294334 /* IconModifierViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -489,6 +495,7 @@
 				33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */,
 				337D60781B0E1000008B6188 /* User.swift in Sources */,
 				333892581AF70BAB000ACD9F /* ModificationTableViewController.swift in Sources */,
+				3325333E1B1181BC00294334 /* LogonViewController.swift in Sources */,
 				333892601AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift in Sources */,
 				346154621B023A1E005316C2 /* Message.swift in Sources */,
 				337D607E1B0E1013008B6188 /* SWXMLHash.swift in Sources */,
@@ -500,6 +507,7 @@
 				3300BD771AF1230E000EED64 /* Foodie.xcdatamodeld in Sources */,
 				3326A6111AF24A36008B2FDE /* SquareCollectionViewController.swift in Sources */,
 				33A192881AF70384006A7E5D /* MainPageTableViewController.swift in Sources */,
+				332533401B11860B00294334 /* IconModifierViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
