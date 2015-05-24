@@ -10,80 +10,59 @@ import UIKit
 
 class RegisterTableViewController: UITableViewController {
 
+    
+    let segueName = "Successful Register Segue"
+    var validInput = false
+    var successfullyRegister = false
+    
+    @IBOutlet var phoneNumberTextField: UITextField!
+    @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var confirmPasswordTextField: UITextField!
+    @IBOutlet var nicknameTextField: UITextField!
     @IBAction func pushBack(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
             
         })
     }
+    @IBAction func registerAction(sender: UIButton) {
+        let alertView = UIAlertView(title: "输入有误", message: "请完整填完信息", delegate: self, cancelButtonTitle: "关闭")
+        if checkValid() {
+            let phoneNumber = phoneNumberTextField.text
+            let password = passwordTextField.text
+            let confirmPassword = confirmPasswordTextField.text
+            let nickname = nicknameTextField.text
+            if password != confirmPassword{
+                alertView.message = "两次密码输入不同"
+                alertView.show()
+                return
+            }
+            validInput = true
+            //MARK: HTTP Request Goes here
+            successfullyRegister = true
+        }
+        else{
+            alertView.show()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
+    func checkValid()->Bool{
+        let phoneNumber = phoneNumberTextField.text
+        let password = passwordTextField.text
+        let confirmPassword = confirmPasswordTextField.text
+        let nickname = nicknameTextField.text
+        if phoneNumber == "" || password == "" || confirmPassword == "" || nickname == "" {
+            return false
+        }
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if identifier == segueName {
+            return validInput && successfullyRegister
+        }
+        else{
+            return super.shouldPerformSegueWithIdentifier(identifier, sender: sender)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
