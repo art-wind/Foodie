@@ -14,6 +14,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     var sendTimes = 0
     @IBOutlet var takenPhoto: UIImageView!
     
+    @IBOutlet var indicator: UIActivityIndicatorView!
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var locationLabel: UILabel!
     @IBAction func chooseFilterUnwindSegue (segue:UIStoryboardSegue){
@@ -21,21 +22,25 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
         let srcVC = segue.sourceViewController as FilterViewController
         takenPhoto.image = srcVC.displayImage.image
     }
+    override func viewDidLoad() {
+        indicator.stopAnimating()
+    }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
+        indicator.startAnimating()
         let para = ["id":"ddd","name":"bill"]
         let urlRequest = ImageUpload.createRequest(takenPhoto.image!,parameters: para)
         let content = contentTextView.text
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
-            ) { (response, data, error) -> Void in
+            ) {[weak self] (response, data, error) -> Void in
                 if error == nil {
                     let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                     if let user = SharedVariable.currentUser() {
                         let aRequest = StatusManager.postStateRequest(user.id!, nickname: user.nickname!, pic_url: urlString, content: content, address: "Fudan")
                         NSURLConnection.sendAsynchronousRequest(aRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
                             if error == nil {
-                                let alertView = UIAlertView(title: "输入有误", message: "手机号码未输入", delegate: self, cancelButtonTitle: "关闭")
-                                alertView.show()
-                                println("Status sent!")
+//                                let alertView = UIAlertController(title: "a", message: "a", preferredStyle: UIAlertControllerStyle.Alert)
+//                                println("Status sent!")
+                                self?.indicator.stopAnimating()
                             }
                         })
                     }

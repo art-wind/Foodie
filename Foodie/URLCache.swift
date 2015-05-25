@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class URLCache: NSManagedObject {
+@objc(URLCache)class URLCache: NSManagedObject {
 
     @NSManaged var imgData: NSData
     @NSManaged var url: String
