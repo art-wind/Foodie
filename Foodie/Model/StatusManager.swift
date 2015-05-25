@@ -11,56 +11,46 @@ import Foundation
 class StatusManager{
     
     //发状态  TODO
-    func postStateRequest()->NSMutableURLRequest{
-        let urlStr = "http://115.29.138.163:8080/Foodie/StatusService"
-        let url = NSURL(string:urlStr)
-        let urlRequest = NSMutableURLRequest(URL: url!)
-        urlRequest.HTTPMethod = "Post"
-        return urlRequest
-        
+    class func postStateRequest(user_id:Int,nickname:String,pic_url:String,content:String,address:String)->
+        NSMutableURLRequest{
+            let parametersDictionary = ["user_id":"\(user_id)","nickname":nickname,"pic_url":pic_url,"content":content,"address":address,"latitude":"0"
+                ,"longitude":"0"]
+        return UserManager.generateRequest("StatusService", parametersDictionary: parametersDictionary)
     }
     
     //为状态点赞
-    func admireStatusRequest(status_id:Int)->NSMutableURLRequest{
-        let urlStr = "http://115.29.138.163:8080/Foodie/AdmireStatusService"
-        let url = NSURL(string:urlStr)
-        let urlRequest = NSMutableURLRequest(URL: url!)
-        urlRequest.HTTPMethod = "Post"
-        urlRequest.setValue(status_id, forKey: "status_id")
-        return urlRequest
-        
+    class func admireStatusRequest(status_id:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["status_id":"\(status_id)"]
+        return UserManager.generateRequest("AdmireStatusService", parametersDictionary: parametersDictionary)
     }
-
+    
+    //广场
+    class func squareStatusRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+        return UserManager.generateRequest("SquareService", parametersDictionary: parametersDictionary)
+    }
+    
+    
     //朋友圈
-    func momentsStatusRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let urlStr = "http://115.29.138.163:8080/Foodie/MomentsService"
-        let url = NSURL(string:urlStr)
-        let urlRequest = NSMutableURLRequest(URL: url!)
-        urlRequest.HTTPMethod = "Post"
-        urlRequest.setValue(user_id, forKey: "user_id")
-        urlRequest.setValue(pageNum, forKey: "pageNum")
-        return urlRequest
+    class func momentsStatusRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+        return UserManager.generateRequest("MomentsService", parametersDictionary: parametersDictionary)
     }
     
     //根据id找到状态
     func statusByUserRequset(user_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let urlStr = "http://115.29.138.163:8080/Foodie/FriendsStatusService"
-        let url = NSURL(string:urlStr)
-        let urlRequest = NSMutableURLRequest(URL: url!)
-        urlRequest.HTTPMethod = "Post"
-        urlRequest.setValue(user_id, forKey: "user_id")
-        urlRequest.setValue(pageNum, forKey: "pageNum")
-        return urlRequest
+        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+        return UserManager.generateRequest("FriendsStatusService", parametersDictionary: parametersDictionary)
     }
     
-    //type2
-    func getStatusFromData(data:NSData)->Status{
+    //Type
+    class func getStatusFromData(data:NSData)->Status{
         let xml = SWXMLHash.parse(data)
         return Status.convertStatus(xml)
         
     }
     
-    func getStatusListFromData(data:NSData)->[Status]{
+    class func getStatusListFromData(data:NSData)->[Status]{
         let xml = SWXMLHash.parse(data)
         return Status.convertStatusList(xml)
         
