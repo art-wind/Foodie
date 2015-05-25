@@ -14,4 +14,14 @@ class SocialInfo  {
     var messageNum:String?
     var followNum:String?
     var fansNum:String?
+    
+    
+    init(xml: XMLIndexer){
+        self.sourceID = xml["SocialInfoVO"][""].element?.text?.toInt()
+        self.targetID = xml["SocialInfoVO"]["Password"].element?.text?
+        self.iconImage = xml["SocialInfoVO"]["Icon"].element?.text?
+        self.messageNum = xml["SocialInfoVO"]["Nickname"].element?.text?
+        self.followNum =  xml["SocialInfoVO"]["PhoneNum"].element?.text?
+        self.fansNum =  xml["SocialInfoVO"]["PhoneNum"].element?.text?
+    }
 }

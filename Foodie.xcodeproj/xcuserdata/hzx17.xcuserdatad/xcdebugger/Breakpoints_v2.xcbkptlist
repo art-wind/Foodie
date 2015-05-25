@@ -33,36 +33,6 @@
             endingLineNumber = "54"
             landmarkName = "registerAction(_:)"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Foodie.RegisterTableViewController.(registerAction (Foodie.RegisterTableViewController) -&gt; (ObjectiveC.UIButton) -&gt; ()).(closure #1)"
-                  moduleName = "Foodie"
-                  urlString = "file:///Users/hzx17/Developer/github/Foodie/Foodie/RegisterTableViewController.swift"
-                  timestampString = "454146304.671729"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "185">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Foodie.RegisterTableViewController.(registerAction (Foodie.RegisterTableViewController) -&gt; (ObjectiveC.UIButton) -&gt; ()).(closure #1)"
-                  moduleName = "Foodie"
-                  urlString = "file:///Users/hzx17/Developer/github/Foodie/Foodie/RegisterTableViewController.swift"
-                  timestampString = "454146304.672329"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "55"
-                  endingLineNumber = "55"
-                  offsetFromSymbolStart = "2898">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
