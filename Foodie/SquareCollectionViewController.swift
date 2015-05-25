@@ -19,37 +19,41 @@ class SquareCollectionViewController: UICollectionViewController {
     //MARK: View load and will appear
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.registerClass(SquareCollectionViewCell.self, forCellWithReuseIdentifier: squareCVCReuseID)
         self.collectionView?.registerNib(UINib(nibName: squareNibname, bundle: nil), forCellWithReuseIdentifier: squareCVCReuseID)
-        // Do any additional setup after loading the view.
        
     }
     override func viewDidAppear(animated: Bool) {
-         getStatusAndReload()
     }
     @IBAction func refreshAction(sender: UIBarButtonItem) {
         getStatusAndReload()
     }
     func getStatusAndReload (){
         if let user = SharedVariable.currentUser(){
+            println(user.id)
+            
             
             let request = StatusManager.squareStatusRequest(user.id!, pageNum: 0)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{[weak self] (response, data, error) -> Void in
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{(response, data, error) -> Void in
                 
                 println("start")
                 
+                self.statusList = StatusManager.getStatusListFromData(data)
+                println("\(self.statusList.count)")
+                if let collectionView = self.collectionView {
+                    dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                        collectionView.reloadData()
+                    })
+                }
                 
-                self!.statusList = StatusManager.getStatusListFromData(data)
-                self!.collectionView?.reloadData()
-                
+                println("Ending")
             })
         }
         
+    }
+    func reload(){
+//        self.collectionView?.reloadData()
+        println("sadsds")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,15 +76,22 @@ class SquareCollectionViewController: UICollectionViewController {
         
         let basicURL = NSURL(string: "http://115.29.138.163:8080/")
         let pictureURL = NSURL(string: pictureName, relativeToURL: basicURL)
-        cell.squareImage.image = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
+        cell.squareImage.image = UIImage(named: "coke")
+//        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//            cell.squareImage.image = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
+//        })
+        
+        CacheManager.setImageViewWithData(cell.squareImage, url: "http://115.29.138.163:8080/\(pictureName)")
         return cell
     }
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SquareCollectionViewCell
+        
         let row = indexPath.row
         let image = UIImage(named: nameArray[row])
-        detailStatusVC.detailStatusImage = image
-        detailStatusVC.userIconImage = UIImage(named: "HENRY")
+        detailStatusVC.detailStatusImage = cell.squareImage.image
+        detailStatusVC.userIconImage = UIImage(named: "coke")
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }

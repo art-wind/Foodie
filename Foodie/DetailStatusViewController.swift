@@ -33,18 +33,26 @@ class DetailStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let iconImage = userIconImage{
+            //                let iconURL = NSURL(string: definedStatus.author!)!
+            //                let iconData = NSData(contentsOfURL: iconURL)!
+            //                userIconImageView.image = UIImage(data:iconData)
+            
+            userIconImageView.image = userIconImage
+            let width = userIconImageView.bounds.size.width
+            userIconImageView.layer.cornerRadius = width/2
+            userIconImageView.layer.masksToBounds = true
+        }
+        if let detailImage = detailStatusImage{
+            imageView.image = detailImage
+            
+        }
+        
+        
+        
         if let definedStatus = status {
             imageView.image = detailStatusImage!
-            if let iconImage = userIconImage{
-//                let iconURL = NSURL(string: definedStatus.author!)!
-//                let iconData = NSData(contentsOfURL: iconURL)!
-//                userIconImageView.image = UIImage(data:iconData)
-                
-                userIconImageView.image = userIconImage
-                let width = userIconImageView.bounds.size.width
-                userIconImageView.layer.cornerRadius = width/2
-                userIconImageView.layer.masksToBounds = true
-            }
+            
             
 //            praiseButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)
 //            commentButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)

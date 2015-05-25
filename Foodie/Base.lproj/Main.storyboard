@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -207,20 +207,20 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4br-oB-r40">
                                 <rect key="frame" x="538" y="28" width="46" height="30"/>
-                                <state key="normal" title="注册-&gt;">
+                                <state key="normal" title="注册->">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="X6Q-9u-Jl8" kind="show" id="hSi-Nl-29r"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOe-1U-lSU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOe-1U-lSU">
                                 <rect key="frame" x="11" y="182" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-Vg-J6Z">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOL-Vg-J6Z">
                                 <rect key="frame" x="11" y="225" width="120" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -280,8 +280,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="1cq-u9-0fu"/>
                                 <exclude reference="aJd-u0-zbE"/>
+                                <exclude reference="1cq-u9-0fu"/>
                                 <exclude reference="aDU-9I-0aI"/>
                             </mask>
                         </variation>
@@ -331,7 +331,7 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="美食广场" id="4sc-e5-ZrR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="gXb-9L-1iZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="gXb-9L-1iZ">
                             <connections>
                                 <action selector="refreshAction:" destination="xqz-20-ngv" id="CNS-gk-UT6"/>
                             </connections>
@@ -956,7 +956,7 @@
             </objects>
             <point key="canvasLocation" x="-3743" y="-3302"/>
         </scene>
-        <!--PostPictureTableViewController-->
+        <!--拍照-->
         <scene sceneID="sQR-dk-MhP">
             <objects>
                 <tableViewController id="K3T-AP-gXu" customClass="PostImageTableViewController" customModule="Foodie" customModuleProvider="target" sceneMemberID="viewController">
@@ -1017,11 +1017,17 @@
                                                         <constraint firstAttribute="height" constant="150" id="af1-0w-IWk"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="xqE-1y-JMT">
+                                                    <rect key="frame" x="285" y="64.5" width="37" height="37"/>
+                                                    <color key="color" red="0.2335341232" green="0.8023213642" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Mbh-Hz-7BQ" firstAttribute="top" secondItem="yfm-8f-BdC" secondAttribute="topMargin" id="3iV-Qc-sK9"/>
                                                 <constraint firstItem="wNe-9q-vvg" firstAttribute="height" secondItem="Mbh-Hz-7BQ" secondAttribute="height" id="F9n-rg-oco"/>
+                                                <constraint firstAttribute="centerX" secondItem="xqE-1y-JMT" secondAttribute="centerX" constant="-20" id="Mhd-Cu-YTL"/>
                                                 <constraint firstItem="wNe-9q-vvg" firstAttribute="top" secondItem="Mbh-Hz-7BQ" secondAttribute="top" id="Qcy-nR-BiP"/>
+                                                <constraint firstAttribute="centerY" secondItem="xqE-1y-JMT" secondAttribute="centerY" id="aah-NF-ME3"/>
                                                 <constraint firstItem="Mbh-Hz-7BQ" firstAttribute="leading" secondItem="yfm-8f-BdC" secondAttribute="leadingMargin" id="iYm-pf-0KC"/>
                                                 <constraint firstItem="wNe-9q-vvg" firstAttribute="leading" secondItem="Mbh-Hz-7BQ" secondAttribute="leading" id="lPq-ZI-cfm"/>
                                                 <constraint firstItem="wNe-9q-vvg" firstAttribute="width" secondItem="Mbh-Hz-7BQ" secondAttribute="width" id="rZJ-xD-Rjf"/>
@@ -1086,7 +1092,7 @@
                             <outlet property="delegate" destination="K3T-AP-gXu" id="Z0m-SQ-lGy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="PostPictureTableViewController" id="0H7-lh-6G8">
+                    <navigationItem key="navigationItem" title="拍照" id="0H7-lh-6G8">
                         <barButtonItem key="rightBarButtonItem" title="发布" id="btL-hx-yna">
                             <connections>
                                 <action selector="postImageAction:" destination="K3T-AP-gXu" id="Nfp-KJ-dB6"/>
@@ -1095,6 +1101,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="contentTextView" destination="zP5-3P-fUc" id="OTY-YX-DZc"/>
+                        <outlet property="indicator" destination="xqE-1y-JMT" id="JIu-0c-yoz"/>
                         <outlet property="locationLabel" destination="NYu-iR-OMA" id="ZqK-d2-NAm"/>
                         <outlet property="takenPhoto" destination="Mbh-Hz-7BQ" id="sOJ-cL-Hoi"/>
                     </connections>
