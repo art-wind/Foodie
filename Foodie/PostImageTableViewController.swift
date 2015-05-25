@@ -8,9 +8,10 @@
 
 import UIKit
 
-class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate {
+class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate,NSURLConnectionDataDelegate{
     var isTaken:Bool = false
     let filterImageSegueID = "Filter Image"
+    var sendTimes = 0
     @IBOutlet var takenPhoto: UIImageView!
     
     @IBOutlet var contentTextView: UITextView!
@@ -22,13 +23,37 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
         let para = ["id":"ddd","name":"bill"]
-        let urlRequest = ImageUpload.createRequest(UIImage(named: "cheesecake")!,parameters: para)
+        let urlRequest = ImageUpload.createRequest(takenPhoto.image!,parameters: para)
+        let content = contentTextView.text
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
             ) { (response, data, error) -> Void in
                 if error == nil {
-                    let string = NSString(data: data, encoding: NSUTF8StringEncoding)
-                    println(string)
+                    let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                    if let user = SharedVariable.currentUser() {
+                        let aRequest = StatusManager.postStateRequest(user.id!, nickname: user.nickname!, pic_url: urlString, content: content, address: "Fudan")
+                        NSURLConnection.sendAsynchronousRequest(aRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+                            if error == nil {
+                                let alertView = UIAlertView(title: "输入有误", message: "手机号码未输入", delegate: self, cancelButtonTitle: "关闭")
+                                alertView.show()
+                                println("Status sent!")
+                            }
+                        })
+                    }
+                    
+                    
                 }
+        }
+    }
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+        if sendTimes == 0 {
+            sendTimes += 1
+            let request = StatusManager.postStateRequest(000, nickname: "123", pic_url: urlString, content: "sads", address: "Fudan ")
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+                if error != nil {
+                    println("Status sent!")
+                }
+            })
         }
     }
     @IBAction func takePicture(sender: UIButton) {

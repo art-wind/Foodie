@@ -14,6 +14,9 @@
 		3300BD811AF1230E000EED64 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3300BD7F1AF1230E000EED64 /* LaunchScreen.xib */; };
 		3300BD8D1AF1230E000EED64 /* FoodieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300BD8C1AF1230E000EED64 /* FoodieTests.swift */; };
 		3300BD971AF129C1000EED64 /* RegisterTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */; };
+		3302FF7D1B12000100FF8206 /* SocialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3302FF7C1B12000100FF8206 /* SocialInfo.swift */; };
+		3302FF7F1B12001800FF8206 /* SocialInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3302FF7E1B12001800FF8206 /* SocialInfoManager.swift */; };
+		3302FF811B12066A00FF8206 /* ShareVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3302FF801B12066A00FF8206 /* ShareVariable.swift */; };
 		3320B8D51AFCFDDE00110C40 /* VCNibname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3320B8D41AFCFDDE00110C40 /* VCNibname.swift */; };
 		3325333E1B1181BC00294334 /* LogonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325333D1B1181BC00294334 /* LogonViewController.swift */; };
 		332533401B11860B00294334 /* IconModifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3325333F1B11860B00294334 /* IconModifierViewController.swift */; };
@@ -93,6 +96,9 @@
 		3300BD8B1AF1230E000EED64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3300BD8C1AF1230E000EED64 /* FoodieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodieTests.swift; sourceTree = "<group>"; };
 		3300BD961AF129C1000EED64 /* RegisterTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTableViewController.swift; sourceTree = "<group>"; };
+		3302FF7C1B12000100FF8206 /* SocialInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialInfo.swift; sourceTree = "<group>"; };
+		3302FF7E1B12001800FF8206 /* SocialInfoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialInfoManager.swift; sourceTree = "<group>"; };
+		3302FF801B12066A00FF8206 /* ShareVariable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareVariable.swift; sourceTree = "<group>"; };
 		3320B8D41AFCFDDE00110C40 /* VCNibname.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VCNibname.swift; path = Model/VCNibname.swift; sourceTree = "<group>"; };
 		3325333D1B1181BC00294334 /* LogonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogonViewController.swift; sourceTree = "<group>"; };
 		3325333F1B11860B00294334 /* IconModifierViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconModifierViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +289,9 @@
 				335FAB151AFDA7890018C33C /* VCGenerator.swift */,
 				337B46A81B11A565007DEE0E /* Constants.swift */,
 				3389CBDF1B11CBAF00F05C1F /* ImageUpload.swift */,
+				3302FF7C1B12000100FF8206 /* SocialInfo.swift */,
+				3302FF7E1B12001800FF8206 /* SocialInfoManager.swift */,
+				3302FF801B12066A00FF8206 /* ShareVariable.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -429,6 +438,7 @@
 				TargetAttributes = {
 					3300BD6D1AF1230E000EED64 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 53AN29JG82;
 					};
 					3300BD851AF1230E000EED64 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -520,10 +530,12 @@
 				346154641B023A6B005316C2 /* CommentManager.swift in Sources */,
 				33D6D4391AF74BC700564F00 /* MessageNotificationTableViewController.swift in Sources */,
 				33FC85961AF77F2300F587C4 /* PostImageTableViewController.swift in Sources */,
+				3302FF7D1B12000100FF8206 /* SocialInfo.swift in Sources */,
 				337D60781B0E1000008B6188 /* User.swift in Sources */,
 				333892581AF70BAB000ACD9F /* ModificationTableViewController.swift in Sources */,
 				3325333E1B1181BC00294334 /* LogonViewController.swift in Sources */,
 				333892601AF73A8B000ACD9F /* PreviousPhotoTableViewCell.swift in Sources */,
+				3302FF811B12066A00FF8206 /* ShareVariable.swift in Sources */,
 				346154621B023A1E005316C2 /* Message.swift in Sources */,
 				337D607E1B0E1013008B6188 /* SWXMLHash.swift in Sources */,
 				3461545E1B023966005316C2 /* StatusManager.swift in Sources */,
@@ -533,6 +545,7 @@
 				3338925C1AF71BC8000ACD9F /* DescriptionTableViewCell.swift in Sources */,
 				333AA1A71B11C32800DB5EAF /* TagsChosenTableViewController.swift in Sources */,
 				3300BD771AF1230E000EED64 /* Foodie.xcdatamodeld in Sources */,
+				3302FF7F1B12001800FF8206 /* SocialInfoManager.swift in Sources */,
 				3326A6111AF24A36008B2FDE /* SquareCollectionViewController.swift in Sources */,
 				33A192881AF70384006A7E5D /* MainPageTableViewController.swift in Sources */,
 				332533401B11860B00294334 /* IconModifierViewController.swift in Sources */,
@@ -659,6 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Foodie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -670,6 +684,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Foodie/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

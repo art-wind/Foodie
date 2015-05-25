@@ -330,7 +330,13 @@
                             <outlet property="delegate" destination="xqz-20-ngv" id="PGx-68-3KV"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="美食广场" id="4sc-e5-ZrR"/>
+                    <navigationItem key="navigationItem" title="美食广场" id="4sc-e5-ZrR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="gXb-9L-1iZ">
+                            <connections>
+                                <action selector="refreshAction:" destination="xqz-20-ngv" id="CNS-gk-UT6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngO-P5-xyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
