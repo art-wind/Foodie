@@ -13,8 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    var currentUser:User?
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         UINavigationBar.appearance().barTintColor = UIColor(red: 110/256, green: 175/256, blue: 220/256, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
