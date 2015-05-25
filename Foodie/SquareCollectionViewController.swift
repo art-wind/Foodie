@@ -40,6 +40,10 @@ class SquareCollectionViewController: UICollectionViewController {
             
             let request = StatusManager.squareStatusRequest(user.id!, pageNum: 0)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{[weak self] (response, data, error) -> Void in
+                
+                println("start")
+                
+                
                 self!.statusList = StatusManager.getStatusListFromData(data)
                 self!.collectionView?.reloadData()
                 

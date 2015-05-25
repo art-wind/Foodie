@@ -30,23 +30,22 @@ class User {
     
     
     init(xml: XMLIndexer){
-        self.id = xml["UserVO"]["Id"].element?.text?.toInt()
-        self.password = xml["UserVO"]["Password"].element?.text?
-        self.icon = xml["UserVO"]["Icon"].element?.text?
-        self.nickname = xml["UserVO"]["Nickname"].element?.text?
-        self.phoneNum =  xml["UserVO"]["PhoneNum"].element?.text?
+        self.id = xml["Id"].element?.text?.toInt()
+        self.password = xml["Password"].element?.text?
+        self.icon = xml["Icon"].element?.text?
+        self.nickname = xml["Nickname"].element?.text?
+        self.phoneNum =  xml["PhoneNum"].element?.text?
     }
     
     class func convertUser(xml: XMLIndexer) -> User{
-        var user = User(xml: xml)
+        var user = User(xml: xml["UserVO"])
         return user
     }
 
-    
     class func convertUserList(xml: XMLIndexer) -> [User]{
         var userList = [User]()
-        for user in xml["UserVOList"] {
-            userList.append(User.convertUser(user))
+        for user in xml["UserVOList"]["UserVO"] {
+            userList.append(User(xml: user))
         }
         return userList
     }
