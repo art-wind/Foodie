@@ -15,7 +15,7 @@ class CacheManager {
     class func setImageViewWithData(imageView:UIImageView,url:String){
         let delegate = UIApplication.sharedApplication().delegate as AppDelegate
         let context = delegate.managedObjectContext
-        let fetchRequest = NSFetchRequest(entityName: "URLMapping")
+        let fetchRequest = NSFetchRequest(entityName: "URLCache")
         fetchRequest.predicate = NSPredicate(format: "url = %@",url)
         var error:NSError?
         let fetchedObjects = context?.executeFetchRequest(fetchRequest, error: &error) as [NSManagedObject]
@@ -23,21 +23,27 @@ class CacheManager {
             println("Cached \(url)")
             let cache = fetchedObjects.last!
             let imgData = cache.valueForKey("imgData") as NSData
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                imageView.image = UIImage(data: imgData)
-            })
+            imageView.image = UIImage(data: imgData)
+            //            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            //
+            //            })
         }
         else{
             println("New \(url)")
-            let description = NSEntityDescription.entityForName("URLMapping", inManagedObjectContext: context!)
+            let description = NSEntityDescription.entityForName("URLCache", inManagedObjectContext: context!)
             let newElement = NSManagedObject(entity: description!, insertIntoManagedObjectContext: context!)
-            newElement.setValue(url, forKey: "url")
-            let data = NSData(contentsOfURL: NSURL(string: url)!)
-            newElement.setValue(data!, forKey: "imgData")
-            context?.save(&error)
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                imageView.image = UIImage(data: data!)
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                { () -> Void in
+                    newElement.setValue(url, forKey: "url")
+                    let data = NSData(contentsOfURL: NSURL(string: url)!)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        imageView.image = UIImage(data: data!)
+                        newElement.setValue(data!, forKey: "imgData")
+                        context?.save(&error)
+                    })
+                    
             })
+            
             
         }
     }

@@ -8,8 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailStatusViewController" customModule="Foodie" customModuleProvider="target">
             <connections>
                 <outlet property="commentButton" destination="ryp-za-R9H" id="x2N-Na-2AY"/>
+                <outlet property="contentLabel" destination="xdg-pb-ewJ" id="0cN-m2-pPU"/>
                 <outlet property="imageView" destination="tGr-pS-csq" id="vlJ-Gi-dj4"/>
-                <outlet property="praiseButton" destination="YBG-wf-4PP" id="57y-Ke-brU"/>
+                <outlet property="praiseButton" destination="YBG-wf-4PP" id="dz5-BF-RTT"/>
                 <outlet property="userIconImageView" destination="TvW-0e-OLU" id="z2x-Pw-61s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,6 +28,9 @@
                     <state key="normal" title="77" image="Heart">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="admireAction:" destination="-1" eventType="touchUpInside" id="vuz-Z5-uiZ"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryp-za-R9H">
                     <rect key="frame" x="545" y="562" width="47" height="24"/>
@@ -54,14 +58,22 @@
                     </constraints>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="6Rh-ba-PWx" appends="YES" id="vWN-yg-O6f"/>
-                        <outletCollection property="gestureRecognizers" destination="6Rh-ba-PWx" appends="YES" id="GtG-VR-fA2"/>
                     </connections>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xdg-pb-ewJ">
+                    <rect key="frame" x="8" y="513" width="584" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="xdg-pb-ewJ" secondAttribute="trailing" constant="8" id="1qd-1k-lGR"/>
                 <constraint firstAttribute="bottom" secondItem="tGr-pS-csq" secondAttribute="bottom" id="3GG-Ju-Ksd"/>
+                <constraint firstItem="xdg-pb-ewJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="5kW-NX-AFa"/>
+                <constraint firstItem="TvW-0e-OLU" firstAttribute="top" secondItem="xdg-pb-ewJ" secondAttribute="bottom" constant="8" id="6AZ-hV-Pzf"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="7fT-Zt-2dk"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7ua-0Q-IKM"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UmK-wW-1Mm"/>
@@ -74,10 +86,11 @@
                 <constraint firstAttribute="centerX" secondItem="TvW-0e-OLU" secondAttribute="centerX" id="uYM-9q-RBw"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="top" secondItem="ryp-za-R9H" secondAttribute="top" id="zUW-uf-0rv"/>
             </constraints>
+            <point key="canvasLocation" x="-115" y="154"/>
         </view>
         <tapGestureRecognizer id="6Rh-ba-PWx">
             <connections>
-                <action selector="touchededd:" destination="-1" id="vA3-Zk-Q7O"/>
+                <action selector="userIconTouched:" destination="-1" id="rSq-ZN-RHe"/>
             </connections>
         </tapGestureRecognizer>
     </objects>
