@@ -15,19 +15,16 @@ class MainPageTableViewController: UITableViewController {
     let previousPhotoTVCNibName = "PreviousPhotoTableViewCell"
     let showConcernSegueID = "Show Friends"
 
-    //MARK: Critical properties for content
-    /*
-    var userOfMainPage:User?
-    var statusOfUser:[Status]?
-    var fans:[User]?
-    var followees:[User]?
-    var messages:[Message]?
-    */
-//    var socialInfo
+    //MARK: Core targetUserId
+    var targetUserID:Int?
     
-    //MARK: Navigation Item
+    //MARK: Variables for displaying main page
+    var socialInfo:SocialInfo?
+    var statusList:[Status]?
+    
+    //Mark: Segue Variables
     var isPushed = false
-    var isMyself:Bool = false
+    var isMyself:Bool = true
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
@@ -35,6 +32,19 @@ class MainPageTableViewController: UITableViewController {
         if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
+        
+        //HTTP Request for SocialInfo
+        
+        //HTTP Request for StatusList
+        let statusRequest = StatusManager.statusByUserRequset(targetUserID!, pageNum: 0)
+        NSURLConnection.sendAsynchronousRequest(statusRequest, queue: NSOperationQueue()) { [weak self](response, data, error) -> Void in
+            self!.statusList = StatusManager.getStatusListFromData(data)
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let tableView = self!.tableView
+                tableView.reloadData()
+            })
+        }
+        
     }
     func pop(sender:UIBarButtonItem){
         dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -61,6 +71,9 @@ class MainPageTableViewController: UITableViewController {
         }
         else{
             // 个人的拍摄历史
+            if let list = statusList{
+                return list.count
+            }
             return 3
         }
     }
@@ -109,9 +122,7 @@ class MainPageTableViewController: UITableViewController {
         
         
         let  uiCVCFlowLayout = UICollectionViewFlowLayout()
-        //self.view.frame.size
         let frameWidth = self.view.frame.size.width
-//        uiCVCFlowLayout.itemSize = CGSize(width: frameWidth/4, height: frameWidth/4+50)
         uiCVCFlowLayout.itemSize = CGSize(width: 66, height: 95)
         uiCVCFlowLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
         

@@ -13,23 +13,15 @@ class DetailStatusViewController: UIViewController {
     var status:Status?
     var userIconImage:UIImage?
     var detailStatusImage:UIImage?
+    var isAdmired = false
     
     
-    @IBOutlet var userIconImageView: UIImageView!
     @IBOutlet var imageView: UIImageView!
+    @IBOutlet var contentLabel: UILabel!
     @IBOutlet var praiseButton: UIButton!
     @IBOutlet var commentButton: UIButton!
+    @IBOutlet var userIconImageView: UIImageView!
     
-    @IBAction func touchededd(sender: UITapGestureRecognizer) {
-        println("TAppped!!!")
-        let mainPageVC = MainPageTableViewController()
-        mainPageVC.isMyself = false
-        mainPageVC.isPushed = true
-        let navVC = UINavigationController(rootViewController: mainPageVC)
-        presentViewController(navVC, animated: true) { () -> Void in
-            
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,24 +35,24 @@ class DetailStatusViewController: UIViewController {
             userIconImageView.layer.cornerRadius = width/2
             userIconImageView.layer.masksToBounds = true
         }
-        if let detailImage = detailStatusImage{
-            imageView.image = detailImage
-            
-        }
+//        if let detailImage = detailStatusImage{
+//            imageView.image = detailImage
+//            
+//        }
         
         
         
         if let definedStatus = status {
             imageView.image = detailStatusImage!
-            
-            
-//            praiseButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)
-//            commentButton.setTitle(definedStatus.likeNum, forState: UIControlState.Normal)
+            contentLabel.text = definedStatus.content
+            CacheManager.setImageViewWithData(imageView, url: definedStatus.picture!)
+            praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
+            commentButton.setTitle("\(definedStatus.commentNum!)", forState: UIControlState.Normal)
         }
     }
     
     
-    
+    //MARK: Actions of Users
     @IBAction func backAction(sender: UIButton) {
         dismissViewControllerAnimated(true, completion: { () -> Void in
             
@@ -70,22 +62,43 @@ class DetailStatusViewController: UIViewController {
         let commentVC = CommentsTableViewController()
         let navVC = UINavigationController(rootViewController: commentVC)
         navVC.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-//        commentVC.navigationItem = ""
-//        UINavigationController()
-//        pushViewController(commentVC, animated: true)
         presentViewController(navVC, animated: true) { () -> Void in
             
         }
     }
-    @IBAction func checkMainPage(sender: UIButton) {
+    @IBAction func admireAction(sender: UIButton) {
+        var admireNumber =  (sender.titleLabel?.text?.toInt())!
+        var image:UIImage?
+        if isAdmired {
+            admireNumber += 1
+            image = UIImage(named: "Heart")
+        }
+        else{
+            admireNumber -= 1
+            image = UIImage(named: "Message")
+        }
+        isAdmired = !isAdmired
+        
+        sender.setImage(image, forState: UIControlState.Normal)
+        sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
+        
+    }
+    
+    
+    @IBAction func userIconTouched(sender: UITapGestureRecognizer) {
         let mainPageVC = MainPageTableViewController()
         mainPageVC.isMyself = false
         mainPageVC.isPushed = true
+        
+        
+        //MARK: Segue For Main Page
         let navVC = UINavigationController(rootViewController: mainPageVC)
         presentViewController(navVC, animated: true) { () -> Void in
             
         }
     }
+    
+    
     
     override init() {
         super.init()
@@ -94,18 +107,8 @@ class DetailStatusViewController: UIViewController {
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    
-
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        //imageView.image = UIImage(named: "monster")
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
