@@ -15,8 +15,11 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellReuseID)
+        refreshControl?.addTarget(self, action: Selector("refreshTheTable:"), forControlEvents: UIControlEvents.ValueChanged)
     }
-    
+    @IBAction func refreshTheTable(sender:UIRefreshControl){
+        
+    }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.

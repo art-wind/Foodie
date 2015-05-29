@@ -33,11 +33,10 @@ class LogonViewController: UIViewController {
         //MARK: HTTP Request goes here
         
         let urlRequest = UserManager.loginRequest(phoneNumber, pwd: password)
-        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue(), completionHandler: {[weak self](response, data, error) -> Void in
+        NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: {[weak self](response, data, error) -> Void in
             println()
             if error == nil {
-                let logonUser = User(xml: SWXMLHash.parse(data))
-                println(data)
+                let logonUser = User.convertUser(SWXMLHash.parse(data))
                 let appDele = UIApplication.sharedApplication().delegate as AppDelegate
                 appDele.currentUser = logonUser
                 self!.successfullyLogon = true
@@ -45,7 +44,8 @@ class LogonViewController: UIViewController {
 
             }
             else{
-                println((response as NSHTTPURLResponse).statusCode)
+                
+//                println((response as NSHTTPURLResponse).statusCode)
             }
         })
         

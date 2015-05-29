@@ -10,46 +10,64 @@ import UIKit
 
 
 
-class SquareCollectionViewController: UICollectionViewController {
+class SquareCollectionViewController: UICollectionViewController{
     let nameArray = ["cheesecake","strawberries","sushi","sanwenyu","pizza"]
     let squareCVCReuseID = "Square CVC"
     let squareNibname = "SquareCollectionViewCell"
     let detailSegueName = "Present Detail"
     var statusList = [Status]()
+    let refreshControl = UIRefreshControl()
+    
     //MARK: View load and will appear
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
         self.collectionView!.registerClass(SquareCollectionViewCell.self, forCellWithReuseIdentifier: squareCVCReuseID)
         self.collectionView?.registerNib(UINib(nibName: squareNibname, bundle: nil), forCellWithReuseIdentifier: squareCVCReuseID)
-        // Do any additional setup after loading the view.
        
+        //Refresh Control Involved 
+        
+        refreshControl.tintColor = UIColor.grayColor()
+        refreshControl.addTarget(self, action: Selector("refreshControl:"), forControlEvents: UIControlEvents.ValueChanged)
+        self.collectionView?.addSubview(refreshControl)
     }
     override func viewDidAppear(animated: Bool) {
-         getStatusAndReload()
+    }
+    @IBAction func refreshControl(sender:UIRefreshControl){
+        refreshControl.beginRefreshing()
+        getStatusAndReload()
     }
     @IBAction func refreshAction(sender: UIBarButtonItem) {
         getStatusAndReload()
     }
     func getStatusAndReload (){
         if let user = SharedVariable.currentUser(){
+            println(user.id)
+            
             
             let request = StatusManager.squareStatusRequest(user.id!, pageNum: 0)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{[weak self] (response, data, error) -> Void in
-                self!.statusList = StatusManager.getStatusListFromData(data)
-                self!.collectionView?.reloadData()
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{[weak self](response, data, error) -> Void in
                 
+                println("start")
+                
+                self!.statusList = StatusManager.getStatusListFromData(data)
+                
+                if let collectionView = self!.collectionView {
+                    dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                        collectionView.reloadData()
+                        self!.refreshControl.endRefreshing()
+                    })
+                }
+                
+                println("Ending")
             })
         }
         
     }
+    func reload(){
+        println("sadsds")
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -68,15 +86,20 @@ class SquareCollectionViewController: UICollectionViewController {
         
         let basicURL = NSURL(string: "http://115.29.138.163:8080/")
         let pictureURL = NSURL(string: pictureName, relativeToURL: basicURL)
-        cell.squareImage.image = UIImage(data: NSData(contentsOfURL: pictureURL!)!)
+        //Loading Image
+        cell.squareImage.image = UIImage(named: "coke")
+        
+        CacheManager.setImageViewWithData(cell.squareImage, url: "http://115.29.138.163:8080/\(pictureName)")
         return cell
     }
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as SquareCollectionViewCell
+        
         let row = indexPath.row
-        let image = UIImage(named: nameArray[row])
-        detailStatusVC.detailStatusImage = image
-        detailStatusVC.userIconImage = UIImage(named: "HENRY")
+        detailStatusVC.status = statusList[row]
+        detailStatusVC.detailStatusImage = cell.squareImage.image
+        detailStatusVC.userIconImage = UIImage(named: "coke")
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }

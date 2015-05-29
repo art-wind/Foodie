@@ -9,7 +9,8 @@
 import Foundation
 class Status{
     var id:Int?
-    var author:String?
+    var user_id:String?
+    var nickname:String?
     var picture:String?
     var content:String?
     var time:String?
@@ -17,38 +18,36 @@ class Status{
     var latitude:String?
     var longtitude:String?
     var likeNum:Int?
-    var tag:String?
-    
     var commentNum:Int?
+    
+    var tag:String?
     var user_nickname:String?
     var user_icon:String?
     
     init(xml: XMLIndexer){
-        self.id = xml["StatusVO"]["Id"].element?.text?.toInt()
-        self.author = xml["StatusVO"]["Author"].element?.text?
-        self.picture = xml["StatusVO"]["Picture"].element?.text?
-        self.content = xml["StatusVO"]["Content"].element?.text?
-        self.time =  xml["StatusVO"]["Time"].element?.text?
-        self.address =  xml["StatusVO"]["Address"].element?.text?
-        self.latitude =  xml["StatusVO"]["Latitude"].element?.text?
-        self.longtitude =  xml["StatusVO"]["Longtitude"].element?.text?
-        self.likeNum =  xml["StatusVO"]["likeNum"].element?.text?.toInt()
-        self.tag =  xml["StatusVO"]["Tag"].element?.text?
         
-        //TODO
+        self.id = xml["Id"].element?.text?.toInt()
+        self.user_id = xml["UserId"].element?.text?
+        self.nickname = xml["Nickname"].element?.text?
+        self.picture = xml["Picture"].element?.text?
+        self.content = xml["Content"].element?.text?
+        self.address =  xml["Address"].element?.text?
+        self.latitude =  xml["Latitude"].element?.text?
+        self.longtitude =  xml["Longtitude"].element?.text?
+        self.likeNum =  xml["LikeNum"].element?.text?.toInt()
+        self.commentNum = xml["CommentNum"].element?.text?.toInt()
+        
+//        self.tag =  xml["Tag"].element?.text?
+        
     }
-    
     class func convertStatus(xml: XMLIndexer) -> Status{
-        var status = Status(xml: xml)
+        var status = Status(xml: xml["StatusVO"])
         return status
     }
-    
-    
     class func convertStatusList(xml: XMLIndexer) -> [Status]{
-        //TODO xml格式
         var statusList = [Status]()
-        for status in xml["StatusVOList"] {
-            statusList.append(Status.convertStatus(status))
+        for status in xml["StatusVOList"]["StatusVO"]{
+            statusList.append(Status(xml: status))
         }
         return statusList
     }

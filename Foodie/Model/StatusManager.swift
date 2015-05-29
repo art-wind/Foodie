@@ -15,32 +15,32 @@ class StatusManager{
         NSMutableURLRequest{
             let parametersDictionary = ["user_id":"\(user_id)","nickname":nickname,"pic_url":pic_url,"content":content,"address":address,"latitude":"0"
                 ,"longitude":"0"]
-        return UserManager.generateRequest("StatusService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("StatusService", parametersDictionary: parametersDictionary)
     }
     
     //为状态点赞
     class func admireStatusRequest(status_id:Int)->NSMutableURLRequest{
         let parametersDictionary = ["status_id":"\(status_id)"]
-        return UserManager.generateRequest("AdmireStatusService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("AdmireStatusService", parametersDictionary: parametersDictionary)
     }
     
     //广场
     class func squareStatusRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
-        return UserManager.generateRequest("SquareService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("SquareService", parametersDictionary: parametersDictionary)
     }
     
     
     //朋友圈
     class func momentsStatusRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
-        return UserManager.generateRequest("MomentsService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("MomentsService", parametersDictionary: parametersDictionary)
     }
     
     //根据id找到状态
-    func statusByUserRequset(user_id:Int, pageNum:Int)->NSMutableURLRequest{
+    class func statusByUserRequset(user_id:Int, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
-        return UserManager.generateRequest("FriendsStatusService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("FriendsStatusService", parametersDictionary: parametersDictionary)
     }
     
     //Type
