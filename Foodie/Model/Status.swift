@@ -34,8 +34,8 @@ class Status{
         self.address =  xml["Address"].element?.text?
         self.latitude =  xml["Latitude"].element?.text?
         self.longtitude =  xml["Longtitude"].element?.text?
-        self.likeNum =  xml["likeNum"].element?.text?.toInt()
-        self.commentNum = xml["commentNum"].element?.text?.toInt()
+        self.likeNum =  xml["LikeNum"].element?.text?.toInt()
+        self.commentNum = xml["CommentNum"].element?.text?.toInt()
         
 //        self.tag =  xml["Tag"].element?.text?
         

@@ -10,14 +10,29 @@ import Foundation
 
 class Comment{
     var id:Int?
-    var userId:Int?
-    var targetId:Int?
+    var user_id:String?
+    var target_id:String?
     var content:String?
-  
     
-    init(id:Int){
-        self.id = id
+    
+    init(xml: XMLIndexer){
         
+        self.id = xml["Id"].element?.text?.toInt()
+        self.user_id = xml["UserId"].element?.text?
+        self.target_id = xml["Nickname"].element?.text?
+        self.content = xml["Content"].element?.text?
+        
+    }
+    class func convertComment(xml: XMLIndexer) -> Comment{
+        var comment = Comment(xml: xml["CommentVO"])
+        return comment
+    }
+    class func convertCommentList(xml: XMLIndexer) -> [Comment]{
+        var commentList = [Comment]()
+        for comment in xml["CommentVOList"]["CommentVO"]{
+            commentList.append(Comment(xml: comment))
+        }
+        return commentList
     }
     
     
