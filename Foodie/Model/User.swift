@@ -10,7 +10,6 @@ import Foundation
 
 class User {
     var id:Int?
-    var username:String?
     var password:String?
     var icon:String?
     var nickname:String?

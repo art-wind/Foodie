@@ -16,7 +16,6 @@ class Message{
    
     init(id:Int){
         self.id = id
-        
     }
     
     
