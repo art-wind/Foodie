@@ -18,24 +18,24 @@ class UserManager {
         let parametersDictionary = ["phoneNumber":phoneNumber,"pwd":pwd,"nickname":nickname]
         return RequestGenerator.generateRequest("RegisterService", parametersDictionary: parametersDictionary)
     }
-    class func fanListRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+    class func fanListRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("AdmiredPersonService", parametersDictionary: parametersDictionary)
     }
-    class func followersListRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+    class func followersListRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("AdmirePersonService", parametersDictionary: parametersDictionary)
     }
     
     //type = 0为取消关注，type = 1为加关注
-    class func followRequest(follower_id:Int, followee_id:Int,type:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["follower_id":"\(follower_id)","followee_id":"\(followee_id)","type":"\(type)"]
+    class func followRequest(follower_id:String, followee_id:String,type:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["follower_id":follower_id,"followee_id":followee_id,"type":"\(type)"]
         return RequestGenerator.generateRequest("FollowService", parametersDictionary: parametersDictionary)
     }
 
     //设置个人信息 TODO
-    class func settingRequest(user_id:Int, pwd:String,nickname:String,icon:String)->NSMutableURLRequest{
-        let parametersDictionary = ["user_id":"\(user_id)","pwd":pwd,"nickName":nickname,"icon":icon]
+    class func settingRequest(user_id:String, pwd:String,nickname:String,icon:String)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":user_id,"pwd":pwd,"nickName":nickname,"icon":icon]
         return RequestGenerator.generateRequest("SettingService", parametersDictionary: parametersDictionary)
     }
     
@@ -44,6 +44,7 @@ class UserManager {
         let parametersDictionary = ["key":key,"choice":"\(choice)","pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("SearchService", parametersDictionary: parametersDictionary)
     }
+    
     class func getUserFromData(data:NSData)->User{
         let xml = SWXMLHash.parse(data)
         return User.convertUser(xml)
