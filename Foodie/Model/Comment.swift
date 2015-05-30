@@ -9,15 +9,14 @@
 import Foundation
 
 class Comment{
-    var id:Int?
+    var id:String?
     var user_id:String?
     var target_id:String?
     var content:String?
     
     
     init(xml: XMLIndexer){
-        
-        self.id = xml["Id"].element?.text?.toInt()
+        self.id = xml["Id"].element?.text?
         self.user_id = xml["UserId"].element?.text?
         self.target_id = xml["Nickname"].element?.text?
         self.content = xml["Content"].element?.text?

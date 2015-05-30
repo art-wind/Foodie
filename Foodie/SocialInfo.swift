@@ -8,20 +8,31 @@
 
 import Foundation
 class SocialInfo  {
-    var sourceID:Int?
+    var sourceID:String?
     var targetID:String?
     var iconImage:String?
-    var messageNum:String?
-    var followNum:String?
-    var fansNum:String?
+    var messageNum:Int?
+    var followNum:Int?
+    var fansNum:Int?
+    var hasFollowed:Bool
     
     
     init(xml: XMLIndexer){
-        self.sourceID = xml["SocialInfoVO"][""].element?.text?.toInt()
-        self.targetID = xml["SocialInfoVO"]["Password"].element?.text?
-        self.iconImage = xml["SocialInfoVO"]["Icon"].element?.text?
-        self.messageNum = xml["SocialInfoVO"]["Nickname"].element?.text?
-        self.followNum =  xml["SocialInfoVO"]["PhoneNum"].element?.text?
-        self.fansNum =  xml["SocialInfoVO"]["PhoneNum"].element?.text?
+        self.sourceID = xml["SourceId"].element?.text?
+        self.targetID = xml["TargetId"].element?.text?
+        self.iconImage = xml["IconImage"].element?.text?
+        self.messageNum = xml["MessageNum"].element?.text?.toInt()
+        self.followNum = xml["FollowNum"].element?.text?.toInt()
+        self.fansNum =  xml["FansNum"].element?.text?.toInt()
+        if(xml["HasFollowed"].element?.text=="true"){
+            self.hasFollowed = true
+        }else{
+            self.hasFollowed = false
+        }
+    }
+    
+    class func convertSocialInfo(xml: XMLIndexer) -> SocialInfo{
+        var socialInfo = SocialInfo(xml: xml["SocialInfoVO"])
+        return socialInfo
     }
 }
