@@ -8,16 +8,34 @@
 
 import Foundation
 class Message{
-    var id:Int?
-    var userId:Int?
+    var id:String?
+    var userId:String?
+    var targetId:String?
     var type:Int?
-    var targetId:Int?
     var hasRead:Bool?
    
-    init(id:Int){
-        self.id = id
-        
+    init(xml: XMLIndexer){
+        self.id = xml["Id"].element?.text?
+        self.userId = xml["UserId"].element?.text?
+        self.targetId = xml["TargetId"].element?.text?
+        self.type = xml["Type"].element?.text?.toInt()
+        if(xml["HasRead"].element?.text=="true"){
+            self.hasRead = true
+        }else{
+            self.hasRead = false
+        }
     }
     
+    class func convertMessage(xml: XMLIndexer) -> Message{
+        var message = Message(xml: xml["MessageVO"])
+        return message
+    }
+    class func convertMessageList(xml: XMLIndexer) -> [Message]{
+        var messageList = [Message]()
+        for message in xml["MessageVOList"]["MessageVO"]{
+            messageList.append(Message(xml: message))
+        }
+        return messageList
+    }
     
 }
