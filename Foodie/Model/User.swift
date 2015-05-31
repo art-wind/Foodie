@@ -9,27 +9,16 @@ import Foundation
 
 
 class User {
-    var id:Int?
+
+    var id:String?
+    var username:String?
     var password:String?
     var icon:String?
     var nickname:String?
     var phoneNum:String?
-    
-    //    init(id:Int, username:String, password:String,icon:String,nickname:String,phoneNum:String){
-    //        self.id = id
-    //        self.username = username
-    //        self.password = password
-    //        self.icon = icon
-    //        self.nickname = nickname
-    //        self.phoneNum = phoneNum
-    //
-    //    }
-    
-    
-    
-    
+ 
     init(xml: XMLIndexer){
-        self.id = xml["Id"].element?.text?.toInt()
+        self.id = xml["Id"].element?.text?
         self.password = xml["Password"].element?.text?
         self.icon = xml["Icon"].element?.text?
         self.nickname = xml["Nickname"].element?.text?

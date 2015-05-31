@@ -280,16 +280,17 @@
 		3326EF4B1AF485DB0064AC88 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				337D60771B0E1000008B6188 /* User.swift */,
 				346154671B023A8F005316C2 /* MessageManager.swift */,
 				3461545D1B023966005316C2 /* StatusManager.swift */,
 				346154591B023761005316C2 /* UserManager.swift */,
 				346154631B023A6B005316C2 /* CommentManager.swift */,
 				3302FF7C1B12000100FF8206 /* SocialInfo.swift */,
 				3302FF7E1B12001800FF8206 /* SocialInfoManager.swift */,
+				337D60771B0E1000008B6188 /* User.swift */,
 				346154571B023725005316C2 /* Status.swift */,
 				3461545F1B0239C2005316C2 /* Comment.swift */,
 				346154611B023A1E005316C2 /* Message.swift */,
+				3302FF7C1B12000100FF8206 /* SocialInfo.swift */,
 				33771C6C1AFDD80200F20229 /* Thumbnail.swift */,
 				3320B8D41AFCFDDE00110C40 /* VCNibname.swift */,
 				335FAB151AFDA7890018C33C /* VCGenerator.swift */,
