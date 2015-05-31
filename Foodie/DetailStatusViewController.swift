@@ -46,6 +46,7 @@ class DetailStatusViewController: UIViewController {
             imageView.image = detailStatusImage!
             contentLabel.text = definedStatus.content
             CacheManager.setImageViewWithData(imageView, url: definedStatus.picture!)
+            CacheManager.setImageViewWithData(userIconImageView, url: definedStatus.user_icon!)
             praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
             commentButton.setTitle("\(definedStatus.commentNum!)", forState: UIControlState.Normal)
         }
@@ -90,7 +91,8 @@ class DetailStatusViewController: UIViewController {
         mainPageVC.isMyself = false
         mainPageVC.isPushed = true
         
-        
+        let targetID = status!.user_id!
+        mainPageVC.targetUserID = targetID.toInt()!
         //MARK: Segue For Main Page
         let navVC = UINavigationController(rootViewController: mainPageVC)
         presentViewController(navVC, animated: true) { () -> Void in

@@ -24,7 +24,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     
     //Mark: Segue Variables
     var isPushed = false
-    var isMyself:Bool = true
+    var isMyself:Bool?
     var hasFollowed:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +32,10 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         tableView.registerNib(UINib(nibName: previousPhotoTVCNibName, bundle: nil), forCellReuseIdentifier: previousPhotoID)
         if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
+        }
+        let currentUser = SharedVariable.currentUser()
+        if isMyself == nil {
+            isMyself =  currentUser?.id == targetUserID ? true : false
         }
        
         //HTTP Request for SocialInfo
@@ -94,16 +98,18 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             cell.concernButton.addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
             cell.fansNumberLabel.text = "\(socialInfo?.fansNum!)"
             cell.concernNumberLabel.text = "\(socialInfo?.followNum!)"
-            
-            if isMyself {
-                cell.messageNotifiactionButton.addTarget(self, action: Selector("showMessageNotificationList:"), forControlEvents:UIControlEvents.TouchUpInside)
-                cell.messageNotificationNumberLabel.text = "\(socialInfo?.messageNum!)"
-                
-            }
-            else{
-                cell.messageNotifiactionButton.hidden = true
-                cell.messageNotificationNumberLabel.hidden = true
-                cell.triggerConcernButton.addTarget(self, action: Selector("triggerConcern:"), forControlEvents: UIControlEvents.TouchUpInside)
+            if let certainIsMyself = isMyself{
+                if certainIsMyself {
+                    cell.messageNotifiactionButton.addTarget(self, action: Selector("showMessageNotificationList:"), forControlEvents:UIControlEvents.TouchUpInside)
+                    cell.messageNotificationNumberLabel.text = "\(socialInfo?.messageNum!)"
+                    
+                }
+                else{
+                    cell.messageNotifiactionButton.hidden = true
+                    cell.messageNotificationNumberLabel.hidden = true
+                    cell.triggerConcernButton.addTarget(self, action: Selector("triggerConcern:"), forControlEvents: UIControlEvents.TouchUpInside)
+                }
+
             }
             return cell
         }
