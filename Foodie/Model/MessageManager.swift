@@ -9,8 +9,8 @@
 import Foundation
 
 class MessageManager {
-    class func messageRequest(user_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["user_id":"\(user_id)","pageNum":"\(pageNum)"]
+    class func messageRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("MessageService", parametersDictionary: parametersDictionary)
     }
 }

@@ -8,13 +8,13 @@
 
 import Foundation
 class CommentManager {
-    class func commentReadRequest(status_id:Int, pageNum:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["status_id":"\(status_id)","pageNum":"\(pageNum)"]
+    class func commentReadRequest(status_id:String, pageNum:Int)->NSMutableURLRequest{
+        let parametersDictionary = ["status_id":status_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("CommentReadService", parametersDictionary: parametersDictionary)
     }
     
-    class func commentSendRequest(target_id:Int, user_id:Int,icon:String,nickname:String,content:String)->NSMutableURLRequest{
-        let parametersDictionary = ["target_id":"\(target_id)","user_id":"\(user_id)","icon":icon,"nickname":nickname,"content":content]
+    class func commentSendRequest(target_id:String, user_id:String,icon:String,nickname:String,content:String)->NSMutableURLRequest{
+        let parametersDictionary = ["target_id":target_id,"user_id":user_id,"icon":icon,"nickname":nickname,"content":content]
         return RequestGenerator.generateRequest("CommentSendService", parametersDictionary: parametersDictionary)
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 class Status{
-    var id:Int?
+    var id:String?
     var user_id:String?
     var nickname:String?
     var picture:String?
@@ -25,8 +25,7 @@ class Status{
     var user_icon:String?
     
     init(xml: XMLIndexer){
-        
-        self.id = xml["Id"].element?.text?.toInt()
+        self.id = xml["Id"].element?.text?
         self.user_id = xml["UserId"].element?.text?
         self.nickname = xml["Nickname"].element?.text?
         self.picture = xml["Picture"].element?.text?
@@ -36,7 +35,6 @@ class Status{
         self.longtitude =  xml["Longtitude"].element?.text?
         self.likeNum =  xml["LikeNum"].element?.text?.toInt()
         self.commentNum = xml["CommentNum"].element?.text?.toInt()
-        
 //        self.tag =  xml["Tag"].element?.text?
         
     }
