@@ -8,15 +8,15 @@
 
 import UIKit
 
-class MainPageTableViewController: UITableViewController {
+class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     //MARK: Reuse ID & Nibnames
     let cellReuseID = "DescriptionTableViewCell"
     let previousPhotoID = "Previous Photo TVC"
     let previousPhotoTVCNibName = "PreviousPhotoTableViewCell"
     let showConcernSegueID = "Show Friends"
-
+    
     //MARK: Core targetUserId
-    var targetUserID:Int?
+    var targetUserID:String?
     
     //MARK: Variables for displaying main page
     var socialInfo:SocialInfo?
@@ -24,7 +24,11 @@ class MainPageTableViewController: UITableViewController {
     
     //Mark: Segue Variables
     var isPushed = false
-    var isMyself:Bool = true
+    
+    
+    //MARK: Global Variables
+    var isMyself:Bool?
+    var hasFollowed:Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
@@ -32,9 +36,26 @@ class MainPageTableViewController: UITableViewController {
         if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
+        let currentUser = SharedVariable.currentUser()!
+        if targetUserID == nil {
+            isMyself = true
+            targetUserID = currentUser.id
+        }
+        else{
+            if isMyself == nil {
+                isMyself =  currentUser.id! == targetUserID! ? true : false
+            }
+        }
         
-        //HTTP Request for SocialInfo
         
+        let socialInfoRequest = SocialInfoManager.personalPageRequest(currentUser.id!, target_id: targetUserID!)
+        NSURLConnection.sendAsynchronousRequest(socialInfoRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
+            self!.socialInfo = SocialInfo.convertSocialInfo(SWXMLHash.parse(data))
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                let tableView = self!.tableView
+                                tableView.reloadData()
+             })
+        })
         //HTTP Request for StatusList
         let statusRequest = StatusManager.statusByUserRequset(targetUserID!, pageNum: 0)
         NSURLConnection.sendAsynchronousRequest(statusRequest, queue: NSOperationQueue()) { [weak self](response, data, error) -> Void in
@@ -51,30 +72,28 @@ class MainPageTableViewController: UITableViewController {
             
         })
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
         if section == 0{
-            
             // 个人的头像、按钮等
-            return 1
+            if let tmpSocialInfo = self.socialInfo {
+                return 1
+            }
+            return 0
+            
         }
         else{
             // 个人的拍摄历史
             if let list = statusList{
                 return list.count
             }
-            return 3
+            return 0
         }
     }
     
@@ -86,17 +105,35 @@ class MainPageTableViewController: UITableViewController {
         if section == 0{
             let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionTableViewCell", forIndexPath: indexPath) as DescriptionTableViewCell
             cell.concernButton.addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
-//            cell.fansNumberLabel.text = "100"
-//            cell.concernNumberLabel.text = "120"
+            cell.fansButton.addTarget(self, action: Selector("showFansList:"), forControlEvents:UIControlEvents.TouchUpInside)
             
-            if isMyself {
-                cell.messageNotifiactionButton.addTarget(self, action: Selector("showMessageNotificationList:"), forControlEvents:UIControlEvents.TouchUpInside)
-//                cell.messageNotificationNumberLabel.text = socialInfo.number
+            
+//            cell..addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
+            if let definedSocialInfo = socialInfo {
+                
+                CacheManager.setImageViewWithData(cell.iconImageView, url: definedSocialInfo.iconImage!)
+                cell.nicknameLabel.text = "\(definedSocialInfo.nickname!)"
+                cell.fansNumberLabel.text = "\(definedSocialInfo.fansNum!)"
+                cell.concernNumberLabel.text = "\(definedSocialInfo.followNum!)"
+                hasFollowed = definedSocialInfo.hasFollowed
+                setButton(cell.triggerConcernButton)
+                
+                if let certainIsMyself = isMyself{
+                    if certainIsMyself {
+                        cell.messageNotifiactionButton.addTarget(self, action: Selector("showMessageNotificationList:"), forControlEvents:UIControlEvents.TouchUpInside)
+                        cell.messageNotificationNumberLabel.text = "\(definedSocialInfo.messageNum!)"
+                        cell.triggerConcernButton.hidden = true
+                        cell.triggerConcernButton.enabled = false
+                    }
+                    else{
+                        cell.messageNotifiactionButton.hidden = true
+                        cell.messageNotificationNumberLabel.hidden = true
+                        cell.triggerConcernButton.addTarget(self, action: Selector("triggerConcern:"), forControlEvents: UIControlEvents.TouchUpInside)
+                    }
+                    
+                }
             }
-            else{
-                cell.messageNotifiactionButton.hidden = true
-                cell.messageNotificationNumberLabel.hidden = true
-            }
+            
             return cell
         }
         else{
@@ -104,12 +141,51 @@ class MainPageTableViewController: UITableViewController {
             
             return cell
         }
-        // Configure the cell...
         
     }
-    
+    func setButton(button:UIButton){
+        if hasFollowed {
+            button.setTitle("取消关注", forState: UIControlState.Normal)
+            button.backgroundColor = UIColor.orangeColor()
+        }
+        else{
+            button.setTitle("关注他", forState: UIControlState.Normal)
+            button.backgroundColor = UIColor.blueColor()
+
+        }
+    }
+    func triggerConcern(sender:UIButton){
+        let currentUser = SharedVariable.currentUser()!
+        println("Target: \(targetUserID!)")
+        println("Current: \(currentUser.id!)")
+        //MARK: Trigger Concern and Cancel Concern Operations
+        if !hasFollowed{
+            let followRequest = UserManager.followRequest(currentUser.id!, followee_id: targetUserID!, type: 1)
+            NSURLConnection.sendAsynchronousRequest(followRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self!.hasFollowed = !self!.hasFollowed
+                    self!.setButton(sender)
+                    let alertView = UIAlertView(title: "", message: "关注成功", delegate: self, cancelButtonTitle: "OK")
+                    alertView.show()
+                })
+            })
+            
+        }
+        else{
+            let cancelFollowRequest = UserManager.followRequest(currentUser.id!, followee_id: targetUserID!, type: 0)
+            NSURLConnection.sendAsynchronousRequest(cancelFollowRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self!.hasFollowed = !self!.hasFollowed
+                    self!.setButton(sender)
+                    let alertView = UIAlertView(title: "", message: "取消关注成功", delegate: self, cancelButtonTitle: "OK")
+                    alertView.show()
+                })
+            })
+        }
+        
+    }
     func showMessageNotificationList(sender:AnyObject){
-//        performSegueWithIdentifier("Show Friends", sender: sender)
+        performSegueWithIdentifier("Show Friends", sender: sender)
         let messageNotiTVC = MessageNotificationTableViewController()
         navigationController?.pushViewController(messageNotiTVC, animated: true)
     }
@@ -118,7 +194,7 @@ class MainPageTableViewController: UITableViewController {
     
     
     func showConcernList(sender:AnyObject){
-//        performSegueWithIdentifier("Show Friends", sender: sender)
+        //        performSegueWithIdentifier("Show Friends", sender: sender)
         
         
         let  uiCVCFlowLayout = UICollectionViewFlowLayout()
@@ -127,9 +203,29 @@ class MainPageTableViewController: UITableViewController {
         uiCVCFlowLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
         
         let friendsCVC = FriendsCollectionViewController(collectionViewLayout: uiCVCFlowLayout)
+//        friendsCVC.originalUser = User()
+        friendsCVC.originalUserID = targetUserID
+        friendsCVC.showFans = false
         navigationController?.pushViewController(friendsCVC, animated: true)
         
     }
+    
+    func showFansList(sender:AnyObject){
+        //        performSegueWithIdentifier("Show Friends", sender: sender)
+        
+        
+        let  uiCVCFlowLayout = UICollectionViewFlowLayout()
+        let frameWidth = self.view.frame.size.width
+        uiCVCFlowLayout.itemSize = CGSize(width: 66, height: 95)
+        uiCVCFlowLayout.scrollDirection = UICollectionViewScrollDirection.Vertical
+        
+        let friendsCVC = FriendsCollectionViewController(collectionViewLayout: uiCVCFlowLayout)
+        friendsCVC.originalUserID = targetUserID
+        navigationController?.pushViewController(friendsCVC, animated: true)
+        
+    }
+    
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = indexPath.section
         if section == 0 {
@@ -161,12 +257,12 @@ class MainPageTableViewController: UITableViewController {
         let row = indexPath.row
         if section == 1{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-            detailStatusVC.detailStatusImage = UIImage(named:"monster")
-            detailStatusVC.userIconImage = UIImage(named:"monster")
+//            detailStatusVC.detailStatusImage = UIImage(named:"monster")
+//            detailStatusVC.userIconImage = UIImage(named:"monster")
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }
         }
     }
-
+    
 }

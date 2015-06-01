@@ -620,7 +620,8 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <connections>
-                        <outlet property="segmentController" destination="W3q-mw-rBP" id="ATQ-Gm-sic"/>
+                        <outlet property="searchBar" destination="mpP-Fa-4Mr" id="if7-hb-lrq"/>
+                        <outlet property="segmentController" destination="W3q-mw-rBP" id="EdL-0U-uIo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6oQ-yA-vDo" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,12 +15,13 @@ class SocialInfo  {
     var followNum:Int?
     var fansNum:Int?
     var hasFollowed:Bool
-    
+    var nickname:String?
     
     init(xml: XMLIndexer){
         self.sourceID = xml["SourceId"].element?.text?
         self.targetID = xml["TargetId"].element?.text?
-        self.iconImage = xml["IconImage"].element?.text?
+        self.nickname = xml["Nickname"].element?.text
+        self.iconImage = xml["TargetIcon"].element?.text?
         self.messageNum = xml["MessageNum"].element?.text?.toInt()
         self.followNum = xml["FollowNum"].element?.text?.toInt()
         self.fansNum =  xml["FansNum"].element?.text?.toInt()

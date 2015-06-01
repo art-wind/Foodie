@@ -13,7 +13,7 @@ class Message{
     var targetId:String?
     var type:Int?
     var hasRead:Bool?
-   
+
     init(xml: XMLIndexer){
         self.id = xml["Id"].element?.text?
         self.userId = xml["UserId"].element?.text?

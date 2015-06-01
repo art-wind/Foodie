@@ -11,6 +11,7 @@ class RequestGenerator {
     class func generateRequest(service:String,parametersDictionary:[String:String])->NSMutableURLRequest{
         let urlStr = Constants.urlBasicPath+service
         let url = NSURL(string:urlStr)
+        println(urlStr)
         let urlRequest = NSMutableURLRequest(URL: url!)
         urlRequest.HTTPMethod = "POST"
         

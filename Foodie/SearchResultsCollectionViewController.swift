@@ -21,6 +21,8 @@ class SearchResultsCollectionViewController: UICollectionViewController {
     
     let userIconCVCNibName = "UserIconCollectionViewCell"
     let userIconCVCID = "User Icon CVC"
+    var statusList:[Status]?
+    var userList:[User]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,11 +44,43 @@ class SearchResultsCollectionViewController: UICollectionViewController {
     }
     func refreshData (notification:NSNotification){
         let mapping = notification.userInfo as [String:String]
-        let str = mapping["sss"]
+        let keyword = mapping["key"]!
         let type = mapping["type"]!
         isPicture = (type != "friend")
-        self.collectionView?.reloadData()
-     }
+        let choice = isPicture ? 0 : 1
+        let request = SearchManager.searchRequest(keyword, choice: choice, pageNum: 0)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), {[weak self] (response, data, error) -> Void in
+            if self!.isPicture {
+                self!.statusList = StatusManager.getStatusListFromData(data)
+                if self!.statusList?.count == 0 {
+                   self!.alertViewShown("无匹配结果", message: "无对应的图片")
+                   return
+                }
+            }
+            else{
+                self!.userList = UserManager.getUserListFromData(data)
+                if self!.userList?.count == 0 {
+                    self!.alertViewShown("无匹配结果", message: "无对应的用户")
+                    return
+                }
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if let collectionView = self!.collectionView {
+                     collectionView.reloadData()
+                }
+               
+            })
+        })
+        
+    }
+    func alertViewShown(title:String,message:String){
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            let alertView = UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "Cancel")
+            alertView.show()
+            
+        })
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -62,7 +96,18 @@ class SearchResultsCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 6
+        if isPicture {
+            if let list = statusList {
+                return list.count
+            }
+        }
+        else{
+            if let list = userList {
+                return list.count
+            }
+        }
+        return 0
+        
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -109,8 +154,8 @@ class SearchResultsCollectionViewController: UICollectionViewController {
 //        }
         if isPicture{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-            detailStatusVC.userIconImage = UIImage(named: "HENRY")
-            detailStatusVC.detailStatusImage = UIImage(named: "cheesecake")
+//            detailStatusVC.userIconImage = UIImage(named: "HENRY")
+//            detailStatusVC.detailStatusImage = UIImage(named: "cheesecake")
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }

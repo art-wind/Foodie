@@ -31,8 +31,9 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         "饭菜看上去很诱人",
         "饭菜看上去很诱人",
         "饭菜看上去很诱人"]
+    var commentsList:[Comment]?
     
-    var targetID:String?
+    var targetStatus:Status?
     
     var inputBox = UITextField()
     let sendButton = UIButton()
@@ -50,15 +51,15 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("pop:"))
         }
         
+        
+        
+        //Input Box Handling
         var frameWidth = UIScreen.mainScreen().bounds.width
         var frameHeight = UIScreen.mainScreen().bounds.height
         if let navigationController = self.navigationController{
             let navigationBarheight = navigationController.navigationBar.frame.height
             frameHeight -= navigationBarheight + 20
         }
-        
-       
-        
         inputBox.frame = CGRect(x: 8, y: boxIndent, width: frameWidth - buttonWidth - 25, height: boxHeight-2*boxIndent)
         inputBox.placeholder = "说说你的想法"
         inputBox.borderStyle = UITextBorderStyle.RoundedRect
@@ -71,6 +72,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         sendButton.setTitle("发送", forState: .Normal)
         sendButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         sendButton.backgroundColor = UIColor(red: 110/256, green: 175/256, blue: 220/256, alpha: 1)
+        sendButton.addTarget(self, action: Selector("commentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         
         toolBar = UIToolbar(frame: CGRect(x: 0, y: frameHeight - boxHeight , width: frameWidth, height: boxHeight))
@@ -80,11 +82,45 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         toolBar.hidden = true
         
         view.addSubview(toolBar)
+        refreshAction()
+        
     }
+    @IBAction func refreshTheTable(sender:UIRefreshControl){
+        refreshAction()
+    }
+    func refreshAction(){
+        println("ID: \(targetStatus!.id!)")
+        let getCommentsRequest = CommentManager.commentReadRequest(targetStatus!.id!, pageNum: 0)
+        
+        NSURLConnection.sendAsynchronousRequest(getCommentsRequest, queue: NSOperationQueue()) {[weak self] (response, data, error) -> Void in
+            self!.commentsList = CommentManager.getCommentListFromData(data)
+            dispatch_async( dispatch_get_main_queue(), { () -> Void in
+                self!.tableView.reloadData()
+            })
+            
+        }
+    }
+
     func pop(sender:AnyObject){
         self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             
         })
+    }
+    @IBAction func commentAction(sender:UIButton){
+        let text = inputBox.text
+        if text == "" {
+            
+        }
+        else{
+            let currentUser = SharedVariable.currentUser()!
+            let commentRequest = CommentManager.commentSendRequest(targetStatus!.id!, user_id: "\(currentUser.id!)", icon: currentUser.icon!, nickname: currentUser.nickname!, content: text)
+            NSURLConnection.sendAsynchronousRequest(commentRequest, queue: NSOperationQueue(), completionHandler: { [weak self] (response, data, error) -> Void in
+                dispatch_async( dispatch_get_main_queue(), { () -> Void in
+                    let alertView = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "")
+                    self!.inputBox.resignFirstResponder()
+                })
+            })
+        }
     }
     func responseToTypeIn (sender:UITextField){
     }
@@ -124,8 +160,8 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 状态本身的 Cell Row = 1
         // 评论的个数 Cell Row = count
-        // comments.count
         return section == 0 ? 1 : comments.count
+//        return section == 0 ? 1 : commentsList.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -134,15 +170,22 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         if section == 0 {
             // 输出源Photo的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(originalCellReuseID, forIndexPath: indexPath) as OriginalPostTableViewCell
+            cell.nicknameLabel.text = targetStatus?.nickname!
+            
+            cell.contentLabel.text = targetStatus?.content!
+            CacheManager.setImageViewWithData(cell.pictureImageView, url: targetStatus!.picture!)
+            CacheManager.setImageViewWithData(cell.iconImageView , url: targetStatus!.user_icon!)
             return cell
         }
         else{
             // 输出评论的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(commentTVCReuseID, forIndexPath: indexPath) as CommentTableViewCell
-            cell.contentLabel.text = comments[indexPath.row]
+            let comment = commentsList![indexPath.row]
+            //            cell.contentLabel.text = comments[indexPath.row]
             //            cell.nicknameLabel.text = "Henry"
             //            cell.dateLabel.text = "2/12"
             //            cell.iconImageView.image = UIImage(named:"Bill")
+            cell.contentLabel.text = comment.content
             return cell
         }
         // Configure the cell...

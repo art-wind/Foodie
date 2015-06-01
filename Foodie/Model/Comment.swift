@@ -27,10 +27,11 @@ class Comment{
         return comment
     }
     class func convertCommentList(xml: XMLIndexer) -> [Comment]{
+        println(xml)
         var commentList = [Comment]()
-        for comment in xml["CommentVOList"]["CommentVO"]{
-            commentList.append(Comment(xml: comment))
-        }
+//        for comment in xml["CommentVOList"]["CommentVO"]{
+//            commentList.append(Comment(xml: comment))
+//        }
         return commentList
     }
     

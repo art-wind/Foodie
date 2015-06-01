@@ -12,4 +12,9 @@ class SocialInfoManager {
         let parametersDictionary = ["source_id":source_id,"target_id":target_id]
         return RequestGenerator.generateRequest("PersonalPageService", parametersDictionary: parametersDictionary)
     }
+    
+    class func getSocialInfoFromData(data:NSData)->SocialInfo{
+        let xml = SWXMLHash.parse(data)
+        return SocialInfo.convertSocialInfo(xml)
+    }
 }

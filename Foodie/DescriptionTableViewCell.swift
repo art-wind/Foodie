@@ -10,8 +10,10 @@ import UIKit
 
 class DescriptionTableViewCell: UITableViewCell {
 
+    @IBOutlet var nicknameLabel: UILabel!
+    @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var concernButton: UIButton!
-    @IBOutlet var passiveConcernButton: UIButton!
+    @IBOutlet var fansButton: UIButton!
     @IBOutlet var messageNotifiactionButton: UIButton!
     @IBOutlet var concernNumberLabel: UILabel!
     @IBOutlet var fansNumberLabel: UILabel!
