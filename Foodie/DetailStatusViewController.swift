@@ -11,8 +11,6 @@ import UIKit
 class DetailStatusViewController: UIViewController {
     //Status to present
     var status:Status?
-    var userIconImage:UIImage?
-    var detailStatusImage:UIImage?
     var isAdmired = false
     
     
@@ -25,26 +23,13 @@ class DetailStatusViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let iconImage = userIconImage{
-            //                let iconURL = NSURL(string: definedStatus.author!)!
-            //                let iconData = NSData(contentsOfURL: iconURL)!
-            //                userIconImageView.image = UIImage(data:iconData)
-            
-            userIconImageView.image = userIconImage
-            let width = userIconImageView.bounds.size.width
-            userIconImageView.layer.cornerRadius = width/2
-            userIconImageView.layer.masksToBounds = true
-        }
-//        if let detailImage = detailStatusImage{
-//            imageView.image = detailImage
-//            
-//        }
-        
-        
-        
         if let definedStatus = status {
-            imageView.image = detailStatusImage!
             contentLabel.text = definedStatus.content
+            
+            let radius = imageView.frame.width / 2
+            imageView.layer.cornerRadius = radius
+            imageView.layer.masksToBounds = true
+            
             CacheManager.setImageViewWithData(imageView, url: definedStatus.picture!)
             CacheManager.setImageViewWithData(userIconImageView, url: definedStatus.user_icon!)
             praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
@@ -61,6 +46,7 @@ class DetailStatusViewController: UIViewController {
     }
     @IBAction func commentAction(sender: UIButton) {
         let commentVC = CommentsTableViewController()
+        commentVC.targetStatus = status
         let navVC = UINavigationController(rootViewController: commentVC)
         navVC.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
         presentViewController(navVC, animated: true) { () -> Void in
@@ -92,7 +78,8 @@ class DetailStatusViewController: UIViewController {
         mainPageVC.isPushed = true
         
         let targetID = status!.user_id!
-        mainPageVC.targetUserID = targetID.toInt()!
+        mainPageVC.targetUserID = targetID
+        println(targetID)
         //MARK: Segue For Main Page
         let navVC = UINavigationController(rootViewController: mainPageVC)
         presentViewController(navVC, animated: true) { () -> Void in

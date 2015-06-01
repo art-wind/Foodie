@@ -40,7 +40,7 @@ class StatusManager{
     //根据id找到状态
     class func statusByUserRequset(user_id:String, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
-        return RequestGenerator.generateRequest("FriendsStatusService", parametersDictionary: parametersDictionary)
+        return RequestGenerator.generateRequest("FriendStatusService", parametersDictionary: parametersDictionary)
     }
     
     class func getStatusFromData(data:NSData)->Status{
@@ -51,6 +51,5 @@ class StatusManager{
     class func getStatusListFromData(data:NSData)->[Status]{
         let xml = SWXMLHash.parse(data)
         return Status.convertStatusList(xml)
-        
     }
 }

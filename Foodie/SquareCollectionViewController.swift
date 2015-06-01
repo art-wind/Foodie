@@ -83,23 +83,20 @@ class SquareCollectionViewController: UICollectionViewController{
         let status = statusList[row]
         var pictureName = status.picture! as NSString
         pictureName = pictureName.substringToIndex(pictureName.length - 1)
-        
-        let basicURL = NSURL(string: "http://115.29.138.163:8080/")
-        let pictureURL = NSURL(string: pictureName, relativeToURL: basicURL)
-        //Loading Image
+       
         cell.squareImage.image = UIImage(named: "coke")
-        
-        CacheManager.setImageViewWithData(cell.squareImage, url: "http://115.29.138.163:8080/\(pictureName)")
+        CacheManager.setImageViewWithData(cell.squareImage, url: pictureName)
         return cell
     }
+    //MARK: Delegate Method
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailStatusVC = VCGenerator.detailStatusVCGenerator()
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as SquareCollectionViewCell
         
         let row = indexPath.row
         detailStatusVC.status = statusList[row]
-        detailStatusVC.detailStatusImage = cell.squareImage.image
-        detailStatusVC.userIconImage = UIImage(named: "coke")
+//        detailStatusVC.detailStatusImage = cell.squareImage.image
+//        detailStatusVC.userIconImage = UIImage(named: "coke")
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }
