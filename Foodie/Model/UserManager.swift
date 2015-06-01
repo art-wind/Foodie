@@ -22,14 +22,14 @@ class UserManager {
         let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("AdmiredPersonService", parametersDictionary: parametersDictionary)
     }
-    class func followersListRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
+    class func followeesListRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("AdmirePersonService", parametersDictionary: parametersDictionary)
     }
     
     //type = 0为取消关注，type = 1为加关注
     class func followRequest(follower_id:String, followee_id:String,type:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["follower_id":follower_id,"followee_id":followee_id,"type":"\(type)"]
+        let parametersDictionary = ["Follower_id":follower_id,"Followee_id":followee_id,"type":"\(type)"]
         return RequestGenerator.generateRequest("FollowService", parametersDictionary: parametersDictionary)
     }
 
@@ -39,11 +39,6 @@ class UserManager {
         return RequestGenerator.generateRequest("SettingService", parametersDictionary: parametersDictionary)
     }
     
-    //search choice = 0 搜索状态，choice = 1 搜索用户
-    class func searchRequest(key:String, choice:Int,pageNum:Int)->NSMutableURLRequest{
-        let parametersDictionary = ["key":key,"choice":"\(choice)","pageNum":"\(pageNum)"]
-        return RequestGenerator.generateRequest("SearchService", parametersDictionary: parametersDictionary)
-    }
     
     class func getUserFromData(data:NSData)->User{
         let xml = SWXMLHash.parse(data)

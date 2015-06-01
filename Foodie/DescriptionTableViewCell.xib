@@ -161,10 +161,12 @@
             <connections>
                 <outlet property="concernButton" destination="zk3-yV-Fdb" id="ssu-Uf-IUy"/>
                 <outlet property="concernNumberLabel" destination="3j8-kD-0y8" id="lIh-3s-ch8"/>
+                <outlet property="fansButton" destination="sL1-QV-BPT" id="yVy-qA-SxA"/>
                 <outlet property="fansNumberLabel" destination="hpo-Ze-eUf" id="Hhs-0v-ArR"/>
+                <outlet property="iconImageView" destination="nrn-Ne-i2I" id="tMg-Zb-Sqc"/>
                 <outlet property="messageNotifiactionButton" destination="dak-lt-Rdj" id="dd9-sg-eqr"/>
                 <outlet property="messageNotificationNumberLabel" destination="d6W-3I-Kgz" id="m3f-kA-nwS"/>
-                <outlet property="passiveConcernButton" destination="sL1-QV-BPT" id="rHh-rG-jNe"/>
+                <outlet property="nicknameLabel" destination="P41-WX-FD9" id="NiQ-18-H6H"/>
                 <outlet property="triggerConcernButton" destination="EXY-Tu-jnf" id="xWJ-W9-fp4"/>
             </connections>
             <point key="canvasLocation" x="366.5" y="343.5"/>

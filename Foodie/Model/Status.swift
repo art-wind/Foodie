@@ -25,18 +25,19 @@ class Status{
     var user_icon:String?
     
     init(xml: XMLIndexer){
-        self.id = xml["Id"].element?.text?
-        self.user_id = xml["UserId"].element?.text?
-        self.nickname = xml["Nickname"].element?.text?
-        self.picture = xml["Picture"].element?.text?
-        self.content = xml["Content"].element?.text?
-        self.address =  xml["Address"].element?.text?
-        self.latitude =  xml["Latitude"].element?.text?
-        self.longtitude =  xml["Longtitude"].element?.text?
+        self.id = xml["Id"].element?.text
+        self.user_id = xml["UserId"].element?.text
+        self.nickname = xml["Nickname"].element?.text
+        self.user_icon = xml["Icon"].element?.text
+        self.picture = xml["Picture"].element?.text
+        self.content = xml["Content"].element?.text
+        self.address =  xml["Address"].element?.text
+        self.latitude =  xml["Latitude"].element?.text
+        self.longtitude =  xml["Longtitude"].element?.text
         self.likeNum =  xml["LikeNum"].element?.text?.toInt()
         self.commentNum = xml["CommentNum"].element?.text?.toInt()
 //        self.tag =  xml["Tag"].element?.text?
-        
+        self.time = xml["Time"].element?.text
     }
     class func convertStatus(xml: XMLIndexer) -> Status{
         var status = Status(xml: xml["StatusVO"])

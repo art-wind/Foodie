@@ -12,19 +12,37 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
     let cellReuseID = "Moment TVC"
     let cellNibName = "MomentTableViewCell"
     let pictureArr = ["pizza","sushi","strawberries"]
+    var statusList:[Status]?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellReuseID)
         refreshControl?.addTarget(self, action: Selector("refreshTheTable:"), forControlEvents: UIControlEvents.ValueChanged)
-    }
-    @IBAction func refreshTheTable(sender:UIRefreshControl){
+        refreshAction()
         
     }
+    @IBAction func refreshTheTable(sender:UIRefreshControl){
+        refreshAction()
+    }
+    func refreshAction(){
+        let user_id = SharedVariable.currentUser()!.id!
+        let momentsRequest = StatusManager.momentsStatusRequest(user_id, pageNum: 0)
+        NSURLConnection.sendAsynchronousRequest(momentsRequest, queue: NSOperationQueue()) {[weak self] (response, data, error) -> Void in
+            self!.statusList = StatusManager.getStatusListFromData(data)
+            dispatch_async( dispatch_get_main_queue(), { () -> Void in
+                self!.tableView.reloadData()
+            })
+           
+        }
+    }
     
+    //MARK: TableView Datasource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 3
+        if let list = statusList {
+            return list.count
+        }
+        return 0
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,34 +50,43 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         // Return the number of rows in the section.
         return 1
     }
-    let headerViewHeight:CGFloat = 50
     
+    //Mark: Data's Header
+    let headerViewHeight:CGFloat = 50
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let status = statusList![section]
+        
+        
+        
         let frameWidth = tableView.frame.width
         
         let headerView = UITableViewHeaderFooterView(frame:CGRect(x: 0, y: 0, width: frameWidth, height: headerViewHeight))
         
         let iconOffset = CGPoint(x: 8, y: 8)
         let iconSize = CGSize(width: headerViewHeight-16, height: headerViewHeight-16)
-        let imageView = UIImageView(frame: CGRect(origin: iconOffset, size: iconSize))
-        imageView.image = UIImage(named: "HENRY")
-        imageView.userInteractionEnabled = true
-        imageView.layer.cornerRadius = (headerViewHeight-16)/2
-        imageView.layer.masksToBounds = true
-        imageView.tag = section
+        let iconImageView = UIImageView(frame: CGRect(origin: iconOffset, size: iconSize))
+        CacheManager.setImageViewWithData(iconImageView, url: status.user_icon!)
+        iconImageView.userInteractionEnabled = true
+        iconImageView.layer.cornerRadius = (headerViewHeight-16)/2
+        iconImageView.layer.masksToBounds = true
+        iconImageView.tag = section
+        CacheManager.setImageViewWithData(iconImageView, url: status.user_icon!)
+        
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: Selector("iconTapGestureHandler:"))
-        //        tapRecognizer.cancelsTouchesInView = false
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.delegate = self
-        imageView.addGestureRecognizer(tapRecognizer)
+        iconImageView.addGestureRecognizer(tapRecognizer)
         
         
         let nameLabelOffset = CGPoint(x: headerViewHeight, y: 8)
         let nameLabel = UILabel(frame: CGRect(origin: nameLabelOffset, size: CGSize(width: 50, height: headerViewHeight-16)))
-        nameLabel.text = "Henry"
+        nameLabel.text = status.user_nickname
         
-        let dateString = "3/21"
+        
+        
+        //MARK:Header Data Info
+        let dateString = "\(status.time!)"
         let timeLabel = UILabel()
         timeLabel.font = UIFont.systemFontOfSize(16)
         timeLabel.textColor = UIColor.grayColor()
@@ -71,71 +98,78 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         let timeLabelOffset = CGPoint(x: frameWidth - timeLabelSize.width - 8, y: floatHeight)
         timeLabel.frame.origin = timeLabelOffset
         
-        headerView.addSubview(imageView)
+        headerView.addSubview(iconImageView)
         headerView.addSubview(nameLabel)
         headerView.addSubview(timeLabel)
         return headerView
     }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return headerViewHeight
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseID, forIndexPath: indexPath) as MomentTableViewCell
+        
+        let section = indexPath.section
+        let status = statusList![section]
+        
+        
+        
+        cell.bringSubviewToFront(cell.pictureImageView)
+        CacheManager.setImageViewWithData(cell.pictureImageView, url: status.picture!)
+//        cell.pictureImageView.image = UIImage(named: pictureArr[indexPath.section])
+        
+//        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("doubleTap:"))
+//        doubleTapRecognizer.numberOfTapsRequired = 2
+//        cell.pictureImageView.addGestureRecognizer(doubleTapRecognizer)
+        
+        //Button Setting
+        cell.commentButton.tag = section
+        cell.commentButton.setTitle("\(status.commentNum!)", forState: UIControlState.Normal)
+        cell.commentButton.addTarget(self, action: Selector("commentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cell.admireButton.tag = section
+        cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
+        cell.admireButton.addTarget(self, action: Selector("admireAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        return cell
+    }
+    
+    
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    
+    //MARK: Delegate Method for comment,admire and
     @IBAction func iconTapGestureHandler(sender:UIGestureRecognizer){
         println("in touch")
         let sendView = sender.view as UIImageView
         let sectionNumber = sendView.tag
-        // Set User[sectionNumber]
-        println(sectionNumber)
+        
+        let status = statusList![sectionNumber]
         let mainPageVC = MainPageTableViewController()
+        
         mainPageVC.isMyself = false
         mainPageVC.isPushed = false
+        mainPageVC.targetUserID = status.user_id
         self.navigationController?.pushViewController(mainPageVC, animated: true)
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerViewHeight
-    }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseID, forIndexPath: indexPath) as MomentTableViewCell
-        
-        
-        
-        cell.bringSubviewToFront(cell.pictureImageView)
-        cell.pictureImageView.image = UIImage(named: pictureArr[indexPath.section])
-        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("doubleTap:"))
-        doubleTapRecognizer.numberOfTapsRequired = 2
-        cell.pictureImageView.addGestureRecognizer(doubleTapRecognizer)
-        
-        //Button Setting
-        cell.commentButton.tag = indexPath.section
-        cell.commentButton.setTitle("12", forState: UIControlState.Normal)
-        cell.commentButton.addTarget(self, action: Selector("commentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        cell.admireButton.tag = indexPath.section
-        cell.admireButton.setTitle("1", forState: UIControlState.Normal)
-        cell.admireButton.addTarget(self, action: Selector("admireAction:"), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        //
-        //        cell.iconImageView.image = UIImage(named:"monster")
-        //        cell.messageTextView.text = "What a nice seaboat!"
-        
-        // Configure the cell...
-        
-        return cell
-    }
     @IBAction func commentAction(sender: UIButton) {
+    
         let tag = sender.tag
+        let status = statusList![tag]
         
         let commentVC = CommentsTableViewController()
+        commentVC.targetStatus = status
         
-        //commentVC.targetID = "\(tag)"
         let navVC = UINavigationController(rootViewController: commentVC)
         navVC.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
-        //        commentVC.navigationItem = ""
-        //        UINavigationController()
-        //        pushViewController(commentVC, animated: true)
+        
         presentViewController(navVC, animated: true) { () -> Void in
             
         }
@@ -144,6 +178,7 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         let tag = sender.tag
         sender.setImage(UIImage(named: "monster"), forState: UIControlState.Highlighted)
     }
+    
     @IBAction func doubleTap(sender:UITapGestureRecognizer){
         println("DOuble")
     }

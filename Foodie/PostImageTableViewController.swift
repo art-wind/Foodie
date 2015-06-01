@@ -53,7 +53,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
         let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
         if sendTimes == 0 {
             sendTimes += 1
-            let request = StatusManager.postStateRequest(000, nickname: "123", pic_url: urlString, content: "sads", address: "Fudan ")
+            let request = StatusManager.postStateRequest("000", nickname: "123", pic_url: urlString, content: "sads", address: "Fudan ")
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
                 if error != nil {
                     println("Status sent!")

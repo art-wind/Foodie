@@ -9,5 +9,6 @@
 import Foundation
 struct Constants {
     static let urlBasicPath = "http://115.29.138.163:8080/Foodie/"
+    static let pictureBasicPath = "http://115.29.138.163:8080/"
 //    var currentUser
 }

@@ -13,4 +13,15 @@ class MessageManager {
         let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("MessageService", parametersDictionary: parametersDictionary)
     }
+    
+    
+    class func getMessageFromData(data:NSData)->Message{
+        let xml = SWXMLHash.parse(data)
+        return Message.convertMessage(xml)
+    }
+    
+    class func getMessageListFromData(data:NSData)->[Message]{
+        let xml = SWXMLHash.parse(data)
+        return Message.convertMessageList(xml)
+    }
 }
