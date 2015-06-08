@@ -27,8 +27,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
         indicator.startAnimating()
-        let para = ["id":"ddd","name":"bill"]
-        let urlRequest = ImageUpload.createRequest(takenPhoto.image!,parameters: para)
+        let urlRequest = ImageUpload.createRequest(takenPhoto.image!)
         let content = contentTextView.text
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
             ) {[weak self] (response, data, error) -> Void in

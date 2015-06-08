@@ -10,6 +10,9 @@ import UIKit
 
 class PreviousPhotoTableViewCell: UITableViewCell {
 
+    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
+    @IBOutlet var statusImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

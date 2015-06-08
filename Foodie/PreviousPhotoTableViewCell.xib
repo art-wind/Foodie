@@ -83,6 +83,11 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="RZE-Q2-hG3" id="pxj-pm-Lgf"/>
+                <outlet property="statusImageView" destination="F7z-rm-6sk" id="QZr-5g-lTW"/>
+                <outlet property="statusLabel" destination="GHb-8d-j9c" id="7bo-o5-RQv"/>
+            </connections>
             <point key="canvasLocation" x="311" y="400.5"/>
         </tableViewCell>
     </objects>

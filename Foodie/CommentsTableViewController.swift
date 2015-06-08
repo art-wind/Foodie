@@ -17,20 +17,20 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
     
     let showConcernSegueID = "Show Friends"
     //    var is
-    var comments:[String] = ["饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人",
-        "饭菜看上去很诱人"]
+//    var comments:[String] = ["饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人",
+//        "饭菜看上去很诱人"]
     var commentsList:[Comment]?
     
     var targetStatus:Status?
@@ -108,6 +108,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
     }
     @IBAction func commentAction(sender:UIButton){
         let text = inputBox.text
+        
         if text == "" {
             
         }
@@ -116,8 +117,11 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             let commentRequest = CommentManager.commentSendRequest(targetStatus!.id!, user_id: "\(currentUser.id!)", icon: currentUser.icon!, nickname: currentUser.nickname!, content: text)
             NSURLConnection.sendAsynchronousRequest(commentRequest, queue: NSOperationQueue(), completionHandler: { [weak self] (response, data, error) -> Void in
                 dispatch_async( dispatch_get_main_queue(), { () -> Void in
-                    let alertView = UIAlertView(title: "", message: "", delegate: nil, cancelButtonTitle: "")
+                    self!.toolBar.hidden = true
                     self!.inputBox.resignFirstResponder()
+                    let alertView = UIAlertView(title: "发布成功", message: nil, delegate: nil, cancelButtonTitle: "OK")
+                    alertView.show()
+                    self!.refreshAction()
                 })
             })
         }
@@ -160,8 +164,13 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 状态本身的 Cell Row = 1
         // 评论的个数 Cell Row = count
-        return section == 0 ? 1 : comments.count
-//        return section == 0 ? 1 : commentsList.count
+        if section == 1 {
+            if let list = commentsList {
+                return list.count
+            }
+            return 0
+        }
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -181,20 +190,23 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             // 输出评论的Cell
             let cell = tableView.dequeueReusableCellWithIdentifier(commentTVCReuseID, forIndexPath: indexPath) as CommentTableViewCell
             let comment = commentsList![indexPath.row]
-            //            cell.contentLabel.text = comments[indexPath.row]
-            //            cell.nicknameLabel.text = "Henry"
-            //            cell.dateLabel.text = "2/12"
-            //            cell.iconImageView.image = UIImage(named:"Bill")
             cell.contentLabel.text = comment.content
+            cell.nicknameLabel.text = "\(comment.nickname!)"
+            CacheManager.setImageViewWithData(cell.iconImageVIew, url:comment.icon!)
+            DateLabelSetter.setLabel(cell.dateLabel, dateString: comment.date!)
             return cell
         }
-        // Configure the cell...
-        
-        
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        return indexPath.section == 0 ? 200 : CommentTableViewCell.getHeight(comments[indexPath.row], width: tableView.frame.width)
+//        let content =
+        let section = indexPath.section
+        if section == 0 {
+            return 200
+        }
+        else{
+            let content = commentsList![indexPath.row].content!
+            return CommentTableViewCell.getHeight(content, width: tableView.frame.width)
+        }
     }
     
     // Override to support conditional editing of the table view.
@@ -208,7 +220,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         if editingStyle == .Delete {
             //             Delete the row from the data source
             
-            comments.removeAtIndex(indexPath.row)
+            commentsList!.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             //             Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

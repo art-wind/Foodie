@@ -29,6 +29,7 @@ class SquareCollectionViewController: UICollectionViewController{
         refreshControl.tintColor = UIColor.grayColor()
         refreshControl.addTarget(self, action: Selector("refreshControl:"), forControlEvents: UIControlEvents.ValueChanged)
         self.collectionView?.addSubview(refreshControl)
+        getStatusAndReload()
     }
     override func viewDidAppear(animated: Bool) {
     }

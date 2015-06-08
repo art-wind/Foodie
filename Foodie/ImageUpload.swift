@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class ImageUpload {
-    class func createRequest (image:UIImage,parameters:[String:String]) -> NSURLRequest {
+    class func createRequest (image:UIImage) -> NSURLRequest {
         let url = NSURL(string: "\(Constants.urlBasicPath)PictureService")!
         let imageData = UIImagePNGRepresentation(image)
         

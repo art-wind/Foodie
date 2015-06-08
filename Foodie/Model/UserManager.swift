@@ -18,6 +18,12 @@ class UserManager {
         let parametersDictionary = ["phoneNumber":phoneNumber,"pwd":pwd,"nickname":nickname]
         return RequestGenerator.generateRequest("RegisterService", parametersDictionary: parametersDictionary)
     }
+    class func modifyRequest(user_id:String, phoneNum:String,pwd:String,nickname:String,iconURL:String)->NSMutableURLRequest{
+        let parametersDictionary = ["id":user_id,"phoneNum":phoneNum,"pwd":pwd,"nickname":nickname,"iconURL":iconURL]
+        return RequestGenerator.generateRequest("SettingService", parametersDictionary: parametersDictionary)
+    }
+    
+    
     class func fanListRequest(user_id:String, pageNum:Int)->NSMutableURLRequest{
         let parametersDictionary = ["user_id":user_id,"pageNum":"\(pageNum)"]
         return RequestGenerator.generateRequest("AdmiredPersonService", parametersDictionary: parametersDictionary)

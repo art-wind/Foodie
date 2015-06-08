@@ -54,6 +54,7 @@
 		33A192881AF70384006A7E5D /* MainPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A192871AF70384006A7E5D /* MainPageTableViewController.swift */; };
 		33A71E7B1B1C73CD004DADE0 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A71E7A1B1C73CD004DADE0 /* SearchViewController.swift */; };
 		33ACE4051B14AFF60052B739 /* RequestGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ACE4041B14AFF60052B739 /* RequestGenerator.swift */; };
+		33ADC9811B25C7B20040A27D /* DateLabelSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33ADC9801B25C7B20040A27D /* DateLabelSetter.swift */; };
 		33C2515A1B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C251581B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.swift */; };
 		33C2515B1B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33C251591B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.xib */; };
 		33D1A6BD1AF4A1BF0099787D /* SquareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D1A6BB1AF4A1BF0099787D /* SquareCollectionViewCell.swift */; };
@@ -140,6 +141,7 @@
 		33A192871AF70384006A7E5D /* MainPageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageTableViewController.swift; sourceTree = "<group>"; };
 		33A71E7A1B1C73CD004DADE0 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		33ACE4041B14AFF60052B739 /* RequestGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestGenerator.swift; sourceTree = "<group>"; };
+		33ADC9801B25C7B20040A27D /* DateLabelSetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateLabelSetter.swift; sourceTree = "<group>"; };
 		33C251581B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureThumbnailCollectionViewCell.swift; sourceTree = "<group>"; };
 		33C251591B0F02CD00D6531C /* PictureThumbnailCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureThumbnailCollectionViewCell.xib; sourceTree = "<group>"; };
 		33D1A6BB1AF4A1BF0099787D /* SquareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				3302FF801B12066A00FF8206 /* ShareVariable.swift */,
 				337B46A81B11A565007DEE0E /* Constants.swift */,
 				33ACE4041B14AFF60052B739 /* RequestGenerator.swift */,
+				33ADC9801B25C7B20040A27D /* DateLabelSetter.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 				337E990C1AFA28D400917C21 /* CommentTableViewCell.swift in Sources */,
 				3338925C1AF71BC8000ACD9F /* DescriptionTableViewCell.swift in Sources */,
 				333AA1A71B11C32800DB5EAF /* TagsChosenTableViewController.swift in Sources */,
+				33ADC9811B25C7B20040A27D /* DateLabelSetter.swift in Sources */,
 				33A71E7B1B1C73CD004DADE0 /* SearchViewController.swift in Sources */,
 				3300BD771AF1230E000EED64 /* Foodie.xcdatamodeld in Sources */,
 				3302FF7F1B12001800FF8206 /* SocialInfoManager.swift in Sources */,
@@ -683,10 +687,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Foodie/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -695,8 +701,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Foodie/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;

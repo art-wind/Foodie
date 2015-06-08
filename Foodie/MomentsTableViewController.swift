@@ -13,6 +13,7 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
     let cellNibName = "MomentTableViewCell"
     let pictureArr = ["pizza","sushi","strawberries"]
     var statusList:[Status]?
+    var selectedStatus:Status?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellReuseID)
@@ -40,6 +41,7 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         if let list = statusList {
+            println("Count:  \(list.count)")
             return list.count
         }
         return 0
@@ -132,6 +134,9 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         cell.admireButton.tag = section
         cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
         cell.admireButton.addTarget(self, action: Selector("admireAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cell.contentLabel.text = "\(status.content!)"
+        cell.tagLabel.text = "\(status.tag!)"
         return cell
     }
     
@@ -179,16 +184,34 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         sender.setImage(UIImage(named: "monster"), forState: UIControlState.Highlighted)
     }
     
-    @IBAction func doubleTap(sender:UITapGestureRecognizer){
-        println("DOuble")
-    }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250
+        return 330
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        performSegueWithIdentifier("Make Comment", sender: self)
-        println("sdd")
+        
+        
+        println("Select:  \(indexPath.section)")
+        
+        selectedStatus = statusList![indexPath.section]
+        let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+        detailStatusVC.status = selectedStatus
+        presentViewController(detailStatusVC, animated: true) { () -> Void in
+            
+        }
+        
+        
+//        performSegueWithIdentifier("Make Comment", sender: self)
+//        
+//        println("sdd")
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Make Comment"
+        {
+            let commentVC = segue.destinationViewController as CommentsTableViewController
+            commentVC.targetStatus = selectedStatus
+        }
+    }
+    
     
     
 }

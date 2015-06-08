@@ -24,7 +24,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     
     //Mark: Segue Variables
     var isPushed = false
-    
+    var firstTime : Bool = true
     
     //MARK: Global Variables
     var isMyself:Bool?
@@ -36,6 +36,21 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         if isPushed {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
+        
+//        onlineUpdate()
+        
+    }
+    
+    func pop(sender:UIBarButtonItem){
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
+    }
+    override func viewWillAppear(animated: Bool) {
+        onlineUpdate()
+    }
+    
+    func onlineUpdate(){
         let currentUser = SharedVariable.currentUser()!
         if targetUserID == nil {
             isMyself = true
@@ -52,9 +67,9 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         NSURLConnection.sendAsynchronousRequest(socialInfoRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
             self!.socialInfo = SocialInfo.convertSocialInfo(SWXMLHash.parse(data))
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                let tableView = self!.tableView
-                                tableView.reloadData()
-             })
+                let tableView = self!.tableView
+                tableView.reloadData()
+            })
         })
         //HTTP Request for StatusList
         let statusRequest = StatusManager.statusByUserRequset(targetUserID!, pageNum: 0)
@@ -66,11 +81,6 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             })
         }
         
-    }
-    func pop(sender:UIBarButtonItem){
-        dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
     }
     
     
@@ -137,8 +147,10 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             return cell
         }
         else{
+            let status = statusList![indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(previousPhotoID, forIndexPath: indexPath) as PreviousPhotoTableViewCell
-            
+            CacheManager.setImageViewWithData(cell.statusImageView, url: status.picture!)
+            cell.statusLabel.text = "\(status.content!)"
             return cell
         }
         
@@ -257,8 +269,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         let row = indexPath.row
         if section == 1{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-//            detailStatusVC.detailStatusImage = UIImage(named:"monster")
-//            detailStatusVC.userIconImage = UIImage(named:"monster")
+            detailStatusVC.status = statusList![row]
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }

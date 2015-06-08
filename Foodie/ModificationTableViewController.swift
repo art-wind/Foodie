@@ -15,6 +15,10 @@ class ModificationTableViewController: UITableViewController {
         super.viewDidLoad()
         let saveButton = UIBarButtonItem(title: "保存修改", style: .Plain, target: self, action: Selector("saveModified:"))
         navigationItem.rightBarButtonItem = saveButton
+        
+    }
+    override func viewWillAppear(animated: Bool) {
+        CacheManager.setImageViewWithData(iconThumbnailImageview, url: SharedVariable.currentUser()!.icon!)
     }
     func saveModified(sender:UIBarButtonItem){
         // 上传修改的个人信息
@@ -23,11 +27,6 @@ class ModificationTableViewController: UITableViewController {
             
         })
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

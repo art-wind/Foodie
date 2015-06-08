@@ -105,6 +105,7 @@
                 <action selector="userIconTouched:" destination="-1" id="rSq-ZN-RHe"/>
             </connections>
         </tapGestureRecognizer>
+        <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="kAm-2q-ZDN"/>
     </objects>
     <resources>
         <image name="BackButton" width="63" height="63"/>
