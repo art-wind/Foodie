@@ -22,19 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor() , NSFontAttributeName:titleFont ]
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
-//        
-//        let context = managedObjectContext
-//        let m = NSEntityDescription.insertNewObjectForEntityForName("URLCache", inManagedObjectContext: managedObjectContext!) as URLCache
-//        m.url = "www.baidu.com"
-//        m.imgData = NSData(contentsOfURL: NSURL(string: "http://static-cdn.pixelmator.com/home/mac/3.3/effects.png")!)!
-//        let img = UIImage(named: "monster")
-//        m.setValue(  ,forKey: "imgData" )
-//        context?.save(nil)
-        
-        //URLCache()
-        
-        
-        
         
         return true
     }

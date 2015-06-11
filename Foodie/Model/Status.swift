@@ -21,7 +21,6 @@ class Status{
     var commentNum:Int?
     
     var tag:String?
-    var user_nickname:String?
     var user_icon:String?
     
     init(xml: XMLIndexer){
@@ -33,10 +32,11 @@ class Status{
         self.content = xml["Content"].element?.text
         self.address =  xml["Address"].element?.text
         self.latitude =  xml["Latitude"].element?.text
-        self.longtitude =  xml["Longtitude"].element?.text
+        //Longitude and longtitude Mixed
+        self.longtitude =  xml["Longitude"].element?.text
         self.likeNum =  xml["LikeNum"].element?.text?.toInt()
         self.commentNum = xml["CommentNum"].element?.text?.toInt()
-//        self.tag =  xml["Tag"].element?.text?
+        self.tag =  xml["Tags"].element?.text?
         self.time = xml["Time"].element?.text
     }
     class func convertStatus(xml: XMLIndexer) -> Status{

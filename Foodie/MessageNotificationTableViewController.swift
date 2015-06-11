@@ -67,7 +67,7 @@ class MessageNotificationTableViewController: UITableViewController {
 //            Push a mainPage
             let mainPageVC = MainPageTableViewController()
             mainPageVC.isMyself = false
-            mainPageVC.isPushed = true
+            mainPageVC.isRoot = false
             self.navigationController?.pushViewController(mainPageVC, animated: true)
         }
         else{

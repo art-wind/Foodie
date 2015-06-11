@@ -153,11 +153,6 @@ class SearchResultsCollectionViewController: UICollectionViewController {
     }
     */
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        let detailStatusVC = DetailStatusViewController()
-//        self.navigationController?.pushViewController(detailStatusVC, animated: true)
-//        presentViewController(detailStatusVC, animated: true) { () -> Void in
-//            println("YESSSS")
-//        }
         if isPicture{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
             detailStatusVC.status = (statusList![indexPath.row])
@@ -169,7 +164,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         }
         else{
             let mainVC = MainPageTableViewController()
-            mainVC.isPushed = true
+            mainVC.isRoot = true
             mainVC.targetUserID = (userList![indexPath.row]).id
 //            mainVC.
             presentViewController(UINavigationController(rootViewController: mainVC), animated: true, completion: { () -> Void in

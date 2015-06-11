@@ -92,7 +92,7 @@ class FriendsCollectionViewController: UICollectionViewController {
         let mainPageTVC = MainPageTableViewController()
         let user = userList![indexPath.row]
         mainPageTVC.targetUserID = user.id!
-        mainPageTVC.isPushed = true
+        mainPageTVC.isRoot = false
         navigationController?.pushViewController(mainPageTVC, animated: true)
     }
     

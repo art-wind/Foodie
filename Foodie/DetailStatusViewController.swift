@@ -19,6 +19,7 @@ class DetailStatusViewController: UIViewController {
     @IBOutlet var praiseButton: UIButton!
     @IBOutlet var commentButton: UIButton!
     @IBOutlet var userIconImageView: UIImageView!
+    @IBOutlet var flagLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -34,6 +35,7 @@ class DetailStatusViewController: UIViewController {
             CacheManager.setImageViewWithData(userIconImageView, url: definedStatus.user_icon!)
             praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
             commentButton.setTitle("\(definedStatus.commentNum!)", forState: UIControlState.Normal)
+            flagLabel.text = "\(definedStatus.tag!)"
         }
     }
     
@@ -57,8 +59,7 @@ class DetailStatusViewController: UIViewController {
     
     @IBAction func userIconTouched(sender: UITapGestureRecognizer) {
         let mainPageVC = MainPageTableViewController()
-        mainPageVC.isMyself = false
-        mainPageVC.isPushed = true
+        mainPageVC.isRoot = true
         
         let targetID = status!.user_id!
         mainPageVC.targetUserID = targetID

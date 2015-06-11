@@ -8,38 +8,83 @@
 
 import UIKit
 
-class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate,NSURLConnectionDataDelegate{
+class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UIScrollViewDelegate{
     var isTaken:Bool = false
     let filterImageSegueID = "Filter Image"
     var sendTimes = 0
+    
+    var displayImage:UIImage?
     @IBOutlet var takenPhoto: UIImageView!
     
     @IBOutlet var indicator: UIActivityIndicatorView!
     @IBOutlet var contentTextView: UITextView!
     @IBOutlet var locationLabel: UILabel!
+    @IBOutlet var tagLabel: UILabel!
     @IBAction func chooseFilterUnwindSegue (segue:UIStoryboardSegue){
 //        let
         let srcVC = segue.sourceViewController as FilterViewController
         takenPhoto.image = srcVC.displayImage.image
     }
+    @IBAction func chooseTagCategoryUnwindSegue (segue:UIStoryboardSegue){
+        //        let
+        let srcVC = segue.sourceViewController as TagCategoryTableViewController
+        let categoryArray = srcVC.category
+        let selectedCat = srcVC.selectedCat
+        var stringToPrint = ""
+        var index = 0
+        for i in selectedCat {
+            if i == 1 {
+                stringToPrint += "\(categoryArray[index]) "
+            }
+            index += 1
+        }
+        if stringToPrint != "" {
+            tagLabel.text = stringToPrint
+        }
+        else{
+            stringToPrint = "美食"
+        }
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         indicator.stopAnimating()
+        takenPhoto.image = displayImage
+    }
+    @IBAction func cancelPostAction(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: { () -> Void in
+            
+        })
     }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
         indicator.startAnimating()
         let urlRequest = ImageUpload.createRequest(takenPhoto.image!)
         let content = contentTextView.text
+        var tagText = tagLabel.text
+        if tagText == ""{
+            tagText = "美食"
+        }
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue()
             ) {[weak self] (response, data, error) -> Void in
                 if error == nil {
                     let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
                     if let user = SharedVariable.currentUser() {
-                        let aRequest = StatusManager.postStateRequest(user.id!, nickname: user.nickname!, pic_url: urlString, content: content, address: "Fudan")
-                        NSURLConnection.sendAsynchronousRequest(aRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+                        let aRequest = StatusManager.postStateRequest(user.id!, nickname: user.nickname!, pic_url: urlString, content: content, tag:tagText!,address: "Fudan")
+                        NSURLConnection.sendAsynchronousRequest(aRequest, queue: NSOperationQueue(), completionHandler: {(response, data, error) -> Void in
                             if error == nil {
-//                                let alertView = UIAlertController(title: "a", message: "a", preferredStyle: UIAlertControllerStyle.Alert)
-//                                println("Status sent!")
-                                self?.indicator.stopAnimating()
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    let alertView = UIAlertView(title: "状态发送完毕", message:nil, delegate: nil, cancelButtonTitle: "OK")
+                                    
+                                    alertView.show()
+                                    self!.indicator.stopAnimating()
+                                    self!.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                        
+                                    })
+                                })
+                                
+                                
                             }
                         })
                     }
@@ -48,20 +93,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
                 }
         }
     }
-    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
-        let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
-        if sendTimes == 0 {
-            sendTimes += 1
-            let request = StatusManager.postStateRequest("000", nickname: "123", pic_url: urlString, content: "sads", address: "Fudan ")
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
-                if error != nil {
-                    println("Status sent!")
-                }
-            })
-        }
-    }
     @IBAction func takePicture(sender: UIButton) {
-        //takenPhoto.image = UIImage(named:"monster")
         var actionForm = UIActionSheet(title: imagePickerActionFormTitle, delegate: self, cancelButtonTitle: "取消", destructiveButtonTitle: nil, otherButtonTitles: "Photo Library","Take a photo")
         actionForm.showInView(self.view)
     }
@@ -74,9 +106,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     // Pass the selected object to the new view controller.
         if segue.identifier == filterImageSegueID{
             let filterVC = segue.destinationViewController as FilterViewController
-            let defaultImage = UIImage(named: "monster")
-            println("Filter image Segue")
-            filterVC.originalImage = isTaken ? takenPhoto.image : defaultImage
+            filterVC.originalImage = takenPhoto.image
         }
     }
     

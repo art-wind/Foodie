@@ -193,7 +193,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             cell.contentLabel.text = comment.content
             cell.nicknameLabel.text = "\(comment.nickname!)"
             CacheManager.setImageViewWithData(cell.iconImageVIew, url:comment.icon!)
-            DateLabelSetter.setLabel(cell.dateLabel, dateString: comment.date!)
+//            DateLabelSetter.setLabel(cell.dateLabel, dateString: comment.date!)
             return cell
         }
     }

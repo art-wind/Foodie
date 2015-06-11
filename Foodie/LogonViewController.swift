@@ -10,6 +10,7 @@ import UIKit
 
 class LogonViewController: UIViewController {
 
+    @IBOutlet var indicator: UIActivityIndicatorView!
     @IBOutlet var phoneNumberTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     let segueName = "Successful Logon Segue"
@@ -29,13 +30,14 @@ class LogonViewController: UIViewController {
             return
         }
         validInput = true
-        
+        passwordTextField.resignFirstResponder()
         //MARK: HTTP Request goes here
-        
+        indicator.startAnimating()
         let urlRequest = UserManager.loginRequest(phoneNumber, pwd: password)
         NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue.mainQueue(), completionHandler: {[weak self](response, data, error) -> Void in
             println()
             if error == nil {
+                self!.indicator.stopAnimating()
                 let logonUser = User.convertUser(SWXMLHash.parse(data))
                 let appDele = UIApplication.sharedApplication().delegate as AppDelegate
                 appDele.currentUser = logonUser
@@ -45,7 +47,6 @@ class LogonViewController: UIViewController {
             }
             else{
                 
-//                println((response as NSHTTPURLResponse).statusCode)
             }
         })
         
@@ -59,6 +60,8 @@ class LogonViewController: UIViewController {
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         if identifier == segueName {
             if validInput && successfullyLogon {
+                successfullyLogon = false
+                validInput = false
                 return true
             }
             return false

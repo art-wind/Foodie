@@ -23,7 +23,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     var statusList:[Status]?
     
     //Mark: Segue Variables
-    var isPushed = false
+    var isRoot = false
     var firstTime : Bool = true
     
     //MARK: Global Variables
@@ -33,7 +33,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
         tableView.registerNib(UINib(nibName: previousPhotoTVCNibName, bundle: nil), forCellReuseIdentifier: previousPhotoID)
-        if isPushed {
+        if isRoot {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
         
@@ -42,27 +42,23 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     }
     
     func pop(sender:UIBarButtonItem){
-        dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
-    }
-    override func viewWillAppear(animated: Bool) {
-        onlineUpdate()
-    }
-    
-    func onlineUpdate(){
-        let currentUser = SharedVariable.currentUser()!
-        if targetUserID == nil {
-            isMyself = true
-            targetUserID = currentUser.id
+        if isRoot {
+            dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+            })
         }
         else{
-            if isMyself == nil {
-                isMyself =  currentUser.id! == targetUserID! ? true : false
-            }
+            navigationController?.popToRootViewControllerAnimated(true)
         }
         
+    }
+    override func viewWillAppear(animated: Bool) {
+        //refreshSocialInfo()
         
+        onlineUpdate()
+    }
+    func refreshSocialInfo(){
+        let currentUser = SharedVariable.currentUser()!
         let socialInfoRequest = SocialInfoManager.personalPageRequest(currentUser.id!, target_id: targetUserID!)
         NSURLConnection.sendAsynchronousRequest(socialInfoRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
             self!.socialInfo = SocialInfo.convertSocialInfo(SWXMLHash.parse(data))
@@ -71,6 +67,22 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
                 tableView.reloadData()
             })
         })
+    }
+    func onlineUpdate(){
+        let currentUser = SharedVariable.currentUser()!
+        if targetUserID == nil {
+            isMyself = true
+            targetUserID = currentUser.id
+        }
+        else{
+            if isMyself == nil {
+                isMyself =  (currentUser.id! == targetUserID!)
+            }
+        }
+        
+        refreshSocialInfo()
+        
+       
         //HTTP Request for StatusList
         let statusRequest = StatusManager.statusByUserRequset(targetUserID!, pageNum: 0)
         NSURLConnection.sendAsynchronousRequest(statusRequest, queue: NSOperationQueue()) { [weak self](response, data, error) -> Void in
@@ -117,8 +129,6 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             cell.concernButton.addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
             cell.fansButton.addTarget(self, action: Selector("showFansList:"), forControlEvents:UIControlEvents.TouchUpInside)
             
-            
-//            cell..addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
             if let definedSocialInfo = socialInfo {
                 
                 CacheManager.setImageViewWithData(cell.iconImageView, url: definedSocialInfo.iconImage!)

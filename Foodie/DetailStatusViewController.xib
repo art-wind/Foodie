@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="commentButton" destination="ryp-za-R9H" id="x2N-Na-2AY"/>
                 <outlet property="contentLabel" destination="xdg-pb-ewJ" id="0cN-m2-pPU"/>
+                <outlet property="flagLabel" destination="bDa-QM-7oa" id="1vE-en-Byo"/>
                 <outlet property="imageView" destination="tGr-pS-csq" id="vlJ-Gi-dj4"/>
                 <outlet property="praiseButton" destination="YBG-wf-4PP" id="dz5-BF-RTT"/>
                 <outlet property="userIconImageView" destination="TvW-0e-OLU" id="z2x-Pw-61s"/>
@@ -42,7 +43,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQ5-lu-a7d">
-                    <rect key="frame" x="8" y="20" width="20" height="20"/>
+                    <rect key="frame" x="8" y="25" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Ky5-VC-52l"/>
                         <constraint firstAttribute="width" constant="40" id="NgA-pn-hmY"/>
@@ -62,7 +63,7 @@
                         <action selector="backAction:" destination="-1" eventType="touchUpInside" id="gWa-aK-JpP"/>
                     </connections>
                 </button>
-                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="HENRY" translatesAutoresizingMaskIntoConstraints="NO" id="TvW-0e-OLU">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="TvW-0e-OLU">
                     <rect key="frame" x="275" y="542" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="EKr-Qj-JEQ"/>
@@ -78,6 +79,19 @@
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-V8-roI">
+                    <rect key="frame" x="577" y="27.5" width="15" height="15"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="8DG-ZS-Noy"/>
+                        <constraint firstAttribute="height" constant="15" id="Vaf-CN-1br"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bDa-QM-7oa">
+                    <rect key="frame" x="525" y="24" width="42" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <gestureRecognizers/>
@@ -88,30 +102,45 @@
                 <constraint firstItem="TvW-0e-OLU" firstAttribute="top" secondItem="xdg-pb-ewJ" secondAttribute="bottom" constant="8" id="6AZ-hV-Pzf"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" id="7fT-Zt-2dk"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7ua-0Q-IKM"/>
+                <constraint firstAttribute="trailing" secondItem="RDl-V8-roI" secondAttribute="trailing" constant="8" id="ESE-XU-M2v"/>
+                <constraint firstItem="RDl-V8-roI" firstAttribute="centerY" secondItem="OQ5-lu-a7d" secondAttribute="centerY" id="Fje-dW-XeL"/>
                 <constraint firstItem="tGr-pS-csq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="UmK-wW-1Mm"/>
                 <constraint firstAttribute="bottom" secondItem="ryp-za-R9H" secondAttribute="bottom" constant="14" id="Unx-g7-x3q"/>
+                <constraint firstItem="RDl-V8-roI" firstAttribute="leading" secondItem="bDa-QM-7oa" secondAttribute="trailing" constant="10" id="XUV-7M-yPq"/>
+                <constraint firstItem="bDa-QM-7oa" firstAttribute="centerY" secondItem="OQ5-lu-a7d" secondAttribute="centerY" id="ZUh-yG-hpJ"/>
                 <constraint firstItem="ryp-za-R9H" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailingMargin" id="Zg6-KA-G5Y"/>
-                <constraint firstItem="OQ5-lu-a7d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="idF-Vq-VSV"/>
+                <constraint firstItem="OQ5-lu-a7d" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="25" id="idF-Vq-VSV"/>
                 <constraint firstAttribute="trailing" secondItem="tGr-pS-csq" secondAttribute="trailing" id="lVX-SU-q67"/>
+                <constraint firstItem="bDa-QM-7oa" firstAttribute="top" secondItem="OQ5-lu-a7d" secondAttribute="top" constant="-8" id="nab-pu-Ktb"/>
                 <constraint firstItem="OQ5-lu-a7d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="o8N-88-t1B"/>
                 <constraint firstAttribute="bottom" secondItem="TvW-0e-OLU" secondAttribute="bottom" constant="8" id="sUB-94-iDv"/>
                 <constraint firstAttribute="centerX" secondItem="TvW-0e-OLU" secondAttribute="centerX" id="uYM-9q-RBw"/>
                 <constraint firstItem="YBG-wf-4PP" firstAttribute="top" secondItem="ryp-za-R9H" secondAttribute="top" id="zUW-uf-0rv"/>
             </constraints>
-            <point key="canvasLocation" x="-115" y="154"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="nab-pu-Ktb"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="-389" y="322"/>
         </view>
         <tapGestureRecognizer id="6Rh-ba-PWx">
             <connections>
                 <action selector="userIconTouched:" destination="-1" id="rSq-ZN-RHe"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="kAm-2q-ZDN"/>
+        <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="kAm-2q-ZDN">
+            <connections>
+                <action selector="admireActionByDoubleTap:" destination="-1" id="7WG-si-obp"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="BackButton" width="63" height="63"/>
-        <image name="HENRY" width="200" height="150"/>
+        <image name="Flag" width="15" height="18"/>
         <image name="Heart" width="25" height="23"/>
         <image name="Message" width="26" height="24"/>
+        <image name="defaultIcon" width="200" height="180"/>
         <image name="sushi" width="600" height="403"/>
     </resources>
 </document>

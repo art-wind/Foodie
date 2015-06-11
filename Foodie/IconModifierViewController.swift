@@ -36,7 +36,9 @@ class IconModifierViewController: UIViewController,UIActionSheetDelegate,UIImage
                     if let user = SharedVariable.currentUser() {
                         let iconUploadRequest = UserManager.modifyRequest(user.id!, phoneNum: user.phoneNum!, pwd: user.password!, nickname: user.nickname!, iconURL: urlString)
                         NSURLConnection.sendAsynchronousRequest(iconUploadRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+//                            user.icon = urlString
                             user.icon = urlString
+                            CacheManager.saveIcon(self!.modifiedIcon.image, url: urlString)
                             let alertView = UIAlertView(title: "上传成功", message: nil, delegate: nil, cancelButtonTitle: "关闭")
                             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                                  alertView.show()
@@ -88,9 +90,9 @@ class IconModifierViewController: UIViewController,UIActionSheetDelegate,UIImage
         
     }
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        
-        dismissViewControllerAnimated(true){}
         modifiedIcon.image = image
+        dismissViewControllerAnimated(true){}
+        
 
     }
 
