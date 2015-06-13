@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="65" height="95"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HENRY" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-UG-j0y">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-UG-j0y">
                         <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="aMz-UG-j0y" secondAttribute="height" multiplier="1:1" id="GJ5-8D-B1x"/>
@@ -53,6 +53,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="HENRY" width="200" height="150"/>
+        <image name="defaultIcon" width="200" height="180"/>
     </resources>
 </document>

@@ -20,7 +20,9 @@ class FilterViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = postBarItem
         originalSize = displayImage.bounds.size
 //        println("ORI \()")
+        
         displayImage.image = originalImage
+        displayImage.bounds.size = originalSize!
         
         let defaultCenter = NSNotificationCenter.defaultCenter()
         defaultCenter.addObserver(self, selector: Selector("refreshImage:"), name: "FilterChosen", object: nil)
@@ -46,10 +48,10 @@ class FilterViewController: UIViewController {
         
 //        println(filterImage?.size)
         displayImage.image = filterImage
-        
-        if displayImage.bounds.size.width > originalSize?.width {
-            displayImage.bounds.size = originalSize!
-        }
+        displayImage.bounds.size = originalSize!
+//        if displayImage.bounds.size.width > originalSize?.width {
+//            displayImage.bounds.size = originalSize!
+//        }
         
         println("\(displayImage.bounds.size)")
     }

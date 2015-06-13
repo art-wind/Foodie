@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HENRY" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-aB-uPV">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="aCr-aB-uPV">
                         <rect key="frame" x="56" y="8" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="SOy-mG-sdS"/>
@@ -49,7 +49,7 @@
                     <constraint firstItem="7MS-oF-mrO" firstAttribute="top" secondItem="aCr-aB-uPV" secondAttribute="top" id="Xx9-uY-MJ5"/>
                     <constraint firstItem="F5B-A8-lTX" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Z6P-Xb-3oa"/>
                     <constraint firstItem="F5B-A8-lTX" firstAttribute="trailing" secondItem="ctq-hp-Tgp" secondAttribute="trailing" id="dNP-dg-i28"/>
-                    <constraint firstItem="7MS-oF-mrO" firstAttribute="leading" secondItem="aCr-aB-uPV" secondAttribute="trailing" constant="8" id="pUe-3f-sn0"/>
+                    <constraint firstItem="7MS-oF-mrO" firstAttribute="leading" secondItem="aCr-aB-uPV" secondAttribute="trailing" constant="8" symbolic="YES" id="pUe-3f-sn0"/>
                     <constraint firstItem="ctq-hp-Tgp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="r6x-IF-ZUN"/>
                     <constraint firstItem="aCr-aB-uPV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="48" id="saH-XA-5bY"/>
                     <constraint firstItem="aCr-aB-uPV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="tla-Ng-jtB"/>
@@ -72,6 +72,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="HENRY" width="200" height="150"/>
+        <image name="defaultIcon" width="200" height="180"/>
     </resources>
 </document>

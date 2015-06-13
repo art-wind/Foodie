@@ -26,8 +26,6 @@ class User {
     }
     
     class func convertUser(xml: XMLIndexer) -> User{
-        println(xml["UserVO"]["Id"].element?.text?.toInt())
-        println(xml["UserVO"]["Password"].element?.text?)
         var user = User(xml: xml["UserVO"])
         return user
     }

@@ -31,6 +31,11 @@ class DetailStatusViewController: UIViewController {
             userIconImageView.layer.cornerRadius = radius
             userIconImageView.layer.masksToBounds = true
             
+            
+        }
+    }
+    override func viewWillAppear(animated: Bool) {
+        if let definedStatus = status {
             CacheManager.setImageViewWithData(imageView, url: definedStatus.picture!)
             CacheManager.setImageViewWithData(userIconImageView, url: definedStatus.user_icon!)
             praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
@@ -82,29 +87,32 @@ class DetailStatusViewController: UIViewController {
         var admireNumber =  (sender.titleLabel?.text?.toInt())!
         var image:UIImage?
         if isAdmired {
-            let alertView = UIAlertView(title: "重复", message: "你已点赞~浏览其他的图片吧~", delegate: nil, cancelButtonTitle: "ok")
+            let alertView = UIAlertView(title: "您已点过赞", message: "浏览其他的图片吧~", delegate: nil, cancelButtonTitle: "ok")
             alertView.show()
-            admireNumber -= 1
-            image = UIImage(named: "Heart")
+//            admireNumber -= 1
+//            image = UIImage(named: "Heart")
         }
         else{
+            admireNumber += 1
+            status!.likeNum! += 1
             let request = StatusManager.admireStatusRequest(status!.id!)
-            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: {(response, data, error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     let alertView = UIAlertView(title: "成功", message: "点赞成功", delegate: nil, cancelButtonTitle: "ok")
                     alertView.show()
+                    
                 })
             })
             
-            admireNumber += 1
+            
             image = UIImage(named: "RedHeart")
-            sender.enabled = false
+//            sender.enabled = false
         }
         isAdmired = !isAdmired
         
         sender.setImage(image, forState: UIControlState.Normal)
         sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
-
+        
     }
     
     override init() {
@@ -118,5 +126,5 @@ class DetailStatusViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-
+    
 }

@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6uk-r7-tHK">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="6uk-r7-tHK">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="6uk-r7-tHK" secondAttribute="height" multiplier="1:1" id="Bzr-N2-dhW"/>
@@ -35,4 +35,7 @@
             <point key="canvasLocation" x="183" y="193"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="defaultPicture" width="80" height="80"/>
+    </resources>
 </document>

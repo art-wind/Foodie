@@ -21,8 +21,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sushi" translatesAutoresizingMaskIntoConstraints="NO" id="tGr-pS-csq">
+                <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="tGr-pS-csq">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="kAm-2q-ZDN" appends="YES" id="eNh-3J-Umo"/>
+                    </connections>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBG-wf-4PP">
                     <rect key="frame" x="8" y="562" width="46" height="23"/>
@@ -129,7 +132,7 @@
                 <action selector="userIconTouched:" destination="-1" id="rSq-ZN-RHe"/>
             </connections>
         </tapGestureRecognizer>
-        <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="kAm-2q-ZDN">
+        <tapGestureRecognizer numberOfTapsRequired="2" id="kAm-2q-ZDN">
             <connections>
                 <action selector="admireActionByDoubleTap:" destination="-1" id="7WG-si-obp"/>
             </connections>
@@ -141,6 +144,6 @@
         <image name="Heart" width="25" height="23"/>
         <image name="Message" width="26" height="24"/>
         <image name="defaultIcon" width="200" height="180"/>
-        <image name="sushi" width="600" height="403"/>
+        <image name="defaultPicture" width="80" height="80"/>
     </resources>
 </document>

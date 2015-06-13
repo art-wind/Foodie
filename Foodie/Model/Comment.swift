@@ -24,8 +24,6 @@ class Comment{
         self.icon = xml["Icon"].element?.text?
         self.nickname = xml["Nickname"].element?.text
         self.date = xml["Time"].element?.text
-        println("Date:")
-        println(self.date)
     }
     class func convertComment(xml: XMLIndexer) -> Comment{
         var comment = Comment(xml: xml["CommentVO"])

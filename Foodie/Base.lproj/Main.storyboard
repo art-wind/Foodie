@@ -209,7 +209,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4br-oB-r40">
-                                <rect key="frame" x="309" y="308" width="85" height="30"/>
+                                <rect key="frame" x="303.5" y="308" width="85" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="hvb-fU-FPg"/>
                                     <constraint firstAttribute="height" constant="30" id="l7b-ZT-t8j"/>
@@ -224,13 +224,13 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KVD-zZ-U1a">
-                                <rect key="frame" x="215" y="270" width="180" height="30"/>
+                                <rect key="frame" x="209.5" y="270" width="180" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LM8-si-fDz">
-                                <rect key="frame" x="215" y="232" width="180" height="30"/>
+                                <rect key="frame" x="209.5" y="232" width="180" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="amF-zu-pGP"/>
@@ -244,25 +244,26 @@
                                     </mask>
                                 </variation>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpf-9V-kYs">
-                                <rect key="frame" x="215" y="308" width="85" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tpf-9V-kYs">
+                                <rect key="frame" x="209.5" y="308" width="85" height="30"/>
                                 <state key="normal" title="登录" backgroundImage="LoginButtonRed">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="04K-q5-hzv"/>
-                                    <segue destination="x6h-Nq-w6B" kind="show" identifier="Successful Logon Segue" id="b1Z-Tk-FOc"/>
+                                    <segue destination="x6h-Nq-w6B" kind="presentation" identifier="Successful Logon Segue" modalPresentationStyle="fullScreen" id="b1Z-Tk-FOc"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cameraLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Fh7-1S-Y6T">
-                                <rect key="frame" x="268" y="90" width="75" height="75"/>
+                                <rect key="frame" x="262.5" y="90" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="75" id="Ff1-oT-eqp"/>
                                     <constraint firstAttribute="width" secondItem="Fh7-1S-Y6T" secondAttribute="height" multiplier="1:1" id="vfx-DZ-6Li"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Foodie" translatesAutoresizingMaskIntoConstraints="NO" id="E35-X2-zBa">
-                                <rect key="frame" x="263" y="177" width="85.5" height="30"/>
+                                <rect key="frame" x="257.5" y="177" width="85.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="E35-X2-zBa" secondAttribute="height" multiplier="57:20" id="4vG-P9-SBe"/>
                                     <constraint firstAttribute="height" constant="30" id="rdh-Of-t7C"/>
@@ -293,7 +294,7 @@
                             <constraint firstItem="4br-oB-r40" firstAttribute="top" secondItem="KVD-zZ-U1a" secondAttribute="bottom" constant="8" id="Qis-r9-gRX"/>
                             <constraint firstItem="LM8-si-fDz" firstAttribute="centerX" secondItem="Fh7-1S-Y6T" secondAttribute="centerX" id="T0V-cS-z1s"/>
                             <constraint firstItem="tpf-9V-kYs" firstAttribute="leading" secondItem="KVD-zZ-U1a" secondAttribute="leading" constant="-0.5" id="VBS-Pk-0jk"/>
-                            <constraint firstAttribute="centerX" secondItem="Fh7-1S-Y6T" secondAttribute="centerX" constant="-5" id="VeO-3P-mFg"/>
+                            <constraint firstAttribute="centerX" secondItem="Fh7-1S-Y6T" secondAttribute="centerX" id="VeO-3P-mFg"/>
                             <constraint firstItem="SMU-ua-oe9" firstAttribute="top" secondItem="Fh7-1S-Y6T" secondAttribute="bottom" constant="-198" id="Yg4-N9-egq"/>
                             <constraint firstItem="4br-oB-r40" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="522" id="aDU-9I-0aI"/>
                             <constraint firstItem="LM8-si-fDz" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="1:2" id="aJd-u0-zbE"/>
@@ -612,7 +613,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8ww-rK-NvG" id="hVb-8q-kkD">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="正版达人" placeholder="Gender" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="34d-D8-VT0">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="正版达人" placeholder="Nickname" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="34d-D8-VT0">
                                                     <rect key="frame" x="106" y="7" width="486" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="361" id="lv4-sN-Je4"/>

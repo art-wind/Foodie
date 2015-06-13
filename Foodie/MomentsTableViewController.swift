@@ -11,7 +11,7 @@ import UIKit
 class MomentsTableViewController: UITableViewController,UIGestureRecognizerDelegate {
     let cellReuseID = "Moment TVC"
     let cellNibName = "MomentTableViewCell"
-    let pictureArr = ["pizza","sushi","strawberries"]
+    
     var statusList:[Status]?
     var selectedStatus:Status?
     override func viewDidLoad() {
@@ -45,7 +45,6 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
         if let list = statusList {
-            println("Count:  \(list.count)")
             return list.count
         }
         return 0
@@ -99,7 +98,6 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         timeLabel.font = UIFont.systemFontOfSize(16)
         timeLabel.textColor = UIColor.grayColor()
         DateLabelSetter.setLabel(timeLabel, dateString: dateString)
-//        timeLabel.text = dateString
         
         let timeLabelSize = timeLabel.sizeThatFits(CGSize(width: 1000, height: 40))
         timeLabel.frame.size = timeLabelSize
@@ -130,11 +128,11 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         
         //Button Setting
         cell.commentButton.tag = section
-        cell.commentButton.setTitle("\(status.commentNum!)", forState: UIControlState.Normal)
+//        cell.commentButton.setTitle("\(status.commentNum!)", forState: UIControlState.Normal)
         cell.commentButton.addTarget(self, action: Selector("commentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         cell.admireButton.tag = section
-        cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
+//        cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
         cell.admireButton.addTarget(self, action: Selector("admireAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         cell.contentLabel.text = "\(status.content!)"
@@ -182,28 +180,18 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
     }
     @IBAction func admireAction(sender:UIButton){
         let tag = sender.tag
-        sender.setImage(UIImage(named: "monster"), forState: UIControlState.Highlighted)
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 330
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
-        println("Select:  \(indexPath.section)")
-        
         selectedStatus = statusList![indexPath.section]
         let detailStatusVC = VCGenerator.detailStatusVCGenerator()
         detailStatusVC.status = selectedStatus
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }
-        
-        
-//        performSegueWithIdentifier("Make Comment", sender: self)
-//        
-//        println("sdd")
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Make Comment"
@@ -212,7 +200,6 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
             commentVC.targetStatus = selectedStatus
         }
     }
-    
     
     
 }

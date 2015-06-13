@@ -16,21 +16,8 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
     let commentTVCNibName = "CommentTableViewCell"
     
     let showConcernSegueID = "Show Friends"
-    //    var is
-//    var comments:[String] = ["饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人",
-//        "饭菜看上去很诱人"]
+   
+    
     var commentsList:[Comment]?
     
     var targetStatus:Status?
@@ -119,6 +106,7 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
                 dispatch_async( dispatch_get_main_queue(), { () -> Void in
                     self!.toolBar.hidden = true
                     self!.inputBox.resignFirstResponder()
+                    self!.targetStatus?.commentNum! += 1
                     let alertView = UIAlertView(title: "发布成功", message: nil, delegate: nil, cancelButtonTitle: "OK")
                     alertView.show()
                     self!.refreshAction()
@@ -184,6 +172,11 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             cell.contentLabel.text = targetStatus?.content!
             CacheManager.setImageViewWithData(cell.pictureImageView, url: targetStatus!.picture!)
             CacheManager.setImageViewWithData(cell.iconImageView , url: targetStatus!.user_icon!)
+            let dateString = targetStatus!.time
+            DateLabelSetter.setLabel(cell.dateLabel, dateString: dateString!)
+            
+//            DateLabelSetter.setLabel(cell.dateLabel, dateString: targetStatus!.time!)
+            
             return cell
         }
         else{
@@ -192,13 +185,14 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             let comment = commentsList![indexPath.row]
             cell.contentLabel.text = comment.content
             cell.nicknameLabel.text = "\(comment.nickname!)"
+            
             CacheManager.setImageViewWithData(cell.iconImageVIew, url:comment.icon!)
-//            DateLabelSetter.setLabel(cell.dateLabel, dateString: comment.date!)
+            
+            DateLabelSetter.setLabel(cell.dateLabel, dateString: comment.date!)
             return cell
         }
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        let content =
         let section = indexPath.section
         if section == 0 {
             return 200

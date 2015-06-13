@@ -161,6 +161,8 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             let cell = tableView.dequeueReusableCellWithIdentifier(previousPhotoID, forIndexPath: indexPath) as PreviousPhotoTableViewCell
             CacheManager.setImageViewWithData(cell.statusImageView, url: status.picture!)
             cell.statusLabel.text = "\(status.content!)"
+            DateLabelSetter.setLabel(cell.dateLabel, dateString: status.time!)
+            
             return cell
         }
         
@@ -189,6 +191,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
                     self!.setButton(sender)
                     let alertView = UIAlertView(title: "", message: "关注成功", delegate: self, cancelButtonTitle: "OK")
                     alertView.show()
+                    self!.refreshSocialInfo()
                 })
             })
             
@@ -201,6 +204,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
                     self!.setButton(sender)
                     let alertView = UIAlertView(title: "", message: "取消关注成功", delegate: self, cancelButtonTitle: "OK")
                     alertView.show()
+                    self!.refreshSocialInfo()
                 })
             })
         }
