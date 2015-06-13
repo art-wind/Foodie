@@ -11,11 +11,10 @@ import UIKit
 class MomentTableViewCell: UITableViewCell {
 
     @IBOutlet var pictureImageView: UIImageView!
-    @IBOutlet var messageTextView: UITextView!
-    @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var commentButton: UIButton!
     @IBOutlet var admireButton: UIButton!
     @IBOutlet var tagLabel: UILabel!
+    @IBOutlet var contentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         pictureImageView.userInteractionEnabled = true

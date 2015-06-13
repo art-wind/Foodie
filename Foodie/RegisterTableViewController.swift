@@ -40,19 +40,24 @@ class RegisterTableViewController: UITableViewController {
             
             //MARK: HTTP Request Goes here
             let urlRequest = UserManager.registerRequest(phoneNumber, pwd: password, nickname: nickname)
-            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue(), completionHandler: { (response, data, error) -> Void in
+            NSURLConnection.sendAsynchronousRequest(urlRequest, queue: NSOperationQueue(),
+                completionHandler: {[weak self] (response, data, error) -> Void in
                 println()
                 if error == nil {
-                    println("Done")
+                    
                     println(data)
-                    var user = UserManager.getUserFromData(data)
-                    println("hzx"+user.nickname!)
-                    println("hzx"+user.password!)
-                    println("hzx"+user.phoneNum!)
-
+                    let user = UserManager.getUserFromData(data)
+                    let appDele = UIApplication.sharedApplication().delegate as AppDelegate
+                    appDele.currentUser = user
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let alertView = UIAlertView(title: "注册成功,欢迎来到吃货天堂!", message: nil, delegate: nil, cancelButtonTitle: "体验一下")
+                        alertView.show()
+                        self!.successfullyRegister = true
+                        self!.performSegueWithIdentifier(self!.segueName, sender: self)
+                    })
                 }
             })
-            successfullyRegister = true
+            
         }
         else{
             alertView.show()

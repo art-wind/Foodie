@@ -8,25 +8,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moment TVC" rowHeight="310" id="KGk-i7-Jjw" customClass="MomentTableViewCell" customModule="Foodie" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Moment TVC" rowHeight="400" id="KGk-i7-Jjw" customClass="MomentTableViewCell" customModule="Foodie" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GjM-Qz-YOm">
-                        <rect key="frame" x="320" y="208" width="47" height="24"/>
-                        <state key="normal" title="12" image="Heart">
+                        <rect key="frame" x="341" y="278" width="26" height="24"/>
+                        <state key="normal" image="Heart">
                             <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sushi" translatesAutoresizingMaskIntoConstraints="NO" id="mbn-Wk-ppU">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="mbn-Wk-ppU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="270"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="AyW-6q-fxP"/>
-                            <constraint firstAttribute="height" constant="200" id="kJY-Jy-aQK"/>
+                            <constraint firstAttribute="height" constant="270" id="kJY-Jy-aQK"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -35,22 +35,28 @@
                         </variation>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXW-k7-K37">
-                        <rect key="frame" x="266" y="208" width="47" height="24"/>
-                        <state key="normal" title="12" image="Message">
+                        <rect key="frame" x="308" y="278" width="26" height="24"/>
+                        <state key="normal" image="Message">
                             <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W2M-mq-EQx">
-                        <rect key="frame" x="8" y="211" width="17" height="17"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Flag" translatesAutoresizingMaskIntoConstraints="NO" id="W2M-mq-EQx">
+                        <rect key="frame" x="8" y="280" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="W2M-mq-EQx" secondAttribute="height" multiplier="1:1" id="Ya5-XY-THz"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sushi Sushi Sushi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gb0-SY-nDA">
-                        <rect key="frame" x="33" y="211" width="115.5" height="17"/>
+                        <rect key="frame" x="34" y="280" width="115.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKx-SI-zfg">
+                        <rect key="frame" x="8" y="306" width="359" height="17.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.23137256503105164" green="0.5058823823928833" blue="0.75294125080108643" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -63,14 +69,19 @@
                     <constraint firstItem="gb0-SY-nDA" firstAttribute="centerY" secondItem="fXW-k7-K37" secondAttribute="centerY" constant="-0.5" id="AXG-bj-XZW"/>
                     <constraint firstItem="mbn-Wk-ppU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Car-17-OXg"/>
                     <constraint firstItem="mbn-Wk-ppU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="DwF-Hs-tJc"/>
+                    <constraint firstItem="NKx-SI-zfg" firstAttribute="top" secondItem="W2M-mq-EQx" secondAttribute="bottom" constant="8" id="Ecu-En-8NL"/>
+                    <constraint firstItem="GjM-Qz-YOm" firstAttribute="trailing" secondItem="NKx-SI-zfg" secondAttribute="trailing" id="FLH-Cq-aiF"/>
                     <constraint firstItem="GjM-Qz-YOm" firstAttribute="top" secondItem="fXW-k7-K37" secondAttribute="top" id="GVB-Gv-r5y"/>
                     <constraint firstItem="GjM-Qz-YOm" firstAttribute="centerY" secondItem="fXW-k7-K37" secondAttribute="centerY" id="IrG-OJ-GTb"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="NKx-SI-zfg" secondAttribute="bottom" constant="8" id="Qrk-eR-Dtr"/>
                     <constraint firstAttribute="trailing" secondItem="mbn-Wk-ppU" secondAttribute="trailing" id="TMF-Fw-lLd"/>
                     <constraint firstItem="W2M-mq-EQx" firstAttribute="top" secondItem="mbn-Wk-ppU" secondAttribute="bottom" constant="7" id="VTa-y5-U5h"/>
                     <constraint firstItem="GjM-Qz-YOm" firstAttribute="top" secondItem="mbn-Wk-ppU" secondAttribute="bottom" constant="8" id="blQ-LA-MC4"/>
                     <constraint firstItem="fXW-k7-K37" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="258" id="i3f-Is-FmE"/>
+                    <constraint firstItem="NKx-SI-zfg" firstAttribute="leading" secondItem="W2M-mq-EQx" secondAttribute="trailing" constant="-17" id="j4w-fZ-ZZT"/>
                     <constraint firstItem="gb0-SY-nDA" firstAttribute="leading" secondItem="W2M-mq-EQx" secondAttribute="trailing" constant="8" id="lKf-jI-lTT"/>
                     <constraint firstItem="mbn-Wk-ppU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="lSl-Vg-8ca"/>
+                    <constraint firstItem="W2M-mq-EQx" firstAttribute="leading" secondItem="NKx-SI-zfg" secondAttribute="leading" id="ogz-5G-h0I"/>
                     <constraint firstItem="GjM-Qz-YOm" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="q9e-AJ-g4M"/>
                     <constraint firstItem="W2M-mq-EQx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="sJI-Gy-UdT"/>
                     <constraint firstItem="fXW-k7-K37" firstAttribute="leading" secondItem="gb0-SY-nDA" secondAttribute="trailing" constant="45" id="sxY-If-DZ9"/>
@@ -85,6 +96,8 @@
                         <exclude reference="lSl-Vg-8ca"/>
                         <exclude reference="VTa-y5-U5h"/>
                         <exclude reference="yZC-nP-J8G"/>
+                        <exclude reference="Qrk-eR-Dtr"/>
+                        <exclude reference="j4w-fZ-ZZT"/>
                         <exclude reference="i3f-Is-FmE"/>
                         <exclude reference="sxY-If-DZ9"/>
                     </mask>
@@ -93,15 +106,17 @@
             <connections>
                 <outlet property="admireButton" destination="GjM-Qz-YOm" id="Ctz-jn-7bq"/>
                 <outlet property="commentButton" destination="fXW-k7-K37" id="Xbo-01-GkJ"/>
+                <outlet property="contentLabel" destination="NKx-SI-zfg" id="iTb-nB-us1"/>
                 <outlet property="pictureImageView" destination="mbn-Wk-ppU" id="EZe-bw-eaK"/>
                 <outlet property="tagLabel" destination="gb0-SY-nDA" id="tnI-iE-Fcv"/>
             </connections>
-            <point key="canvasLocation" x="-50.5" y="64.5"/>
+            <point key="canvasLocation" x="-50.5" y="110.5"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="Flag" width="15" height="18"/>
         <image name="Heart" width="25" height="23"/>
         <image name="Message" width="26" height="24"/>
-        <image name="sushi" width="600" height="403"/>
+        <image name="defaultPicture" width="80" height="80"/>
     </resources>
 </document>

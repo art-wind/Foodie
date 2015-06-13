@@ -114,13 +114,19 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         if isPicture {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(pictureThumbnailCVCID, forIndexPath: indexPath) as PictureThumbnailCollectionViewCell
             // Configure the cell
-            cell.pictureThumbnailImageView.image = UIImage(named: "cheesecake")
+            let status = statusList![indexPath.row]
+            CacheManager.setImageViewWithData(cell.pictureThumbnailImageView, url: status.picture!)
+//            cell.pictureThumbnailImageView.image = UIImage(named: "cheesecake")
             return cell
         }
         else{
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier(userIconCVCID, forIndexPath: indexPath) as UserIconCollectionViewCell
-            cell.iconImageView.image = UIImage(named: "HENRY")
-            cell.nameLabel.text = "Monster"
+            let user = userList![indexPath.row]
+            CacheManager.setImageViewWithData(cell.iconImageView, url:user.icon!)
+            
+            
+//            cell.iconImageView.image = UIImage(named: "HENRY")
+//            cell.nameLabel.text = "Monster"
             // Configure the cell
             //cell.frame.size = CGSize(width: view.frame.size.width/4,height: view.frame.size.width/4)
             return cell
@@ -147,14 +153,10 @@ class SearchResultsCollectionViewController: UICollectionViewController {
     }
     */
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        let detailStatusVC = DetailStatusViewController()
-//        self.navigationController?.pushViewController(detailStatusVC, animated: true)
-//        presentViewController(detailStatusVC, animated: true) { () -> Void in
-//            println("YESSSS")
-//        }
         if isPicture{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-//            detailStatusVC.userIconImage = UIImage(named: "HENRY")
+            detailStatusVC.status = (statusList![indexPath.row])
+            //            detailStatusVC.userIconImage = UIImage(named: "HENRY")
 //            detailStatusVC.detailStatusImage = UIImage(named: "cheesecake")
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
@@ -162,7 +164,8 @@ class SearchResultsCollectionViewController: UICollectionViewController {
         }
         else{
             let mainVC = MainPageTableViewController()
-            mainVC.isPushed = true
+            mainVC.isRoot = true
+            mainVC.targetUserID = (userList![indexPath.row]).id
 //            mainVC.
             presentViewController(UINavigationController(rootViewController: mainVC), animated: true, completion: { () -> Void in
                 

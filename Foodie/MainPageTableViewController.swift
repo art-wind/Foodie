@@ -23,8 +23,8 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
     var statusList:[Status]?
     
     //Mark: Segue Variables
-    var isPushed = false
-    
+    var isRoot = false
+    var firstTime : Bool = true
     
     //MARK: Global Variables
     var isMyself:Bool?
@@ -33,9 +33,42 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellReuseID, bundle: nil), forCellReuseIdentifier: cellReuseID)
         tableView.registerNib(UINib(nibName: previousPhotoTVCNibName, bundle: nil), forCellReuseIdentifier: previousPhotoID)
-        if isPushed {
+        if isRoot {
             self.navigationItem.leftBarButtonItem  = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: Selector("pop:"))
         }
+        
+//        onlineUpdate()
+        
+    }
+    
+    func pop(sender:UIBarButtonItem){
+        if isRoot {
+            dismissViewControllerAnimated(true, completion: { () -> Void in
+                
+            })
+        }
+        else{
+            navigationController?.popToRootViewControllerAnimated(true)
+        }
+        
+    }
+    override func viewWillAppear(animated: Bool) {
+        //refreshSocialInfo()
+        
+        onlineUpdate()
+    }
+    func refreshSocialInfo(){
+        let currentUser = SharedVariable.currentUser()!
+        let socialInfoRequest = SocialInfoManager.personalPageRequest(currentUser.id!, target_id: targetUserID!)
+        NSURLConnection.sendAsynchronousRequest(socialInfoRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
+            self!.socialInfo = SocialInfo.convertSocialInfo(SWXMLHash.parse(data))
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                let tableView = self!.tableView
+                tableView.reloadData()
+            })
+        })
+    }
+    func onlineUpdate(){
         let currentUser = SharedVariable.currentUser()!
         if targetUserID == nil {
             isMyself = true
@@ -43,19 +76,13 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         }
         else{
             if isMyself == nil {
-                isMyself =  currentUser.id! == targetUserID! ? true : false
+                isMyself =  (currentUser.id! == targetUserID!)
             }
         }
         
+        refreshSocialInfo()
         
-        let socialInfoRequest = SocialInfoManager.personalPageRequest(currentUser.id!, target_id: targetUserID!)
-        NSURLConnection.sendAsynchronousRequest(socialInfoRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
-            self!.socialInfo = SocialInfo.convertSocialInfo(SWXMLHash.parse(data))
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                                let tableView = self!.tableView
-                                tableView.reloadData()
-             })
-        })
+       
         //HTTP Request for StatusList
         let statusRequest = StatusManager.statusByUserRequset(targetUserID!, pageNum: 0)
         NSURLConnection.sendAsynchronousRequest(statusRequest, queue: NSOperationQueue()) { [weak self](response, data, error) -> Void in
@@ -66,11 +93,6 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             })
         }
         
-    }
-    func pop(sender:UIBarButtonItem){
-        dismissViewControllerAnimated(true, completion: { () -> Void in
-            
-        })
     }
     
     
@@ -107,8 +129,6 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             cell.concernButton.addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
             cell.fansButton.addTarget(self, action: Selector("showFansList:"), forControlEvents:UIControlEvents.TouchUpInside)
             
-            
-//            cell..addTarget(self, action: Selector("showConcernList:"), forControlEvents:UIControlEvents.TouchUpInside)
             if let definedSocialInfo = socialInfo {
                 
                 CacheManager.setImageViewWithData(cell.iconImageView, url: definedSocialInfo.iconImage!)
@@ -137,7 +157,11 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
             return cell
         }
         else{
+            let status = statusList![indexPath.row]
             let cell = tableView.dequeueReusableCellWithIdentifier(previousPhotoID, forIndexPath: indexPath) as PreviousPhotoTableViewCell
+            CacheManager.setImageViewWithData(cell.statusImageView, url: status.picture!)
+            cell.statusLabel.text = "\(status.content!)"
+            DateLabelSetter.setLabel(cell.dateLabel, dateString: status.time!)
             
             return cell
         }
@@ -167,6 +191,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
                     self!.setButton(sender)
                     let alertView = UIAlertView(title: "", message: "关注成功", delegate: self, cancelButtonTitle: "OK")
                     alertView.show()
+                    self!.refreshSocialInfo()
                 })
             })
             
@@ -179,6 +204,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
                     self!.setButton(sender)
                     let alertView = UIAlertView(title: "", message: "取消关注成功", delegate: self, cancelButtonTitle: "OK")
                     alertView.show()
+                    self!.refreshSocialInfo()
                 })
             })
         }
@@ -257,8 +283,7 @@ class MainPageTableViewController: UITableViewController,UIAlertViewDelegate {
         let row = indexPath.row
         if section == 1{
             let detailStatusVC = VCGenerator.detailStatusVCGenerator()
-//            detailStatusVC.detailStatusImage = UIImage(named:"monster")
-//            detailStatusVC.userIconImage = UIImage(named:"monster")
+            detailStatusVC.status = statusList![row]
             presentViewController(detailStatusVC, animated: true) { () -> Void in
                 
             }

@@ -15,44 +15,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="headTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZE-Q2-hG3">
-                        <rect key="frame" x="8" y="8" width="42" height="32"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一天前" lineBreakMode="headTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZE-Q2-hG3">
+                        <rect key="frame" x="8" y="8" width="55" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="Cec-hT-vX3"/>
+                            <constraint firstAttribute="width" constant="55" id="lcr-Q7-efo"/>
                         </constraints>
-                        <attributedString key="attributedText">
-                            <fragment content="2">
-                                <attributes>
-                                    <color key="NSColor" red="0.36621601517447638" green="0.69229853599508384" blue="0.73642777423469385" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="22" name="HelveticaNeue"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                            <fragment content="/">
-                                <attributes>
-                                    <color key="NSColor" red="0.36621601517447638" green="0.69229853599508384" blue="0.73642777423469385" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="20" name="HelveticaNeue"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                            <fragment content="12">
-                                <attributes>
-                                    <color key="NSColor" red="0.36621601517447638" green="0.69229853599508384" blue="0.73642777423469385" alpha="1" colorSpace="calibratedRGB"/>
-                                    <font key="NSFont" size="14" name="HelveticaNeue"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" red="0.36621601517447638" green="0.69229853599508384" blue="0.73642777423469385" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天的天气真好" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHb-8d-j9c">
-                        <rect key="frame" x="58" y="8" width="254" height="32"/>
+                        <rect key="frame" x="71" y="8" width="241" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheesecake" translatesAutoresizingMaskIntoConstraints="NO" id="F7z-rm-6sk">
-                        <rect key="frame" x="58" y="48" width="120" height="120"/>
+                        <rect key="frame" x="71" y="48" width="120" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="2nW-IP-GXl"/>
                             <constraint firstAttribute="width" constant="120" id="QMR-kr-eQm"/>
@@ -71,18 +51,28 @@
                     <constraint firstItem="F7z-rm-6sk" firstAttribute="top" secondItem="GHb-8d-j9c" secondAttribute="bottom" constant="8" symbolic="YES" id="MfX-zj-HEs"/>
                     <constraint firstItem="RZE-Q2-hG3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ObR-3i-F0H"/>
                     <constraint firstItem="GHb-8d-j9c" firstAttribute="bottom" secondItem="RZE-Q2-hG3" secondAttribute="bottom" id="YVK-Xr-tY2"/>
+                    <constraint firstItem="GHb-8d-j9c" firstAttribute="leading" secondItem="RZE-Q2-hG3" secondAttribute="trailing" constant="8" id="emc-qr-vIl"/>
                     <constraint firstItem="GHb-8d-j9c" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="gyT-QL-ha4"/>
                     <constraint firstItem="RZE-Q2-hG3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="iwf-59-8PP"/>
                     <constraint firstItem="GHb-8d-j9c" firstAttribute="leading" secondItem="RZE-Q2-hG3" secondAttribute="trailing" constant="8" symbolic="YES" id="lxu-4G-cpo"/>
                     <constraint firstItem="F7z-rm-6sk" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="nUU-zT-PSt"/>
+                    <constraint firstItem="F7z-rm-6sk" firstAttribute="leading" secondItem="GHb-8d-j9c" secondAttribute="leading" id="tPg-rr-v8e"/>
                     <constraint firstAttribute="bottomMargin" secondItem="F7z-rm-6sk" secondAttribute="bottom" constant="26.5" id="zcn-kA-zw3"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="lxu-4G-cpo"/>
+                        <exclude reference="7Xa-vp-WVp"/>
+                        <exclude reference="nUU-zT-PSt"/>
                         <exclude reference="zcn-kA-zw3"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="RZE-Q2-hG3" id="pxj-pm-Lgf"/>
+                <outlet property="statusImageView" destination="F7z-rm-6sk" id="QZr-5g-lTW"/>
+                <outlet property="statusLabel" destination="GHb-8d-j9c" id="7bo-o5-RQv"/>
+            </connections>
             <point key="canvasLocation" x="311" y="400.5"/>
         </tableViewCell>
     </objects>

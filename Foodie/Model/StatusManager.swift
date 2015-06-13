@@ -11,9 +11,9 @@ import Foundation
 class StatusManager{
     
     //发状态  TODO
-    class func postStateRequest(user_id:String,nickname:String,pic_url:String,content:String,address:String)->
+    class func postStateRequest(user_id:String,nickname:String,pic_url:String,content:String,tag:String,address:String)->
         NSMutableURLRequest{
-            let parametersDictionary = ["user_id":user_id,"nickname":nickname,"pic_url":pic_url,"content":content,"address":address,"latitude":"0"
+            let parametersDictionary = ["user_id":user_id,"nickname":nickname,"pic_url":pic_url,"content":content,"tags":tag,"address":address,"latitude":"0"
                 ,"longitude":"0"]
         return RequestGenerator.generateRequest("StatusService", parametersDictionary: parametersDictionary)
     }

@@ -19,6 +19,7 @@ class DetailStatusViewController: UIViewController {
     @IBOutlet var praiseButton: UIButton!
     @IBOutlet var commentButton: UIButton!
     @IBOutlet var userIconImageView: UIImageView!
+    @IBOutlet var flagLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -26,17 +27,22 @@ class DetailStatusViewController: UIViewController {
         if let definedStatus = status {
             contentLabel.text = definedStatus.content
             
-            let radius = imageView.frame.width / 2
-            imageView.layer.cornerRadius = radius
-            imageView.layer.masksToBounds = true
+            let radius = userIconImageView.frame.width / 2
+            userIconImageView.layer.cornerRadius = radius
+            userIconImageView.layer.masksToBounds = true
             
+            
+        }
+    }
+    override func viewWillAppear(animated: Bool) {
+        if let definedStatus = status {
             CacheManager.setImageViewWithData(imageView, url: definedStatus.picture!)
             CacheManager.setImageViewWithData(userIconImageView, url: definedStatus.user_icon!)
             praiseButton.setTitle("\(definedStatus.likeNum!)", forState: UIControlState.Normal)
             commentButton.setTitle("\(definedStatus.commentNum!)", forState: UIControlState.Normal)
+            flagLabel.text = "\(definedStatus.tag!)"
         }
     }
-    
     
     //MARK: Actions of Users
     @IBAction func backAction(sender: UIButton) {
@@ -53,29 +59,12 @@ class DetailStatusViewController: UIViewController {
             
         }
     }
-    @IBAction func admireAction(sender: UIButton) {
-        var admireNumber =  (sender.titleLabel?.text?.toInt())!
-        var image:UIImage?
-        if isAdmired {
-            admireNumber += 1
-            image = UIImage(named: "Heart")
-        }
-        else{
-            admireNumber -= 1
-            image = UIImage(named: "Message")
-        }
-        isAdmired = !isAdmired
-        
-        sender.setImage(image, forState: UIControlState.Normal)
-        sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
-        
-    }
+    
     
     
     @IBAction func userIconTouched(sender: UITapGestureRecognizer) {
         let mainPageVC = MainPageTableViewController()
-        mainPageVC.isMyself = false
-        mainPageVC.isPushed = true
+        mainPageVC.isRoot = true
         
         let targetID = status!.user_id!
         mainPageVC.targetUserID = targetID
@@ -86,8 +75,45 @@ class DetailStatusViewController: UIViewController {
             
         }
     }
+    @IBAction func admireActionByDoubleTap(sender: UITapGestureRecognizer) {
+        admireAction()
+    }
     
-    
+    @IBAction func admireAction(sender: UIButton) {
+        admireAction()
+    }
+    func admireAction(){
+        let sender = praiseButton
+        var admireNumber =  (sender.titleLabel?.text?.toInt())!
+        var image:UIImage?
+        if isAdmired {
+            let alertView = UIAlertView(title: "您已点过赞", message: "浏览其他的图片吧~", delegate: nil, cancelButtonTitle: "ok")
+            alertView.show()
+//            admireNumber -= 1
+//            image = UIImage(named: "Heart")
+        }
+        else{
+            admireNumber += 1
+            status!.likeNum! += 1
+            let request = StatusManager.admireStatusRequest(status!.id!)
+            NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler: {(response, data, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    let alertView = UIAlertView(title: "成功", message: "点赞成功", delegate: nil, cancelButtonTitle: "ok")
+                    alertView.show()
+                    
+                })
+            })
+            
+            
+            image = UIImage(named: "RedHeart")
+//            sender.enabled = false
+        }
+        isAdmired = !isAdmired
+        
+        sender.setImage(image, forState: UIControlState.Normal)
+        sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
+        
+    }
     
     override init() {
         super.init()
@@ -100,5 +126,5 @@ class DetailStatusViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-
+    
 }

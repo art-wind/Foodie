@@ -11,14 +11,18 @@ import UIKit
 class MomentsTableViewController: UITableViewController,UIGestureRecognizerDelegate {
     let cellReuseID = "Moment TVC"
     let cellNibName = "MomentTableViewCell"
-    let pictureArr = ["pizza","sushi","strawberries"]
+    
     var statusList:[Status]?
+    var selectedStatus:Status?
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerNib(UINib(nibName: cellNibName, bundle: nil), forCellReuseIdentifier: cellReuseID)
         refreshControl?.addTarget(self, action: Selector("refreshTheTable:"), forControlEvents: UIControlEvents.ValueChanged)
-        refreshAction()
         
+        
+    }
+    override func viewWillAppear(animated: Bool) {
+        refreshAction()
     }
     @IBAction func refreshTheTable(sender:UIRefreshControl){
         refreshAction()
@@ -30,6 +34,7 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
             self!.statusList = StatusManager.getStatusListFromData(data)
             dispatch_async( dispatch_get_main_queue(), { () -> Void in
                 self!.tableView.reloadData()
+                self!.refreshControl?.endRefreshing()
             })
            
         }
@@ -81,16 +86,18 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         
         let nameLabelOffset = CGPoint(x: headerViewHeight, y: 8)
         let nameLabel = UILabel(frame: CGRect(origin: nameLabelOffset, size: CGSize(width: 50, height: headerViewHeight-16)))
-        nameLabel.text = status.user_nickname
+        nameLabel.text = "\(status.nickname!)"
         
         
         
         //MARK:Header Data Info
+        
+
         let dateString = "\(status.time!)"
         let timeLabel = UILabel()
         timeLabel.font = UIFont.systemFontOfSize(16)
         timeLabel.textColor = UIColor.grayColor()
-        timeLabel.text = dateString
+        DateLabelSetter.setLabel(timeLabel, dateString: dateString)
         
         let timeLabelSize = timeLabel.sizeThatFits(CGSize(width: 1000, height: 40))
         timeLabel.frame.size = timeLabelSize
@@ -118,20 +125,18 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         
         cell.bringSubviewToFront(cell.pictureImageView)
         CacheManager.setImageViewWithData(cell.pictureImageView, url: status.picture!)
-//        cell.pictureImageView.image = UIImage(named: pictureArr[indexPath.section])
-        
-//        let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: Selector("doubleTap:"))
-//        doubleTapRecognizer.numberOfTapsRequired = 2
-//        cell.pictureImageView.addGestureRecognizer(doubleTapRecognizer)
         
         //Button Setting
         cell.commentButton.tag = section
-        cell.commentButton.setTitle("\(status.commentNum!)", forState: UIControlState.Normal)
+//        cell.commentButton.setTitle("\(status.commentNum!)", forState: UIControlState.Normal)
         cell.commentButton.addTarget(self, action: Selector("commentAction:"), forControlEvents: UIControlEvents.TouchUpInside)
         
         cell.admireButton.tag = section
-        cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
+//        cell.admireButton.setTitle("\(status.likeNum!)", forState: UIControlState.Normal)
         cell.admireButton.addTarget(self, action: Selector("admireAction:"), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        cell.contentLabel.text = "\(status.content!)"
+        cell.tagLabel.text = "\(status.tag!)"
         return cell
     }
     
@@ -153,8 +158,7 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
         let status = statusList![sectionNumber]
         let mainPageVC = MainPageTableViewController()
         
-        mainPageVC.isMyself = false
-        mainPageVC.isPushed = false
+        mainPageVC.isRoot = false
         mainPageVC.targetUserID = status.user_id
         self.navigationController?.pushViewController(mainPageVC, animated: true)
     }
@@ -176,18 +180,25 @@ class MomentsTableViewController: UITableViewController,UIGestureRecognizerDeleg
     }
     @IBAction func admireAction(sender:UIButton){
         let tag = sender.tag
-        sender.setImage(UIImage(named: "monster"), forState: UIControlState.Highlighted)
     }
     
-    @IBAction func doubleTap(sender:UITapGestureRecognizer){
-        println("DOuble")
-    }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 250
+        return 330
     }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //        performSegueWithIdentifier("Make Comment", sender: self)
-        println("sdd")
+        selectedStatus = statusList![indexPath.section]
+        let detailStatusVC = VCGenerator.detailStatusVCGenerator()
+        detailStatusVC.status = selectedStatus
+        presentViewController(detailStatusVC, animated: true) { () -> Void in
+            
+        }
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Make Comment"
+        {
+            let commentVC = segue.destinationViewController as CommentsTableViewController
+            commentVC.targetStatus = selectedStatus
+        }
     }
     
     

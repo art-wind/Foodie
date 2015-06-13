@@ -1,4 +1,4 @@
-//
+ //
 //  SquareCollectionViewController.swift
 //  Foodie
 //
@@ -29,6 +29,7 @@ class SquareCollectionViewController: UICollectionViewController{
         refreshControl.tintColor = UIColor.grayColor()
         refreshControl.addTarget(self, action: Selector("refreshControl:"), forControlEvents: UIControlEvents.ValueChanged)
         self.collectionView?.addSubview(refreshControl)
+        getStatusAndReload()
     }
     override func viewDidAppear(animated: Bool) {
     }
@@ -41,14 +42,11 @@ class SquareCollectionViewController: UICollectionViewController{
     }
     func getStatusAndReload (){
         if let user = SharedVariable.currentUser(){
-            println(user.id)
-            
-            
+           
             let request = StatusManager.squareStatusRequest(user.id!, pageNum: 0)
             NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue(), completionHandler:{[weak self](response, data, error) -> Void in
                 
-                println("start")
-                
+               
                 self!.statusList = StatusManager.getStatusListFromData(data)
                 
                 if let collectionView = self!.collectionView {
@@ -58,13 +56,12 @@ class SquareCollectionViewController: UICollectionViewController{
                     })
                 }
                 
-                println("Ending")
             })
         }
         
     }
     func reload(){
-        println("sadsds")
+//        println("sadsds")
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -73,7 +70,7 @@ class SquareCollectionViewController: UICollectionViewController{
         return 1
     }
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        println(statusList.count)
+//        println(statusList.count)
         return statusList.count
     }
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -83,8 +80,7 @@ class SquareCollectionViewController: UICollectionViewController{
         let status = statusList[row]
         var pictureName = status.picture! as NSString
         pictureName = pictureName.substringToIndex(pictureName.length - 1)
-       
-        cell.squareImage.image = UIImage(named: "coke")
+        
         CacheManager.setImageViewWithData(cell.squareImage, url: pictureName)
         return cell
     }
@@ -95,8 +91,6 @@ class SquareCollectionViewController: UICollectionViewController{
         
         let row = indexPath.row
         detailStatusVC.status = statusList[row]
-//        detailStatusVC.detailStatusImage = cell.squareImage.image
-//        detailStatusVC.userIconImage = UIImage(named: "coke")
         presentViewController(detailStatusVC, animated: true) { () -> Void in
             
         }
