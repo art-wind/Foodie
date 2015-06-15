@@ -13,6 +13,14 @@ class TabBarController: UITabBarController,UIImagePickerControllerDelegate,UINav
     let actionSheetTitleForImage = "从何处选取图片"
     var takenPhoto:UIImage?
     //MARK: Center Button
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        let timer = NSTimer(timeInterval: 2, target: self, selector: Selector("retrieveNoti:"), userInfo: nil, repeats: true)
+//       NSRunLoop.currentRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+    }
+    @IBAction func retrieveNoti(sender:NSTimer){
+        println("INTO Retrieve")
+    }
     override func viewWillAppear(animated: Bool) {
         addCenterButton("ad", image: UIImage(named: "CenterButton")!)
     }

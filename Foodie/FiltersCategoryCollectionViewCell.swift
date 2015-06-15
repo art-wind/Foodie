@@ -16,5 +16,14 @@ class FiltersCategoryCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    func setSelect(){
+        self.filterImageView.layer.borderColor = Constants.sharedColor.CGColor
+        self.filterImageView.layer.borderWidth = 4
+        self.filterNameLabel.textColor = Constants.sharedColor
+    }
+    func setDeselect(){
+        self.filterImageView.layer.borderWidth = 0
+        self.filterNameLabel.textColor = UIColor.blackColor()
 
+    }
 }

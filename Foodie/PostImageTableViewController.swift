@@ -21,9 +21,14 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     @IBOutlet var locationLabel: UILabel!
     @IBOutlet var tagLabel: UILabel!
     @IBAction func chooseFilterUnwindSegue (segue:UIStoryboardSegue){
-//        let
         let srcVC = segue.sourceViewController as FilterViewController
+        if let filteredImage = srcVC.filteredImage{
+            takenPhoto.image = filteredImage
+            displayImage = filteredImage
+            return
+        }
         takenPhoto.image = srcVC.displayImage.image
+        displayImage = srcVC.displayImage.image
     }
     @IBAction func chooseTagCategoryUnwindSegue (segue:UIStoryboardSegue){
         //        let
@@ -60,7 +65,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
         indicator.startAnimating()
-        let urlRequest = ImageUpload.createRequest(takenPhoto.image!)
+        let urlRequest = ImageUpload.createRequest(displayImage!)
         let content = contentTextView.text
         var tagText = tagLabel.text
         if tagText == ""{
@@ -70,6 +75,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
             ) {[weak self] (response, data, error) -> Void in
                 if error == nil {
                     let urlString = NSString(data: data, encoding: NSUTF8StringEncoding)!
+                    println("\(urlString)")
                     if let user = SharedVariable.currentUser() {
                         let aRequest = StatusManager.postStateRequest(user.id!, nickname: user.nickname!, pic_url: urlString, content: content, tag:tagText!,address: "Fudan")
                         NSURLConnection.sendAsynchronousRequest(aRequest, queue: NSOperationQueue(), completionHandler: {(response, data, error) -> Void in

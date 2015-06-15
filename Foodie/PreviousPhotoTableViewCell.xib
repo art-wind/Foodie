@@ -16,23 +16,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一天前" lineBreakMode="headTruncation" numberOfLines="0" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZE-Q2-hG3">
-                        <rect key="frame" x="8" y="8" width="55" height="32"/>
+                        <rect key="frame" x="8" y="8" width="65" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="Cec-hT-vX3"/>
-                            <constraint firstAttribute="width" constant="55" id="lcr-Q7-efo"/>
+                            <constraint firstAttribute="width" constant="65" id="lcr-Q7-efo"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                         <color key="textColor" red="0.36621601517447638" green="0.69229853599508384" blue="0.73642777423469385" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="今天的天气真好" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHb-8d-j9c">
-                        <rect key="frame" x="71" y="8" width="241" height="32"/>
+                        <rect key="frame" x="81" y="8" width="231" height="32"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cheesecake" translatesAutoresizingMaskIntoConstraints="NO" id="F7z-rm-6sk">
-                        <rect key="frame" x="71" y="48" width="120" height="120"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="F7z-rm-6sk">
+                        <rect key="frame" x="81" y="48" width="120" height="120"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="120" id="2nW-IP-GXl"/>
                             <constraint firstAttribute="width" constant="120" id="QMR-kr-eQm"/>
@@ -77,6 +77,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="cheesecake" width="1024" height="1024"/>
+        <image name="defaultPicture" width="80" height="80"/>
     </resources>
 </document>

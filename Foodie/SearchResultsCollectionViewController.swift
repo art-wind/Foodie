@@ -54,6 +54,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
                 self!.statusList = StatusManager.getStatusListFromData(data)
                 if self!.statusList?.count == 0 {
                    self!.alertViewShown("无匹配结果", message: "无对应的图片")
+                   self!.collectionView?.reloadData()
                    return
                 }
             }
@@ -61,6 +62,7 @@ class SearchResultsCollectionViewController: UICollectionViewController {
                 self!.userList = UserManager.getUserListFromData(data)
                 if self!.userList?.count == 0 {
                     self!.alertViewShown("无匹配结果", message: "无对应的用户")
+                    self!.collectionView?.reloadData()
                     return
                 }
             }

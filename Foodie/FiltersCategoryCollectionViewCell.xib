@@ -14,11 +14,15 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CvZ-EP-THG">
                         <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="66" id="ohz-Un-Jaq"/>
+                            <constraint firstAttribute="width" constant="66" id="uax-tM-v8I"/>
+                        </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVb-IP-sab">
-                        <rect key="frame" x="12" y="68" width="42" height="21"/>
+                        <rect key="frame" x="12" y="69" width="42" height="20"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="qwG-BM-xwt"/>
+                            <constraint firstAttribute="height" constant="20" id="qwG-BM-xwt"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -28,14 +32,19 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="cVb-IP-sab" firstAttribute="top" secondItem="CvZ-EP-THG" secondAttribute="bottom" constant="2" id="5ew-Nk-LKd"/>
-                <constraint firstItem="CvZ-EP-THG" firstAttribute="top" secondItem="Fm0-rd-7XW" secondAttribute="top" id="DnL-d4-il2"/>
-                <constraint firstItem="CvZ-EP-THG" firstAttribute="leading" secondItem="Fm0-rd-7XW" secondAttribute="leading" id="Dy1-96-9uZ"/>
-                <constraint firstItem="cVb-IP-sab" firstAttribute="centerX" secondItem="CvZ-EP-THG" secondAttribute="centerX" id="Il1-Vg-Iau"/>
-                <constraint firstAttribute="trailing" secondItem="CvZ-EP-THG" secondAttribute="trailing" id="Oyn-zi-wNR"/>
+                <constraint firstAttribute="trailing" secondItem="CvZ-EP-THG" secondAttribute="trailing" id="GdY-6M-HEN"/>
+                <constraint firstItem="CvZ-EP-THG" firstAttribute="top" secondItem="Fm0-rd-7XW" secondAttribute="top" id="TUa-sB-hff"/>
+                <constraint firstItem="CvZ-EP-THG" firstAttribute="leading" secondItem="Fm0-rd-7XW" secondAttribute="leading" id="W7t-fg-zKl"/>
+                <constraint firstItem="cVb-IP-sab" firstAttribute="centerX" secondItem="CvZ-EP-THG" secondAttribute="centerX" id="jxx-DA-PAI"/>
                 <constraint firstAttribute="bottom" secondItem="cVb-IP-sab" secondAttribute="bottom" constant="6" id="rzE-G0-E2d"/>
+                <constraint firstItem="cVb-IP-sab" firstAttribute="top" secondItem="CvZ-EP-THG" secondAttribute="bottom" constant="3" id="yZc-ke-gEm"/>
             </constraints>
             <size key="customSize" width="66" height="95"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="rzE-G0-E2d"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="filterImageView" destination="CvZ-EP-THG" id="M3E-yA-lhd"/>
                 <outlet property="filterNameLabel" destination="cVb-IP-sab" id="ViA-NM-qBc"/>

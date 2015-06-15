@@ -175,8 +175,6 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
             let dateString = targetStatus!.time
             DateLabelSetter.setLabel(cell.dateLabel, dateString: dateString!)
             
-//            DateLabelSetter.setLabel(cell.dateLabel, dateString: targetStatus!.time!)
-            
             return cell
         }
         else{
