@@ -11,13 +11,15 @@ import UIKit
 class ImageUpload {
     class func createRequest (image:UIImage) -> NSURLRequest {
         let url = NSURL(string: "\(Constants.urlBasicPath)PictureService")!
-        let imageData = UIImagePNGRepresentation(image)
         
         var TWITTERFON_FORM_BOUNDARY:String = "AaB03x"
         var request:NSMutableURLRequest = NSMutableURLRequest(URL: url, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 10)
         var MPboundary:String = "--\(TWITTERFON_FORM_BOUNDARY)"
         var endMPboundary:String = "\(MPboundary)--"
-        var data:NSData = UIImagePNGRepresentation(image)
+        var data = UIImagePNGRepresentation(image)
+        if data == nil {
+            data = UIImageJPEGRepresentation(image,1)
+        }
         var body:NSMutableString = NSMutableString()
         var filename = "p.png"
         body.appendFormat("%@\r\n",MPboundary)

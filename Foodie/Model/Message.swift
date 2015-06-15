@@ -13,12 +13,14 @@ class Message{
     var targetId:String?
     var type:Int?
     var hasRead:Bool?
+//    var 
 
     init(xml: XMLIndexer){
         self.id = xml["Id"].element?.text?
         self.userId = xml["UserId"].element?.text?
         self.targetId = xml["TargetId"].element?.text?
         self.type = xml["Type"].element?.text?.toInt()
+    
         if(xml["HasRead"].element?.text=="true"){
             self.hasRead = true
         }else{

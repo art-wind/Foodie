@@ -12,6 +12,7 @@ class ModificationTableViewController: UITableViewController,UIActionSheetDelega
    
     @IBOutlet var nicknameTextField: UITextField!
     @IBOutlet var iconThumbnailImageview: UIImageView!
+    @IBOutlet var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         let saveButton = UIBarButtonItem(title: "保存修改", style: .Plain, target: self, action: Selector("saveModified:"))
@@ -22,17 +23,30 @@ class ModificationTableViewController: UITableViewController,UIActionSheetDelega
         CacheManager.setImageViewWithData(iconThumbnailImageview, url: SharedVariable.currentUser()!.icon!)
         if let currentUser = SharedVariable.currentUser() {
             nicknameTextField.text = "\(currentUser.nickname!)"
+            passwordTextField.text = "\(currentUser.password!)"
         }
     }
     func saveModified(sender:UIBarButtonItem){
         // 上传修改的个人信息
         if let currentUser = SharedVariable.currentUser() {
             let currentNickname = nicknameTextField.text
+            let password = passwordTextField.text
+            var nicknameModify = false
+            var passwordModify = false
+            var alertString = ""
             if currentNickname != currentUser.nickname! {
-                let modifyRequest = UserManager.modifyRequest(currentUser.id!, phoneNum: currentUser.phoneNum!, pwd: currentUser.password!, nickname:currentNickname, iconURL: currentUser.icon!)
+                nicknameModify = true
+                alertString += "昵称"
+            }
+            if  password != currentUser.password! {
+                passwordModify = true
+                alertString += "、密码"
+            }
+            if passwordModify || nicknameModify {
+                let modifyRequest = UserManager.modifyRequest(currentUser.id!, phoneNum: currentUser.phoneNum!, pwd: password, nickname:currentNickname, iconURL: currentUser.icon!)
                 NSURLConnection.sendAsynchronousRequest(modifyRequest, queue: NSOperationQueue(), completionHandler: {[weak self] (response, data, error) -> Void in
                     currentUser.nickname = currentNickname
-                    let alertView = UIAlertView(title: "昵称修改成功", message: nil, delegate: nil, cancelButtonTitle: "OK")
+                    let alertView = UIAlertView(title: "\(alertString)修改成功", message: nil, delegate: nil, cancelButtonTitle: "OK")
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         alertView.show()
                         self!.navigationController?.popViewControllerAnimated(true)

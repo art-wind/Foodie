@@ -13,16 +13,18 @@ class FilterViewController: UIViewController {
     var originalImage = UIImage(named: "monster")
     let embeddedSegueID = "Embed Filters Category"
     var originalSize:CGSize?
-    
+    var originalPoint:CGPoint?
+    var filteredImage:UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         let postBarItem = UIBarButtonItem(title: "选择", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("choiceMade:"))
         self.navigationItem.rightBarButtonItem = postBarItem
         originalSize = displayImage.bounds.size
+        originalPoint = displayImage.frame.origin
 //        println("ORI \()")
         
         displayImage.image = originalImage
-        displayImage.bounds.size = originalSize!
+//        displayImage.bounds.size = originalSize!
         
         let defaultCenter = NSNotificationCenter.defaultCenter()
         defaultCenter.addObserver(self, selector: Selector("refreshImage:"), name: "FilterChosen", object: nil)
@@ -37,23 +39,25 @@ class FilterViewController: UIViewController {
     func refreshImage (notification:NSNotification){
         let mapping = notification.userInfo as [String:String]
         println("\(displayImage.bounds.size)")
-//        println(originalImage?.size)
+        
+        let context = CIContext(options: [kCIContextUseSoftwareRenderer:true])
+        
+        
         
         let filterName = mapping["value"]
         
         let filter = CIFilter(name: filterName)
         let coreImage = CIImage(image: originalImage)
         filter.setValue(coreImage, forKey: kCIInputImageKey)
-        let filterImage = UIImage(CIImage: filter.outputImage)
+        let filterImageData = filter.outputImage
         
-//        println(filterImage?.size)
-        displayImage.image = filterImage
-        displayImage.bounds.size = originalSize!
-//        if displayImage.bounds.size.width > originalSize?.width {
-//            displayImage.bounds.size = originalSize!
-//        }
-        
+        displayImage.image = UIImage(CIImage: filterImageData)
+        displayImage.setNeedsDisplay()
         println("\(displayImage.bounds.size)")
+        
+        let cgImage = context.createCGImage(filterImageData, fromRect: filterImageData.extent())
+        filteredImage = UIImage(CGImage: cgImage)
+        
     }
     func choiceMade(sender:UIBarButtonItem){
         //返回前一页 并保存图片

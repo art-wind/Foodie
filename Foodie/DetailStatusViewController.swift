@@ -89,8 +89,7 @@ class DetailStatusViewController: UIViewController {
         if isAdmired {
             let alertView = UIAlertView(title: "您已点过赞", message: "浏览其他的图片吧~", delegate: nil, cancelButtonTitle: "ok")
             alertView.show()
-//            admireNumber -= 1
-//            image = UIImage(named: "Heart")
+            return
         }
         else{
             admireNumber += 1
@@ -106,13 +105,12 @@ class DetailStatusViewController: UIViewController {
             
             
             image = UIImage(named: "RedHeart")
+            sender.setImage(image, forState: UIControlState.Normal)
+            isAdmired = !isAdmired
+            sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
+            
 //            sender.enabled = false
         }
-        isAdmired = !isAdmired
-        
-        sender.setImage(image, forState: UIControlState.Normal)
-        sender.setTitle("\(admireNumber)", forState: UIControlState.Normal)
-        
     }
     
     override init() {
