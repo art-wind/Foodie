@@ -98,7 +98,8 @@ class TabBarController: UITabBarController,UIImagePickerControllerDelegate,UINav
         if segue.identifier == postImageSegueName {
             let postImageVC = (segue.destinationViewController as UINavigationController)
             let vc = postImageVC.childViewControllers[0] as PostImageTableViewController
-            vc.displayImage = takenPhoto
+            vc.originalImage = takenPhoto
+//            vc = takenPhoto
         }
     }
     

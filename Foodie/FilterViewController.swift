@@ -45,18 +45,21 @@ class FilterViewController: UIViewController {
         
         
         let filterName = mapping["value"]
+        if filterName == "" {
+            displayImage.image = originalImage
+        }
+        else{
+            let filter = CIFilter(name: filterName)
+            let coreImage = CIImage(image: originalImage)
+            filter.setValue(coreImage, forKey: kCIInputImageKey)
+            let filterImageData = filter.outputImage
+            
+            displayImage.image = UIImage(CIImage: filterImageData)
+            
+            let cgImage = context.createCGImage(filterImageData, fromRect: filterImageData.extent())
+            filteredImage = UIImage(CGImage: cgImage)
+        }
         
-        let filter = CIFilter(name: filterName)
-        let coreImage = CIImage(image: originalImage)
-        filter.setValue(coreImage, forKey: kCIInputImageKey)
-        let filterImageData = filter.outputImage
-        
-        displayImage.image = UIImage(CIImage: filterImageData)
-        displayImage.setNeedsDisplay()
-        println("\(displayImage.bounds.size)")
-        
-        let cgImage = context.createCGImage(filterImageData, fromRect: filterImageData.extent())
-        filteredImage = UIImage(CGImage: cgImage)
         
     }
     func choiceMade(sender:UIBarButtonItem){

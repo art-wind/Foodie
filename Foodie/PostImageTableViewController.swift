@@ -13,7 +13,8 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     let filterImageSegueID = "Filter Image"
     var sendTimes = 0
     
-    var displayImage:UIImage?
+    var originalImage:UIImage?
+//    var displayImage:UIImage?
     @IBOutlet var takenPhoto: UIImageView!
     
     @IBOutlet var indicator: UIActivityIndicatorView!
@@ -24,11 +25,11 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
         let srcVC = segue.sourceViewController as FilterViewController
         if let filteredImage = srcVC.filteredImage{
             takenPhoto.image = filteredImage
-            displayImage = filteredImage
+//            displayImage = filteredImage
             return
         }
         takenPhoto.image = srcVC.displayImage.image
-        displayImage = srcVC.displayImage.image
+//        displayImage = srcVC.displayImage.image
     }
     @IBAction func chooseTagCategoryUnwindSegue (segue:UIStoryboardSegue){
         //        let
@@ -56,7 +57,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     
     override func viewDidLoad() {
         indicator.stopAnimating()
-        takenPhoto.image = displayImage
+        takenPhoto.image = originalImage
     }
     @IBAction func cancelPostAction(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -65,7 +66,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     }
     @IBAction func postImageAction(sender: UIBarButtonItem) {
         indicator.startAnimating()
-        let urlRequest = ImageUpload.createRequest(displayImage!)
+        let urlRequest = ImageUpload.createRequest(takenPhoto.image!)
         let content = contentTextView.text
         var tagText = tagLabel.text
         if tagText == ""{
@@ -112,7 +113,7 @@ class PostImageTableViewController: UITableViewController,UIActionSheetDelegate,
     // Pass the selected object to the new view controller.
         if segue.identifier == filterImageSegueID{
             let filterVC = segue.destinationViewController as FilterViewController
-            filterVC.originalImage = takenPhoto.image
+            filterVC.originalImage = originalImage
         }
     }
     

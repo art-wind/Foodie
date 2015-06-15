@@ -26,10 +26,10 @@ class DateLabelSetter {
             var minute = int / 60
             
             if hour == 0 {
-                label.text = "\(minute+1) 分钟前"
+                label.text = "\(minute+1)分钟前"
             }
             else{
-                    label.text = "\(hour)小时以前"
+                    label.text = "\(hour)小时前"
             }
         }
         else{

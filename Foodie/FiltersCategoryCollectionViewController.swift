@@ -14,8 +14,8 @@ class FiltersCategoryCollectionViewController: UICollectionViewController {
     var imageVar:UIImage?
     
     //    let filter = CIFilter(name: kCICategorySharpen)
-    let filterStrings = ["CISepiaTone","CIPhotoEffectChrome","CIPhotoEffectMono","CIPhotoEffectInstant"]
-    let mappingStrings = ["怀旧","铬黄","单色","冲色"]
+    let filterStrings = ["","CISepiaTone","CIPhotoEffectChrome","CIPhotoEffectInstant"]
+    let mappingStrings = ["原图","怀旧","铬黄","冲色"]
     let filtersCategoryCVCNibname = "FiltersCategoryCollectionViewCell"
     let filtersCategoryCVCID = "Filters Category CVC"
     var filterImages = [UIImage]()
@@ -25,13 +25,18 @@ class FiltersCategoryCollectionViewController: UICollectionViewController {
         self.collectionView!.registerClass(FiltersCategoryCollectionViewCell.self, forCellWithReuseIdentifier: filtersCategoryCVCID)
         self.collectionView?.registerNib(UINib(nibName: filtersCategoryCVCNibname, bundle: nil), forCellWithReuseIdentifier: filtersCategoryCVCID)
         
+        
         for filterName in filterStrings{
-            
-            let filter = CIFilter(name: filterName)
-            let coreImage = CIImage(image: imageVar)
-            filter.setValue(coreImage, forKey: kCIInputImageKey)
-            let filterImage = UIImage(CIImage: filter.outputImage)
-            filterImages.append(filterImage!)
+            if filterName == "" {
+                filterImages.append(imageVar!)
+            }
+            else{
+                let filter = CIFilter(name: filterName)
+                let coreImage = CIImage(image: imageVar)
+                filter.setValue(coreImage, forKey: kCIInputImageKey)
+                let filterImage = UIImage(CIImage: filter.outputImage)
+                filterImages.append(filterImage!)
+            }
         }
         
         println("View \(collectionView?.frame.size)")
