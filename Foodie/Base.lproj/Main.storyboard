@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -205,8 +206,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginBackground-1" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-ua-oe9">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LoginBackground-1" translatesAutoresizingMaskIntoConstraints="NO" id="SMU-ua-oe9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Qbg-q3-leU" appends="YES" id="Oes-CM-Fb3"/>
+                                </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4br-oB-r40">
                                 <rect key="frame" x="303.5" y="308" width="85" height="30"/>
@@ -327,6 +331,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Qbg-q3-leU">
+                    <connections>
+                        <action selector="resignKeyboardByTouchBackground:" destination="vXZ-lx-hvc" id="LKd-w4-hxY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-7825" y="-6702"/>
         </scene>

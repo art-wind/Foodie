@@ -66,9 +66,13 @@ class CommentsTableViewController: UITableViewController,UITextFieldDelegate,UIS
         
         toolBar.addSubview(inputBox)
         toolBar.addSubview(sendButton)
-        toolBar.hidden = true
+        toolBar.hidden = false
         
         view.addSubview(toolBar)
+        
+        let toolBarButton = UIBarButtonItem(customView: toolBar)
+        
+        toolbarItems = [toolBarButton]
         refreshAction()
         
     }

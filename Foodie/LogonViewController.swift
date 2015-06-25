@@ -54,6 +54,10 @@ class LogonViewController: UIViewController {
         
         
     }
+    @IBAction func resignKeyboardByTouchBackground(sender: UITapGestureRecognizer) {
+        phoneNumberTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
