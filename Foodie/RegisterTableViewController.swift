@@ -31,11 +31,28 @@ class RegisterTableViewController: UITableViewController {
             let password = passwordTextField.text
             let confirmPassword = confirmPasswordTextField.text
             let nickname = nicknameTextField.text
+            let regex = "^[0-9]{11}"
+            
+            let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+            let valid = predicate?.evaluateWithObject(phoneNumber)
+            if valid == false {
+                alertView.message = "请填写11位纯数字的手机号码"
+                alertView.show()
+                return
+            }
+            if (password as NSString).length<5{
+                alertView.message = "密码不得低于5位"
+                alertView.show()
+                return
+            }
             if password != confirmPassword{
                 alertView.message = "两次密码输入不同"
                 alertView.show()
                 return
             }
+            
+            
+            
             validInput = true
             
             //MARK: HTTP Request Goes here
